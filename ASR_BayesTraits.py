@@ -3,7 +3,7 @@
 __author__ = "Michael Gruenstaeudl, PhD"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __email__ = "mi.gruenstaeudl@gmail.com"
-__version__ = "2015.10.08.1700"
+__version__ = "2015.10.09.2300"
 
 # IMPORT OPERATIONS
 from cStringIO import StringIO
@@ -25,7 +25,9 @@ import pdb
 
 # GLOBAL VARIABLES
 bayesModel = "1\n2\n"
+bayesKw = "Iteration\tLh"
 likeModel = "1\n1\n"
+likeKw = "Tree No\tLh"
 
 # MODULES
 def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
@@ -65,8 +67,10 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
 # 1.4. Decision on model
     if rcnmdl.lower() == "likelihood":
         mdl = likeModel
+        parseKw = likeKw
     if rcnmdl.lower() == "bayesian":
         mdl = bayesModel
+        parseKw = bayesKw
 
 # 1.5. Generate command string as save to file
     cmdStr = mdl + node_specs + "\nrun\n"
@@ -79,7 +83,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
     print "  Selected Reconstruction Method:", rcnmdl
     cmd = pathToSoftware + " " + treedistrFn + " " + charsFnTmp + " < " + cmdFnTmp
     dataH = os.popen(cmd).read()
-    if "Tree No\tLh" not in dataH:
+    if parseKw not in dataH:
         sys.exit(colored("  ERROR: ", 'red') + "No reconstruction data from BayesTraits received.")
 
 # 2.2. Save outfile and delete temp files
@@ -91,7 +95,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
 
 # 3. Parse reconstruction data
 # 3.1. Get section
-    tmp = GSO.exstrkeepkw(dataH, "Tree No\tLh", "Sec:")
+    tmp = GSO.exstrkeepkw(dataH, parseKw, "Sec:")
     reader = csv.reader(StringIO(tmp), delimiter="\t")                  # csv.reader can only read file object
     arr = numpy.array(list(reader))                                     # reader holds the data only for one execution; hence immediately transfer it to variable "arr"
 
