@@ -15,7 +15,7 @@ import os
 # CLASSES #
 ###########
 
-class loadFile:
+class LoadFile:
     ''' Loading input files.
     Args:
         string <a>, string <b>, string <c>

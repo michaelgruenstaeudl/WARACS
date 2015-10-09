@@ -30,8 +30,8 @@ likeModel = "1\n1\n"
 # MODULES
 def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
 
-# 1. Preparatory Actions
 
+# 1. Preparatory Actions
 # 1.1. Set up temp filenames
     charsFnTmp = charsFn + ".tmp"
     cmdFnTmp = GSO.randomword(6) + ".tmp"
@@ -68,6 +68,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
     cmdStr = mdl + node_specs + "\nrun\n"
     GFO.saveFile(cmdFnTmp, cmdStr)
 
+
 # 2. Reconstruction
 # 2.1. Conduct reconstruction
     print "  Character Reconstruction in BayesTraits"
@@ -76,24 +77,44 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
     dataH = os.popen(cmd).read()
     if "Tree No\tLh" not in dataH:
         sys.exit(colored("  ERROR: ", 'red') + "No reconstruction data from BayesTraits received.")
-    
+
 # 2.2. Delete temp files
     GFO.deleteFile(charsFnTmp)
     GFO.deleteFile(cmdFnTmp)
 
-# 2.3. Parse reconstruction data
+
+# 3. Parse reconstruction data
+# 3.1. Get section
     tmp = GSO.exstrkeepkw(dataH, "Tree No\tLh", "Sec:")
     reader = csv.reader(StringIO(tmp), delimiter="\t")                  # csv.reader can only read file object
     arr = numpy.array(list(reader))                                     # reader holds the data only for one execution; hence immediately transfer it to variable "arr"
-#    tmp = arr[0]
-#    arr[0] = ["Tree No"] + tmp
-    
-    pdb.set_trace()
 
-    # extract all those cols that contain keyw
-    for c, node in enumerate(nodeL):
-        match = [e for e in arr[0] if "Node"+str(node)+" " in e]        # Keyword: "Node"+str(node)+" "
-        aList = [e[match] for e in arr[c:]]
+# 3.2. Extract all those cols that contain keyw
+    colHeaders = list(arr[0])
+    for node in nodeL:
+        kw = "Node" + str(node) + " "                                   # Keyword: "Node" + str(node) + " "
+        matchHeaders = [h for h in colHeaders if kw in h]
+        matchCols = [colHeaders.index(h) for h in matchHeaders]
+        valueArr = [e[matchCols] for e in arr[1:]]                      # values for a particular node still as columns
+        valueArr_t = numpy.transpose(valueArr)                          # after transposition, values for a particular node now as rows
+# 3.2.1. Calculate column sum divided by column length
+        matchVals = []
+        for line in valueArr_t:
+            try:
+                l = list(line).remove("--")                             # remove elements that indicate absence of node in tree
+            except ValueError:
+                l = list(line)
+            l = [float(i) for i in l]                                   # convert all list items to floats
+            r = sum(l)/len(l)
+            matchVals.append(r)
+        if len(matchHeaders) != len(matchVals):
+            sys.exit(colored("  ERROR: ", "magenta") + "Something wrong with parsing the reconstruction results!")
+# 3.2.2. Another step
+        outL = []
+        for h, v in zip(matchHeaders, matchVals):
+            outL.append(GSO.exstr(h,"(",")") + ":" + str(v[:6]))        # v[:6] ensures only 5, digits after comma
+        node_recon = ";".join(outL)
+
         pdb.set_trace()
 
 

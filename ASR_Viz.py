@@ -89,7 +89,7 @@ class AddPieCharts:
 
     def go(self):
         tree = ET.fromstring(self.inStr)
-        piedata = self.piedata.split("\n")
+        piedata = self.piedata.splitlines()
 
 #   1. Inserting pie chart XTG lines into infile by looping through inlist values
 #   1.1. Parsing of piedata
@@ -99,32 +99,32 @@ class AddPieCharts:
             nodeN = "Node_" + node
             nodeinfo = 'UniqueName="' + nodeN + '"'
 
-            if aList[1] == "0":
-                print colored("    Warning: Node " + node + " was not present in reconstruction trees.", 'magenta')
-            if nodeinfo not in self.inStr:
-                print colored("    Warning: Node " + node + " was not present in plotting tree.", 'magenta')
-            if aList[1] != "0" and nodeinfo in self.inStr:
-                print "    Adding pie labels and charts for node: " + node
-                aDict = OrdDict()
-                try:
-                    inL = aList[2].split(";")
-                except:                                                 # if aList[2] cannot be split (i.e., contains only a single elem)
-                    inL = aList[2]
-                for i in inL:
-                    if "E-" not in i and "0.00" not in i:               # boolt = any("." in i for i in inL)
-                        is_ast = bool("*" in inL)
-                        m = i.strip("*").split(":")
-                        area = m[0]
-                        enum = float(m[1])
-                        divis = float(aList[1])
-                        prop = str(enum/divis)[:4]
-                        if is_ast:
-                            prop = prop + " *"                      # Adding back asterisk for significant reconstructions
-                        aDict[area] = prop
+            #if aList[1] == "0":                                        # REACTIVATE, WHEN N OF TREES WITHOUT NODE RELEVANT
+            #    print colored("    Warning: Node " + node + " was not present in reconstruction trees.", 'magenta')
+            #if nodeinfo not in self.inStr:
+            #    print colored("    Warning: Node " + node + " was not present in plotting tree.", 'magenta')
+            #if aList[1] != "0" and nodeinfo in self.inStr:
 
-                if len(aDict.keys()) < 1:
-                    print colored("    Warning:", 'magenta'), "Pie data for node " + node + " not parsed"
-
+            print "    Adding pie labels and charts for node: " + node
+            aDict = OrdDict()
+            try:
+                inL = aList[1].split(";")
+            except:                                                     # if aList[2] cannot be split (i.e., contains only a single elem)
+                inL = aList[1]
+            for i in inL:
+                if "E-" not in i and "0.00" not in i:                   # boolt = any("." in i for i in inL)
+                    is_ast = bool("*" in inL)
+                    m = i.strip("*").split(":")
+                    area = m[0]
+            #        enum = float(m[1])                                 # REACTIVATE, WHEN N OF TREES WITHOUT NODE RELEVANT
+            #        divis = float(aList[1])
+            #        prop = str(enum/divis)[:4]
+                    prop = m[1][:4]
+                    if is_ast:
+                        prop = prop + " *"                              # Adding back asterisk for significant reconstructions
+                    aDict[area] = prop
+            if len(aDict.keys()) < 1:
+                print colored("    Warning:", 'magenta'), "Pie data for node " + node + " not parsed"
             for n in tree.iter("Node"):                                 # Must be inside loop "for line in piedata"
                 if n.attrib["UniqueName"] == nodeN:                     # Stop at the correct node
 
@@ -396,19 +396,19 @@ print ""
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Visualizing ASR results; 2015 Michael Gruenstaeudl')
-    parser.add_argument('-i', '--indata',
-                        help='/path_to_working_dir/myreconstrdata.csv',
+    parser.add_argument('-r', '--reconstrdata',
+                        help='/path_to_working_dir/reconstrdata.csv',
                         required=True)
-    parser.add_argument('-t', '--treefile',
-                        help='/path_to_working_dir/mytrees.tre',
+    parser.add_argument('-p', '--plottree',
+                        help='/path_to_working_dir/plottree.tre',
                         required=True)
-    parser.add_argument('-p', '--program',
+    parser.add_argument('-c', '--colordict',
+                        help='/path_to_working_dir/colordict.csv',
+                        required=True)
+    parser.add_argument('-s', '--software',
                         help='/path_to_program/TreeGraph.jar',
                         required=True,
                         default='/home/michael_science/binaries/treegraph2/TreeGraph.jar')
-    parser.add_argument('-c', '--colordict',
-                        help='/path_to_working_dir/mycolordict.csv',
-                        required=True)
     parser.add_argument('-f', '--flags',
                         help='BS(bootstrap),\
                         CLADO(cladogram), PHYLO(phylogram),\
@@ -419,7 +419,7 @@ if __name__ == '__main__':
                         default="CLADO,NOROOT,BRLX2")
     args = parser.parse_args()
 
-main(args.indata, args.treefile, args.colordict, args.program, args.flags)
+main(args.reconstrdata, args.plottree, args.colordict, args.software, args.flags)
 
 print ""
 print colored("  Done.", 'cyan')

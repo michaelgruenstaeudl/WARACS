@@ -20,7 +20,7 @@ import GeneralFileOperations as GFO
 import GeneralStringOperations as GSO
 
 # DEBUG HELPER
-#import pdb
+import pdb
 #pdb.set_trace()
 
 # GLOBAL VARIABLES
@@ -126,7 +126,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
             mainD = mainD[mainD.find(k):]
     if "File reading complete" in mainD:
         mainD = mainD[mainD.find(k):]
-    mainD = mainD[mainD.find("\nnode"):].splitlines()                    # This steps split the string into a list!
+    mainD = mainD[mainD.find("\nnode"):].splitlines()                   # This steps split the string into a list!
     mainD = filter(None, mainD)                                         # removing all empty elements of mainD
     if not mainD:
         sys.exit(colored("  ERROR: ", 'red') + "Parsing of reconstr. data unsuccessful. Possible issue: Malformed NEXUS file.")
@@ -142,20 +142,33 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
         except: 
             print colored("  Warning:", 'magenta'), "No node number information recovered!"
             pass
-        try:
-            Ntrees = GSO.exstr(i[1], 'Node in ', ' trees.')
-        except: 
-            print colored("  Warning:", 'magenta'), "No NofTrees information recovered!"
-            pass
+        #try:                                                           # REACTIVATE, WHEN N OF TREES WITHOUT NODE RELEVANT
+        #    Ntrees = GSO.exstr(i[1], 'Node in ', ' trees.')
+        #except: 
+        #    print colored("  Warning:", 'magenta'), "No NofTrees information recovered!"
+        #    pass
         try:
             tmp = i[2].split("each: ")[1]
-            recon = tmp.replace(" ","")
-            outD.append(",".join([nodeN] + [Ntrees] + [recon]))         # Must be inside a try-command to avoid breakage when no reconstr. info for node
+            tmp = tmp.replace(" ","")
+            arr = numpy.array([i.split(":") for i in tmp.split(";")])
+            l = arr[:,1]
+            sm = sum([float(i) for i in l])
+            tmpL = []
+            for line in arr:
+                l = list(line)
+                outStr = l[0] + ":" + str(float(l[1])/sm)
+                tmpL.append(outStr)
+            recon = ";".join(tmpL)
         except: 
             print colored("  Warning:", 'magenta'), "No reconstruction information for node", nodeN
             pass
-    outD = "\n".join(outD) # must be outside of loop
-
+        try:
+            #outD.append(",".join([nodeN] + [Ntrees] + [recon]))        # REACTIVATE, WHEN N OF TREES WITHOUT NODE RELEVANT
+            outD.append(",".join([nodeN] + [recon]))                    # Must be inside a try-command to avoid breakage when no reconstr. info for node
+        except: 
+            print colored("  Warning:", 'magenta'), "Element missing for node", nodeN
+            pass
+    outD = "\n".join(outD)                                              # must be outside of loop
     if not outD:
         sys.exit(colored("  ERROR: ", 'red') + "Parsing of reconstruction data unsuccessful.")
 
