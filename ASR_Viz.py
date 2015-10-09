@@ -118,8 +118,9 @@ class AddPieCharts:
                     area = m[0]
             #        enum = float(m[1])                                 # REACTIVATE, WHEN N OF TREES WITHOUT NODE RELEVANT
             #        divis = float(aList[1])
-            #        prop = str(enum/divis)[:4]
-                    prop = m[1][:4]
+            #        prop = enum/divis
+                    prop = float(m[1])
+                    prop = str("{0:.3f}".format(prop))
                     if is_ast:
                         prop = prop + " *"                              # Adding back asterisk for significant reconstructions
                     aDict[area] = prop

@@ -156,7 +156,9 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
             tmpL = []
             for line in arr:
                 l = list(line)
-                outStr = l[0] + ":" + str(float(l[1])/sm)
+                v = float(l[1])/sm
+                v = float("{0:.3f}".format(v))                          # round to three decimal places
+                outStr = l[0] + ":" + str(v)
                 tmpL.append(outStr)
             recon = ";".join(tmpL)
         except: 
