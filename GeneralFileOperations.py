@@ -1,10 +1,9 @@
 #!/usr/bin/env python2
-'''General File Operations'''
+''' General File Operations '''
 __author__ = "Michael Gruenstaeudl, PhD"
-__copyright__ = "Copyright (C) 2014 Michael Gruenstaeudl"
-__email__ = "gruenstaeudl.1@osu.edu"
-__version__ = "2014.06.08.1700"
-__status__ = "Working"
+__copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
+__email__ = "mi.gruenstaeudl@gmail.com"
+__version__ = "2015.10.09.1800"
 
 #####################
 # IMPORT OPERATIONS #
@@ -16,110 +15,109 @@ import os
 # CLASSES #
 ###########
 
-
 class loadFile:
-    '''class for loading input files;
-       needs filename <a> as input'''
+    ''' Loading input files.
+    Args:
+        string <a>, string <b>, string <c>
+    Returns:
+        string
+    '''
     def __init__(self, a):
-        self.filename = a
-
+        self.Fn = a
     def openFile(self):
-        infile = open(self.filename, "r").read()
+        infile = open(self.Fn, "r").read()
         return infile
-
     def readLines(self):
-        infile = open(self.filename, "r").readlines()
+        infile = open(self.Fn, "r").readlines()
+        return infile
+    def commaDelim(self):
+        infile = open(self.Fn, "r").read().split(",")
         return infile
 
-    def commaDelimited(self):
-        infile = open(self.filename, "r").read().split(",")
-        return infile
-
-
-class saveF:
-    '''class for saving data files;
-       needs (a) filename <a>, (b) datafile <b>, and (c) appendflag <c>'''
+class SaveFile:
+    ''' Saving data files.
+    Args:
+        string <a>, filehandle <b>, flag <c>
+    Returns:
+        none
+    '''
     def __init__(self, a, b, c):
-        self.filename = a
+        self.Fn = a
         self.data = b
         self.appendflag = c
-
     def go(self):
         if self.appendflag:
-            outfile = open(self.filename, "a")
+            outfile = open(self.Fn, "a")
         if not self.appendflag:
-            outfile = open(self.filename, "w")
+            outfile = open(self.Fn, "w")
         outfile.write(self.data)
         outfile.close()
 
-
-class saveFilewithDFN:
-    '''class for saving data files;
-       needs (a) filename <a>, (b) datafile <b>, and (c) a datafile-name <c> as input'''
+class SaveFilewithDFN:
+    ''' Saving data files with filenames.
+    Args:
+        string <a>, filehandle <b>, string <c>
+    Returns:
+        none
+    '''
     def __init__(self, a, b, c):
-        self.filename = a
+        self.Fn = a
         self.data = str(b)
         self.info = c
-
     def go(self):
-        outfile = open(self.filename, "a")
+        outfile = open(self.Fn, "a")
         outfile.write(self.info+"\n"+self.data+"\n")
         outfile.close()
 
-
-class removeFile:
-    ''' class for deleting files;
-        needs (a) filename <a> as input'''
+class RemoveFile:
+    ''' Deleting files.
+    Args:
+        string <a>
+    Returns:
+        none
+    '''
     def __init__(self, a):
-        self.filename = a
-
+        self.Fn = a
     def go(self):
-        os.remove(self.filename)
+        os.remove(self.Fn)
 
-
-class listallfilesindir:
-    '''class for listing all files in directory;
-       needs directory name <a> as input'''
+class ListFilesInDir:
+    ''' Listing all files in directory.
+    Args:
+        string <a>
+    Returns:
+        list
+    '''
     def __init__(self, a):
-        self.directory = a
-
+        self.dr = a
     def go(self):
-        files_list = os.listdir(self.directory)
-        return files_list
+        return os.listdir(self.dr)
 
 
 ###############
 # DEFINITIONS #
 ###############
 
-
 def loadR(a):
-    return loadFile(a).openFile()
-
+    return LoadFile(a).openFile()
 
 def loadRL(a):
-    return loadFile(a).readLines()
-
+    return LoadFile(a).readLines()
 
 def loadCD(a):
-    return loadFile(a).commaDelimited()
-
+    return LoadFile(a).commaDelim()
 
 def saveFile(a, b):
-    return saveF(a, b, False).go()
-
+    return SaveFile(a, b, False).go()
 
 def append(a, b):
-    return saveFile(a, b, True).go()
-
+    return SaveFile(a, b, True).go()
 
 def saveFn(a, b, c):
-    return saveFilewithDFN(a, b, c).go()
-
+    return SaveFilewithDFN(a, b, c).go()
 
 def deleteFile(a):
-    removeFile(a).go()
+    RemoveFile(a).go()
 
-
-def ListAllFilesInDir(a):
-    return listallfilesindir(a).go()
+def listAllFilesInDir(a):
+    return ListFilesInDir(a).go()

@@ -44,7 +44,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
         if len(tips) > 1:
             nodespecL.append("AddNode Node" + str(c) + " " + " ".join(tips))
             nodeL.append(c)                                           # generate list of relevant node numbers
-    node_specs = '\n'.join(nodespecL)
+    node_specs = "\n".join(nodespecL)
 
 # 1.3. Modify chars-file
     reader = csv.reader(open(charsFn, "rb"), delimiter=",")
@@ -55,7 +55,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
     for row in arr:
         p.add_row(row)
     tmp = p.get_string(header=False, border=False)
-    out = '\n'.join([i.strip() for i in tmp.splitlines()])               # left-justify the string
+    out = "\n".join([i.strip() for i in tmp.splitlines()])               # left-justify the string
     GFO.saveFile(charsFnTmp, out)
 
 # 1.4. Decision on model
@@ -82,16 +82,19 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
     GFO.deleteFile(cmdFnTmp)
 
 # 2.3. Parse reconstruction data
-    tmp = GSO.exstr(dataH, "Tree No\tLh", "Sec:")
+    tmp = GSO.exstrkeepkw(dataH, "Tree No\tLh", "Sec:")
     reader = csv.reader(StringIO(tmp), delimiter="\t")                  # csv.reader can only read file object
+    arr = numpy.array(list(reader))                                     # reader holds the data only for one execution; hence immediately transfer it to variable "arr"
+#    tmp = arr[0]
+#    arr[0] = ["Tree No"] + tmp
+    
     pdb.set_trace()
-    arr = numpy.array(list(reader))
 
     # extract all those cols that contain keyw
     for c, node in enumerate(nodeL):
         match = [e for e in arr[0] if "Node"+str(node)+" " in e]        # Keyword: "Node"+str(node)+" "
-
         aList = [e[match] for e in arr[c:]]
+        pdb.set_trace()
 
 
 '''
