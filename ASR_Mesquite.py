@@ -3,7 +3,7 @@
 __author__ = "Michael Gruenstaeudl, PhD"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __email__ = "mi.gruenstaeudl@gmail.com"
-__version__ = "2015.10.11.1100"
+__version__ = "2015.10.12.2200"
 
 # IMPORT OPERATIONS
 from prettytable import PrettyTable
@@ -28,25 +28,25 @@ mesquite_block1 = "Begin MESQUITE;\n\tMESQUITESCRIPTVERSION 2;\n\tTITLE AUTO;\n\
 
 mesquite_block2 = "\t\t\t\t\tendTell;\n\t\t\t\t\tsetCharacter 1;\n\t\t\t\t\tsetTreeSource  #mesquite.trees.StoredTrees.StoredTrees;\n\t\t\t\t\ttell It;\n\t\t\t\t\t\tsetTreeBlock 1;\n\t\t\t\t\t\ttoggleUseWeights off;\n\t\t\t\t\tendTell;\n\t\t\t\t\tsetNumTrees 100;\n\t\t\t\t\tsetMode Count_All_Trees_with_State;\n\t\t\t\t\tdesuppress;\n\t\t\t\tendTell; \n\t\t\tendTell; \n\t\t\ttell It;\n\t\t\t\ttext;\n\t\t\tendTell;\n\t\tendTell; \n\tendTell; \n\tendTell;\n\tcloseFileAfterRead;\nend;"
 
-parsimonyModel = "\t\t\t\t\t\tsetMethod  \n#mesquite.parsimony.ParsAncestralStates.ParsAncestralStates; \n\t\t\t\t\t\ttell It; \t\t\t\t\t\t\tsetModelSource  \n#mesquite.parsimony.CurrentParsModels.CurrentParsModels; \n\t\t\t\t\t\tendTell;"
+parsimonyModel = "\t\t\t\t\t\tsetMethod  #mesquite.parsimony.ParsAncestralStates.ParsAncestralStates; \n\t\t\t\t\t\ttell It; \n\t\t\t\t\t\t\tsetModelSource  #mesquite.parsimony.CurrentParsModels.CurrentParsModels; \n\t\t\t\t\t\tendTell;"
 
 likeModel = "\t\t\t\t\t\tsetMethod  #mesquite.stochchar.MargProbAncStates.MargProbAncStates;\n\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\tsetModelSource  #mesquite.stochchar.CurrentProbModels.CurrentProbModels;\n\t\t\t\t\t\t\tgetEmployee #mesquite.stochchar.zMargLikeCateg.zMargLikeCateg;\n\t\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\t\tsetReportMode Proportional_Likelihoods;\n\t\t\t\t\t\t\t\tsetRootMode Use_Root_State_Frequencies_as_Prior;\n\t\t\t\t\t\t\t\tsetDecision 2.0;\n\t\t\t\t\t\t\t\tsetUnderflowCheckFreq 2;\n\t\t\t\t\t\t\tendTell;\n\t\t\t\t\t\tendTell;"
 
 bayesModel = "\t\t\t\t\t\tsetMethod  #mesquite.stochchar.StochCharMapper.StochCharMapper;\n\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\tsetModelSource  #mesquite.stochchar.CurrentProbModels.CurrentProbModels;\n\t\t\t\t\t\t\tgetEmployee #mesquite.stochchar.zMargLikeCateg.zMargLikeCateg;\n\t\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\t\tsetReportMode Proportional_Likelihoods;\n\t\t\t\t\t\t\t\tsetRootMode Use_Root_State_Frequencies_as_Prior;\n\t\t\t\t\t\t\t\tsetDecision 2.0;\n\t\t\t\t\t\t\t\tsetUnderflowCheckFreq 2;\n\t\t\t\t\t\t\tendTell;\n\t\t\t\t\t\tendTell;"
 
 # MODULES
-def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
+def main(treedistrFn, plottreeFn, charsFn, charnum, reconmodel, pathToSoftware, charmodel):
 
 # 1. Generating indata
 
     # 1.1. Decision on model
-    kw = rcnmdl.lower()
+    kw = reconmodel.lower()
     if kw == "parsimony":
-        mdl = mesquite_block1 + parsimonyModel + mesquite_block2
+        mdl = mesquite_block1 + "\n" + parsimonyModel + "\n" + mesquite_block2
     if kw == "likelihood":
-        mdl = mesquite_block1 + likeModel + mesquite_block2
+        mdl = mesquite_block1 + "\n" + likeModel + "\n" + mesquite_block2
     if kw == "bayesian":
-        mdl = mesquite_block1 + bayesModel + mesquite_block2
+        mdl = mesquite_block1 + "\n" + bayesModel + "\n" + mesquite_block2
 
     # 1.2. Setting outfilenames
     fileprfx = GSO.rmext(treedistrFn)
@@ -97,7 +97,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
         sys.exit(colored("  ERROR: ", "magenta") + "Something wrong with plottree!")
 
     # 1.6. Parse characters
-    block1 = '\nBEGIN CHARACTERS;\nDIMENSIONS  NCHAR='
+    block1 = '\nBEGIN CHARACTERS;\nTITLE  "MYCHARS";\nDIMENSIONS  NCHAR='   # Same quotes around "MYCHARS" as in charmodel_block2
     block2 = ';\nFORMAT DATATYPE = STANDARD GAP = - MISSING = ? SYMBOLS = "'
     block3 = '";\nMATRIX\n'
     block4 = '\n;\nEND;\n'
@@ -106,17 +106,40 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
         matrx = numpy.array(list(reader))
         nchars = matrx.shape[1]-1
         n = int(charnum)
-        symbls = set(matrx[:, n])
+        charstates = set(matrx[:, n])
         p = PrettyTable()
         for row in matrx:
             p.add_row(row)
         matrxStr = p.get_string(header=False, border=False)
-        chars = block1 + str(nchars) + block2 + " ".join(set(symbls)) + block3 + matrxStr + block4
+        chars = block1 + str(nchars) + block2 + " ".join(set(charstates)) + block3 + matrxStr + block4
     except: 
         sys.exit(colored("  ERROR: ", "magenta") + "Something wrong with parsing the characters!")
 
-    # 1.7. Combine to indata
-    inD = treedistrH + plottreeH + chars
+    # 1.7. Character models
+    # 1.7.1. Parsimony stepmatrix
+    block5 = "\n\nBEGIN ASSUMPTIONS;\n\tUSERTYPE STEPMATRIX (STEPMATRIX) ="
+    block6 = ';\n\tTYPESET * UNTITLED (CHARACTERS = "MYCHARS") = unord: 1 - '
+    if kw == "parsimony" and charmodel:
+        try:
+            stpmtrx_L = charmodel.split(";")
+            charstate_L = stpmtrx_L[0].split(",")
+            #pdb.set_trace()
+            ncharstates = len(charstate_L)
+            if ncharstates != len(charstates):
+                sys.exit(colored("  ERROR: ", "magenta") + "Something wrong with parsing the character model!")
+            stpmtrx = '\n'.join([i.replace(","," ") for i in stpmtrx_L])
+            charmdl = block5 + str(ncharstates) + "\n" + stpmtrx + "\n" + block6 + str(nchars) + block4
+        except: 
+            sys.exit(colored("  ERROR: ", "magenta") + "Something wrong with parsing the character model!")
+        # Once charmodel has been formatted
+        kw_find = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.parsimony.CurrentParsModels.CurrentParsModels;"
+        kw_replace = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.parsimony.StoredParsModel.StoredParsModel;\n\t\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\t\tsetModel 2  STEPMATRIX;\n\t\t\t\t\t\t\tendTell;"
+        mdl = mdl.replace(kw_find, kw_replace)
+    else:
+        charmdl = ""
+
+    # 1.8. Combine to indata
+    inD = "\n".join([treedistrH, plottreeH, chars, charmdl])
     inD = inD.replace("#nexus", "#NEXUS")
 
 
@@ -128,7 +151,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
 
 #   2.2. Execute and then delete tempfile
     print "  Character Reconstruction in Mesquite"
-    print "  Selected Reconstruction Method:", rcnmdl
+    print "  Selected Reconstruction Method:", reconmodel
     startMesquite = "sh " + pathToSoftware
     p = Popen(startMesquite, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
     time.sleep(5)                                                       # WIthout such waiting times, scripting Mesquite does not work.
@@ -249,9 +272,12 @@ if __name__ == '__main__':
                         help='/path_to_program/mesquite.sh',
                         required=True,
                         default='/home/michael_science/binaries/mesquite3.03/mesquite.sh')
+    parser.add_argument('-a', '--charmodel',
+                        help='values of a character state transition model (e.g. "A,B,C;0,1,1;1,0,1;1,1,0)"',
+                        required=False)
     args = parser.parse_args()
 
-main(args.treedistr, args.plottree, args.chars, args.charnumber, args.reconmodel, args.software)
+main(args.treedistr, args.plottree, args.chars, args.charnumber, args.reconmodel, args.software, args.charmodel)
 
 print ""
 print colored("  Done.", 'cyan')
