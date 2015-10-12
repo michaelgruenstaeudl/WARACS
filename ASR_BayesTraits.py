@@ -32,18 +32,25 @@ likeKw = "Tree No\tLh"
 # MODULES
 def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
 
+    # 1.1. Decision on model
+    kw = rcnmdl.lower()
+    if kw == "likelihood" or kw == "like" or kw == "l":
+        mdl = likeModel
+        parseKw = likeKw
+    if kw == "bayesian" or kw == "bayes" or kw == "b":
+        mdl = bayesModel
+        parseKw = bayesKw
 
-# 1. Preparatory Actions
-# 1.1. Set up out- and tmp-filenames
+    # 1.2. Setting outfilenames
     fileprfx = GSO.rmext(treedistrFn)
-    outFn_raw = fileprfx + ".ASRviaBAYESTRAITS.full"
-    outFn_tree = fileprfx + ".ASRviaBAYESTRAITS.tre"
-    outFn_table = fileprfx + ".ASRviaBAYESTRAITS.csv"
+    outFn_raw = fileprfx + "__BayesTraits_" + kw + ".full"
+    outFn_tree = fileprfx + "__BayesTraits_" + kw + ".tre"
+    outFn_table = fileprfx + "__BayesTraits_" + kw + ".csv"
 
     charsFnTmp = charsFn + ".tmp"
     cmdFnTmp = GSO.randomword(6) + ".tmp"
 
-# 1.2. Generate tip list
+    # 1.3. Generate tip list
     nodespecL, nodeL = [], []
     treeH = dendropy.Tree.get_from_path(plottreeFn, schema="nexus")
     for c, node in enumerate(treeH.nodes(), start=1):
@@ -53,7 +60,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
             nodeL.append(c)                                             # generate list of relevant node numbers
     node_specs = "\n".join(nodespecL)
 
-# 1.3. Modify chars-file
+    # 1.4. Modify chars-file
     reader = csv.reader(open(charsFn, "rb"), delimiter=",")
     arr = numpy.array(list(reader))
     arr = arr[:,[0,charnum]]
@@ -64,15 +71,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
     out = "\n".join([i.strip() for i in tmp.splitlines()])              # left-justify the string
     GFO.saveFile(charsFnTmp, out)
 
-# 1.4. Decision on model
-    if rcnmdl.lower() == "likelihood":
-        mdl = likeModel
-        parseKw = likeKw
-    if rcnmdl.lower() == "bayesian":
-        mdl = bayesModel
-        parseKw = bayesKw
-
-# 1.5. Generate command string as save to file
+    # 1.5. Generate command string as save to file
     cmdStr = mdl + node_specs + "\nrun\n"
     GFO.saveFile(cmdFnTmp, cmdStr)
 

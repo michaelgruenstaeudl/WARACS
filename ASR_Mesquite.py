@@ -3,7 +3,7 @@
 __author__ = "Michael Gruenstaeudl, PhD"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __email__ = "mi.gruenstaeudl@gmail.com"
-__version__ = "2015.10.08.1500"
+__version__ = "2015.10.11.1100"
 
 # IMPORT OPERATIONS
 from prettytable import PrettyTable
@@ -31,38 +31,63 @@ likeModel = "Begin MESQUITE;\n\tMESQUITESCRIPTVERSION 2;\n\tTITLE AUTO;\n\ttell 
 def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
 
 # 1. Generating indata
-    # 1.1. Setting outfilenames
-    fileprfx = GSO.rmext(treedistrFn)
-    outFn_raw = fileprfx + ".ASRviaMESQUITE.full"
-    outFn_tree = fileprfx + ".ASRviaMESQUITE.tre"
-    outFn_table = fileprfx + ".ASRviaMESQUITE.csv"
 
-    # 1.2. Load infiles
-    treedistr = GFO.loadR(treedistrFn).lower()
-    plottree = GFO.loadR(plottreeFn).lower()
-    
-    # 1.3. Parse treedistr
+    # 1.1. Decision on model
+    kw = rcnmdl.lower()
+    if kw == "likelihood" or kw == "like" or kw == "l":
+        mdl = likeModel
+    if kw == "bayesian" or kw == "bayes" or kw == "b":
+        mdl = bayesModel
+
+    # 1.2. Setting outfilenames
+    fileprfx = GSO.rmext(treedistrFn)
+    outFn_raw = fileprfx + "__Mesquite_" + kw + ".full"
+    outFn_tree = fileprfx + "__Mesquite_" + kw + ".tre"
+    outFn_table = fileprfx + "__Mesquite_" + kw + ".csv"
+
+    # 1.3. Load infiles
+    treedistr = GFO.loadR(treedistrFn)
+    treedistrL = treedistr.splitlines()
+    treedistr_tmpL = []
+    for l in treedistrL:
+        if ";" in l:
+            treedistr_tmpL.append(l.upper())
+        else:
+            treedistr_tmpL.append(l)
+    treedistr = "\n".join(treedistr_tmpL)
+
+    plottree = GFO.loadR(plottreeFn)
+    plottreeL = treedistr.splitlines()
+    plottree_tmpL = []
+    for l in plottreeL:
+        if ";" in l:
+            plottree_tmpL.append(l.upper())
+        else:
+            plottree_tmpL.append(l)
+    plottree = "\n".join(plottree_tmpL)
+
+    # 1.4. Parse treedistr
     try:
-        pos = treedistr.find("begin trees;") + len("begin trees;")
+        pos = treedistr.find("BEGIN TREES;") + len("BEGIN TREES;")
         treedistrH = treedistr[:pos] + '\nTitle "block1"' + treedistr[pos:]
     except: 
         print colored("  Warning: ", "magenta"), "Something wrong with treedistr!"
         
-    # 1.4. Parse plottree
+    # 1.5. Parse plottree
     plottreeH = plottree.strip("#nexus")
     try:
-        pos = plottreeH.find("end;", plottreeH.find("begin taxa;")) + len("end;")
+        pos = plottreeH.find("END;", plottreeH.find("BEGIN TAXA;")) + len("END;")
     except: 
         print colored("  Warning: ", "magenta"), "Something wrong with plottree!"
         pos = 0
     plottreeH = plottreeH[pos:]
     try:
-        pos = plottreeH.find("begin trees;") + len("begin trees;")
+        pos = plottreeH.find("BEGIN TREES;") + len("BEGIN TREES;")
         plottreeH = plottreeH[:pos] + '\nTitle "block2"' + plottreeH[pos:]
     except: 
         sys.exit(colored("  ERROR: ", "magenta") + "Something wrong with plottree!")
 
-    # 1.5. Parse characters
+    # 1.6. Parse characters
     block1 = '\nBEGIN CHARACTERS;\nDIMENSIONS  NCHAR='
     block2 = ';\nFORMAT DATATYPE = STANDARD GAP = - MISSING = ? SYMBOLS = "'
     block3 = '";\nMATRIX\n'
@@ -81,24 +106,18 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
     except: 
         sys.exit(colored("  ERROR: ", "magenta") + "Something wrong with parsing the characters!")
 
-
-    # 1.6. Combine to indata
+    # 1.7. Combine to indata
     inD = treedistrH + plottreeH + chars
     inD = inD.replace("#nexus", "#NEXUS")
 
 
 # 2. Character Reconstruction
-#   2.1. Decision on model
-    if rcnmdl.lower() == "likelihood":
-        mdl = likeModel
-    if rcnmdl.lower() == "bayesian":
-        mdl = bayesModel
 
-#   2.2. Saving of tempfile
+#   2.1. Saving of tempfile
     tmpFn = GSO.randomword(6) + ".tmp"
     GFO.saveFile(tmpFn, "\n".join([inD, mdl]))                           # a temporary infile without underscores is generated, but deleted immediately after execution.
 
-#   2.3. Execute and then delete tempfile
+#   2.2. Execute and then delete tempfile
     print "  Character Reconstruction in Mesquite"
     print "  Selected Reconstruction Method:", rcnmdl
     startMesquite = "sh " + pathToSoftware
@@ -115,11 +134,11 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
         sys.exit(colored("  ERROR: ", 'red') + "No reconstruction data from Mesquite received.")
     GFO.deleteFile(tmpFn)
 
-#   2.4. Parsing out the relevant section of the reconstruction output and saving it to file
+#   2.3. Parsing out the relevant section of the reconstruction output and saving it to file
     mainD = GSO.exstr(data_handle[0], "Reading block: MESQUITE", "File reading complete")
     GFO.saveFile(outFn_raw, mainD)
 
-#   2.5. More parsing of the reconstruction output for subsequent parsed_data generation
+#   2.4. More parsing of the reconstruction output for subsequent parsed_data generation
     keywds = ["Trace Character Over Trees", "Trace Character History"]
     for k in keywds:
         if k in mainD:
@@ -139,6 +158,8 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
     for i in alist:
         try:
             nodeN = GSO.exstr(i[0], 'node ', ':')
+            nodeN = int(nodeN)-1                                        # IMPORTANT to substract 1, because Mesquite assumes a rootes set of trees (hence, has an extraneous node)
+            nodeN = str(nodeN)
         except: 
             print colored("  Warning:", 'magenta'), "No node number information recovered!"
             pass

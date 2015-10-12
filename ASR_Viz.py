@@ -30,7 +30,7 @@ labelMargin_xml_1 = '<LabelMargin Left="1.0" Top="0.0" Right="1.0" Bottom="0.0">
 labelMargin_xml_2 = '<LabelMargin Left="1.0" Top="1.0" Right="1.0" Bottom="1.0"></LabelMargin>'
 #labelMargin_xml_3 = '<LabelMargin Left="1.0" Top="0.0" Right="1.0" Bottom="1.0"></LabelMargin>' # optimal for phylograms
 
-pieChartLabel_xml = '<PieChartLabel LineColor="#000000" LineWidth="0.2" Width="10.0" Height="10.0" InternalLines="true" NullLines="false" Id="internals" Above="true" LineNo="0" LinePos="0"></PieChartLabel>'
+pieChartLabel_xml = '<PieChartLabel LineColor="#000000" LineWidth="0.2" Width="8.0" Height="8.0" InternalLines="true" NullLines="false" Id="internals" Above="true" LineNo="0" LinePos="0"></PieChartLabel>'
 
 textLabel_xml = '<TextLabel Text="" IsDecimal="false" TextColor="#000000" TextHeight="3.0" TextStyle="" FontFamily="Arial" DecimalFormat="#0.0#####" LocaleLang="en" LocaleCountry="" LocaleVariant="" Id="internals" Above="true" LineNo="" LinePos="0"></TextLabel>'
 
@@ -417,7 +417,7 @@ if __name__ == '__main__':
                         BRLX2(multiply branch length scale by 2),\
                         BRLX3(multiply branch length scale by 3)',
                         required=False,
-                        default="CLADO,NOROOT,BRLX2")
+                        default="CLADO,BRLX2")
     args = parser.parse_args()
 
 main(args.reconstrdata, args.plottree, args.colordict, args.software, args.flags)
