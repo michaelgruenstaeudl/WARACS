@@ -307,6 +307,7 @@ def main(reconstrFn, treeFn, colordictFn, pathToTG2, flags):
 
 # 1. Setting file names and load infiles
     tmpFn = GSO.rmext(reconstrFn)+".TMP.xtg"
+    outFn = GSO.rmext(reconstrFn)+".xtg"
     reconstrD = GFO.loadR(reconstrFn)
 
 # 1.2. Loading color dictionary and running rudimentary checks
@@ -379,11 +380,12 @@ def main(reconstrFn, treeFn, colordictFn, pathToTG2, flags):
 #   9. Combining all parts
     print "  Step 8: Combining all xml sections"
     finalL = [start_cap_1, start_cap_2, FinalTreeXML, end_cap]
-    GFO.saveFile(tmpFn, "\n".join(finalL))
+    GFO.saveFile(outFn, "\n".join(finalL))
+    GFO.deleteFile(tmpFn)
 
 #   10. Conversion from .xtg to .png format
     print "  Step 9: Conversion .xtg  -> .png"
-    ConversionXTG2IMG(tmpFn, pathToTG2, flags).go()
+    ConversionXTG2IMG(outFn, pathToTG2, flags).go()
 
 
 # EXECUTE
