@@ -3,7 +3,7 @@
 __author__ = "Michael Gruenstaeudl, PhD"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __email__ = "mi.gruenstaeudl@gmail.com"
-__version__ = "2015.10.12.2200"
+__version__ = "2015.10.13.1300"
 
 # IMPORT OPERATIONS
 from prettytable import PrettyTable
@@ -50,9 +50,12 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, reconmodel, pathToSoftware, 
 
     # 1.2. Setting outfilenames
     fileprfx = GSO.rmext(treedistrFn)
-    outFn_raw = fileprfx + "__Mesquite_" + kw + ".full"
-    outFn_tree = fileprfx + "__Mesquite_" + kw + ".tre"
-    outFn_table = fileprfx + "__Mesquite_" + kw + ".csv"
+    fileinfo = "__Mesquite_" + kw + "_char" + str(charnum)
+    if charmodel:
+        fileinfo = fileinfo + "__charmodel_" + charmodel.replace(";",".").replace(",",".")
+    outFn_raw = fileprfx + fileinfo + ".full"
+    outFn_tree = fileprfx + fileinfo + ".tre"
+    outFn_table = fileprfx + fileinfo + ".csv"
 
     # 1.3. Load infiles
     treedistr = GFO.loadR(treedistrFn)
@@ -66,7 +69,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, reconmodel, pathToSoftware, 
     treedistr = "\n".join(treedistr_tmpL)
 
     plottree = GFO.loadR(plottreeFn)
-    plottreeL = treedistr.splitlines()
+    plottreeL = plottree.splitlines()
     plottree_tmpL = []
     for l in plottreeL:
         if ";" in l:
@@ -78,69 +81,100 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, reconmodel, pathToSoftware, 
     # 1.4. Parse treedistr
     try:
         pos = treedistr.find("BEGIN TREES;") + len("BEGIN TREES;")
-        treedistrH = treedistr[:pos] + '\nTitle "block1"' + treedistr[pos:]
+        treedistrH = treedistr[:pos] + "\nTitle 'block1'" + treedistr[pos:]
     except: 
-        print colored("  Warning: ", "magenta"), "Something wrong with treedistr!"
+        print colored("  Warning: ", "magenta"), "Error when treedistr!"
         
     # 1.5. Parse plottree
-    plottreeH = plottree.strip("#nexus")
-    try:
-        pos = plottreeH.find("END;", plottreeH.find("BEGIN TAXA;")) + len("END;")
-    except: 
-        print colored("  Warning: ", "magenta"), "Something wrong with plottree!"
+    plottreeH = plottree.replace("#NEXUS","")
+    if "BEGIN TAXA;" in plottreeH:
+        try:
+            pos = plottreeH.find("END;", plottreeH.find("BEGIN TAXA;")) + len("END;")
+        except: 
+            print colored("  Warning: ", "magenta"), "Error when plottree!"
+            pos = 0
+    else:
         pos = 0
+    #pdb.set_trace()
     plottreeH = plottreeH[pos:]
     try:
         pos = plottreeH.find("BEGIN TREES;") + len("BEGIN TREES;")
-        plottreeH = plottreeH[:pos] + '\nTitle "block2"' + plottreeH[pos:]
+        plottreeH = plottreeH[:pos] + "\nTitle 'block2'" + plottreeH[pos:]
     except: 
-        sys.exit(colored("  ERROR: ", "magenta") + "Something wrong with plottree!")
+        sys.exit(colored("  ERROR: ", "red") + "Error when plottree!")
 
     # 1.6. Parse characters
-    block1 = '\nBEGIN CHARACTERS;\nTITLE  "MYCHARS";\nDIMENSIONS  NCHAR='   # Same quotes around "MYCHARS" as in charmodel_block2
-    block2 = ';\nFORMAT DATATYPE = STANDARD GAP = - MISSING = ? SYMBOLS = "'
-    block3 = '";\nMATRIX\n'
-    block4 = '\n;\nEND;\n'
+    mdl = mdl.replace("setCharacter 1;", "".join(["setCharacter ", charnum, ";"]))  # Adjusting character in question in mdl
+    block1 = "\nBEGIN CHARACTERS;\nTITLE  'MYCHARS';\nDIMENSIONS  NCHAR="   # Same quotes around 'MYCHARS' as in charmodel_block2
+    block2 = ";\nFORMAT DATATYPE = STANDARD GAP = - MISSING = ? SYMBOLS = '"
+    block3 = "';\nMATRIX\n"
+    block4 = "\n;\nEND;\n"
     try:
         reader = csv.reader(open(charsFn, "r"), delimiter=",")
         matrx = numpy.array(list(reader))
         nchars = matrx.shape[1]-1
         n = int(charnum)
-        charstates = set(matrx[:, n])
+        charstates_used = set(matrx[:, n])
+        charstates_used.remove("?")                                     # Question mark is not a character state, but indicates missing data
+        if kw == "parsimony":
+            if "I" in charstates_used:
+                sys.exit(colored("  ERROR: ", "red") + "'I' is a reserved character and cannot be used as character state code.")
+        if kw == "likelihood" or kw == "bayesian":
+            try:
+                [int(c) for c in charstates_used]
+            except:
+                sys.exit(colored("  ERROR: ", "red") + "Likelihood reconstructions in Mesquite require character states to be coded as integers, starting at 0.")
+        charstates_all = set([i for subl in matrx[1:, :] for i in subl])
+        charstates_all.remove("?")
         p = PrettyTable()
         for row in matrx:
             p.add_row(row)
         matrxStr = p.get_string(header=False, border=False)
-        chars = block1 + str(nchars) + block2 + " ".join(set(charstates)) + block3 + matrxStr + block4
+        chars = block1 + str(nchars) + block2 + " ".join(set(charstates_all)) + block3 + matrxStr + block4
     except: 
-        sys.exit(colored("  ERROR: ", "magenta") + "Something wrong with parsing the characters!")
+        sys.exit(colored("  ERROR: ", "red") + "Error when parsing the character states!")
 
     # 1.7. Character models
+
     # 1.7.1. Parsimony stepmatrix
-    block5 = "\n\nBEGIN ASSUMPTIONS;\n\tUSERTYPE STEPMATRIX (STEPMATRIX) ="
-    block6 = ';\n\tTYPESET * UNTITLED (CHARACTERS = "MYCHARS") = unord: 1 - '
     if kw == "parsimony" and charmodel:
+        block5 = "\n\nBEGIN ASSUMPTIONS;\n\tUSERTYPE STEPMATRIX (STEPMATRIX) ="
+        block6 = ";\n\tTYPESET * UNTITLED (CHARACTERS = 'MYCHARS') = unord: 1 - "
         try:
             stpmtrx_L = charmodel.split(";")
             charstate_L = stpmtrx_L[0].split(",")
-            #pdb.set_trace()
             ncharstates = len(charstate_L)
             if ncharstates != len(charstates):
-                sys.exit(colored("  ERROR: ", "magenta") + "Something wrong with parsing the character model!")
+                sys.exit(colored("  ERROR: ", "red") + "Error when parsing the character model!")
             stpmtrx = '\n'.join([i.replace(","," ") for i in stpmtrx_L])
             charmdl = block5 + str(ncharstates) + "\n" + stpmtrx + "\n" + block6 + str(nchars) + block4
         except: 
-            sys.exit(colored("  ERROR: ", "magenta") + "Something wrong with parsing the character model!")
+            sys.exit(colored("  ERROR: ", "red") + "Error when parsing the character model!")
         # Once charmodel has been formatted
         kw_find = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.parsimony.CurrentParsModels.CurrentParsModels;"
         kw_replace = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.parsimony.StoredParsModel.StoredParsModel;\n\t\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\t\tsetModel 2  STEPMATRIX;\n\t\t\t\t\t\t\tendTell;"
+        mdl = mdl.replace(kw_find, kw_replace)
+    # 1.7.2. 2P-MarkovK Model
+    if kw == "likelihood" and charmodel:
+        block7 = "\nBEGIN MESQUITECHARMODELS;\n\tCharModel 'CUSTOM_MARKOVK_MODEL' (AsymmMk) = forward "
+        block8 = " equilibAsPrior;\n\tProbModelSet * UNTITLED (CHARACTERS = 'MYCHARS') = 'Mk1 (est.)': 1 - 2;\nEND;\n"
+        try:
+            tpmarkovmdl_L = charmodel.split(",")
+            if len(tpmarkovmdl_L) != len(charstates_used):
+                sys.exit(colored("  ERROR: ", "red") + "Unequal number of character states in data and character model!")
+            charmdl = block7 + tpmarkovmdl_L[0] + " backward " + tpmarkovmdl_L[0] + block8
+        except: 
+            sys.exit(colored("  ERROR: ", "red") + "Error when parsing the character model!")
+        # Once charmodel has been formatted
+        kw_find = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.parsimony.CurrentParsModels.CurrentParsModels;"
+        kw_replace = "\t\t\t\t\t\tsetMethod  #mesquite.stochchar.MargProbAncStates.MargProbAncStates;\n\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\tsetModelSource  #mesquite.stochchar.StoredProbModel.StoredProbModel;\n\t\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\t\tsetModel 2   'CUSTOM_MARKOVK_MODEL';\n\t\t\t\t\t\t\tendTell;\n\t\t\t\t\t\t\tgetEmployee #mesquite.stochchar.zMargLikeCateg.zMargLikeCateg;\n\t\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\t\tsetReportMode Proportional_Likelihoods;\n\t\t\t\t\t\t\t\tsetRootMode Use_Root_State_Frequencies_as_Prior;\n\t\t\t\t\t\t\t\tsetDecision 2.0;\n\t\t\t\t\t\t\t\tsetUnderflowCheckFreq 2;\n\t\t\t\t\t\t\tendTell;\n\t\t\t\t\t\tendTell;"
         mdl = mdl.replace(kw_find, kw_replace)
     else:
         charmdl = ""
 
     # 1.8. Combine to indata
     inD = "\n".join([treedistrH, plottreeH, chars, charmdl])
-    inD = inD.replace("#nexus", "#NEXUS")
+    #inD = inD.replace("#nexus", "#NEXUS")
 
 
 # 2. Character Reconstruction
@@ -163,7 +197,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, reconmodel, pathToSoftware, 
     output, error = p.communicate()
     data_handle = [output, error]
     if not data_handle:
-        sys.exit(colored("  ERROR: ", 'red') + "No reconstruction data from Mesquite received.")
+        sys.exit(colored("  ERROR: ", "red") + "No reconstruction data from Mesquite received.")
     GFO.deleteFile(tmpFn)
 
 #   2.3. Parsing out the relevant section of the reconstruction output and saving it to file
@@ -180,7 +214,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, reconmodel, pathToSoftware, 
     mainD = mainD[mainD.find("\nnode"):].splitlines()                   # This steps split the string into a list!
     mainD = filter(None, mainD)                                         # removing all empty elements of mainD
     if not mainD:
-        sys.exit(colored("  ERROR: ", 'red') + "Parsing of reconstr. data unsuccessful. Possible issue: Malformed NEXUS file.")
+        sys.exit(colored("  ERROR: ", "red") + "Parsing of reconstr. data unsuccessful. Possible issue: Malformed NEXUS file.")
 
 
 # 3. Parsing the reconstruction output
@@ -225,7 +259,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, reconmodel, pathToSoftware, 
             pass
     outD = "\n".join(outD)                                              # must be outside of loop
     if not outD:
-        sys.exit(colored("  ERROR: ", 'red') + "Parsing of reconstruction data unsuccessful.")
+        sys.exit(colored("  ERROR: ", "red") + "Parsing of reconstruction data unsuccessful.")
 
 
 # 4. Saving files to disk
@@ -244,9 +278,6 @@ print ""
 print colored("  Script name: "+sys.argv[0], 'cyan')
 print colored("  Author: "+__author__, 'cyan')
 print colored("  Version: "+__version__, 'cyan')
-print colored("  Notes:", 'yellow')
-print colored("  1. Mesquite cannot perform reconstruction if missing data.", 'yellow')
-print colored("  2. Mesquite cannot open filenames with underscores.", 'yellow')
 print ""
 
 if __name__ == '__main__':
@@ -273,7 +304,7 @@ if __name__ == '__main__':
                         required=True,
                         default='/home/michael_science/binaries/mesquite3.03/mesquite.sh')
     parser.add_argument('-a', '--charmodel',
-                        help='values of a character state transition model (e.g. "A,B,C;0,1,1;1,0,1;1,1,0)"',
+                        help='values of a character state transition model (parsimony example: "A,B,C;0,1,1;1,0,1;1,1,0)"; likelihood example: "1,0"',
                         required=False)
     args = parser.parse_args()
 
