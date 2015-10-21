@@ -1,21 +1,21 @@
-# MANUAL
+# WARACS
 WARACS: Wrappers to Automate the Reconstruction of Ancestral Character States
 
 ### - Prerequisites
-* Python v.2.7 ()
+* Python v.2.7 (https://www.python.org/download/releases/2.7/)
 * Python package *setuptools* (https://pypi.python.org/pypi/setuptools)
 
 ### - Commandline Usage via Linux and MacOSX
 ###### 1. Specify input directory
 ```
-INDIR=/home/michael/git/WARACS/examples/WARACS_BayesTraits_Example/01_input/
+INDIR=/home/waracs_user/git/WARACS/examples/WARACS_BayesTraits_Example/01_input/
 ```
 ###### 2. Change into desired output directory
 ```
 mkdir -p ~/Desktop/
 cd ~/Desktop/
 ```
-###### 3. Perform an ancestral character state reconstruction via Mesquite
+###### 3. Perform an ancestral character state reconstruction via [Mesquite](https://mesquiteproject.wikispaces.com/)
 ```
 python2.7 ~/git/github.com_WARACS/WARACS_Mesquite.py
   -t $INDIR/treedistr.tre
@@ -23,9 +23,9 @@ python2.7 ~/git/github.com_WARACS/WARACS_Mesquite.py
   -c $INDIR/chars.csv
   -n 1
   -m likelihood
-  -s /home/michael/binaries/Mesquite3.03/mesquite.sh
+  -s /home/waracs_user/binaries/Mesquite3.03/mesquite.sh
 ```
-###### 4. Perform an ancestral character state reconstruction via BayesTraits
+###### 4. Perform an ancestral character state reconstruction via *BayesTraits*
 ```
 python2.7 ~/git/github.com_WARACS/WARACS_BayesTraits.py
   -t $INDIR/treedistr.tre
@@ -33,15 +33,15 @@ python2.7 ~/git/github.com_WARACS/WARACS_BayesTraits.py
   -c $INDIR/chars.csv
   -n 2
   -m likelihood
-  -s /home/michael/binaries/BayesTraits_V2/BayesTraitsV2
+  -s /home/waracs_user/binaries/BayesTraits_V2/BayesTraitsV2
 ```
-###### 5. Visualize Character State Reconstruction Results generated via BayesTraits
+###### 5. Visualize character state reconstruction results generated via *BayesTraits*
 ```
 python2.7 ~/git/github.com_WARACS/WARACS_TreeGraph2.py
--r treedistr__BayesTraits_likelihood.csv
--p treedistr__BayesTraits_likelihood.tre
--c $INDIR/colordict.csv
--s /home/michael/binaries/Treegraph2/TreeGraph.jar
+  -r treedistr__BayesTraits_likelihood.csv
+  -p treedistr__BayesTraits_likelihood.tre
+  -c $INDIR/colordict.csv
+  -s /home/waracs_user/binaries/Treegraph2/TreeGraph.jar
 ```
 ### - Commandline Usage via Windows
 (in prep.)
