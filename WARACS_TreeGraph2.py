@@ -9,23 +9,23 @@ __version__ = "2015.10.09.2300"
 # IMPORT OPERATIONS #
 #####################
 
+from collections import OrderedDict as OrdDict
 from subprocess import Popen, PIPE
+import argparse
 import os
 import re
 import sys
 import CustomFileOps as GFO
 import CustomStringOps as GSO
+import xml.etree.ElementTree as ET
 
-opt_deps = ["argparse", "collections", "termcolor", "xml"]
+opt_deps = ["termcolor"]
 try:
     map(__import__, opt_deps)
 except:
     GIO.installPkgs(opt_deps)
 
-from collections import OrderedDict as OrdDict
 from termcolor import colored
-import argparse
-import xml.etree.ElementTree as ET
 
 #############
 # DEBUGGING #

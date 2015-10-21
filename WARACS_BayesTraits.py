@@ -9,6 +9,8 @@ __version__ = "2015.10.09.2300"
 # IMPORT OPERATIONS #
 #####################
 
+from cStringIO import StringIO
+import argparse
 import csv
 import os
 import string
@@ -16,16 +18,14 @@ import sys
 import CustomFileOps as GFO
 import CustomStringOps as GSO
 
-opt_deps = ["argparse", "cStringIO", "dendropy", "numpy", "termcolor", "prettytable"]
+opt_deps = ["dendropy", "numpy", "termcolor", "prettytable"]
 try:
     map(__import__, opt_deps)
 except:
     GIO.installPkgs(opt_deps)
 
-from cStringIO import StringIO
 from prettytable import PrettyTable
 from termcolor import colored
-import argparse
 import dendropy
 import numpy
 

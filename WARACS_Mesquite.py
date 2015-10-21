@@ -10,6 +10,7 @@ __version__ = "2015.10.21.1300"
 #####################
 
 from subprocess import Popen, PIPE
+import argparse
 import csv
 import os
 import sys
@@ -18,13 +19,12 @@ import CustomFileOps as GFO
 import CustomInstallOps as GIO
 import CustomStringOps as GSO
 
-opt_deps = ["argparse", "dendropy", "numpy", "termcolor", "prettytable"]
+opt_deps = ["dendropy", "numpy", "termcolor", "prettytable"]
 try:
     map(__import__, opt_deps)
 except:
     GIO.installPkgs(opt_deps)
 
-import argparse
 import dendropy
 import numpy
 from termcolor import colored
