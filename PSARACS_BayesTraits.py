@@ -1,35 +1,54 @@
 #!/usr/bin/env python2
-''' Conducting Ancestral State Reconstructions (ASRs) with BayesTraits'''
+'''Reconstructing Ancestral Character States using BayesTraits'''
 __author__ = "Michael Gruenstaeudl, PhD"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __email__ = "mi.gruenstaeudl@gmail.com"
 __version__ = "2015.10.09.2300"
 
-# IMPORT OPERATIONS
-from cStringIO import StringIO
-from prettytable import PrettyTable
-from termcolor import colored
-import argparse
-import dendropy
+#####################
+# IMPORT OPERATIONS #
+#####################
+
 import csv
-import numpy
 import os
 import string
 import sys
 import GeneralFileOperations as GFO
 import GeneralStringOperations as GSO
 
-# DEBUG HELPER
-import pdb
+opt_deps = ["argparse", "cStringIO", "dendropy", "numpy", "termcolor", "prettytable"]
+try:
+    map(__import__, opt_deps)
+except:
+    GIO.installPkgs(opt_deps)
+
+from cStringIO import StringIO
+from prettytable import PrettyTable
+from termcolor import colored
+import argparse
+import dendropy
+import numpy
+
+#############
+# DEBUGGING #
+#############
+
+#import pdb
 #pdb.set_trace()
 
-# GLOBAL VARIABLES
+####################
+# GLOBAL VARIABLES #
+####################
+
 bayesModel = "1\n2\n"
 bayesKw = "Iteration\tLh"
 likeModel = "1\n1\n"
 likeKw = "Tree No\tLh"
 
-# MODULES
+###########
+# MODULES #
+###########
+
 def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
 
     # 1.1. Decision on model
@@ -83,7 +102,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
     cmd = pathToSoftware + " " + treedistrFn + " " + charsFnTmp + " < " + cmdFnTmp
     dataH = os.popen(cmd).read()
     if parseKw not in dataH:
-        sys.exit(colored("  ERROR: ", 'red') + "No reconstruction data from BayesTraits received.")
+        sys.exit(colored("  ERROR: ", "white", "on_red") + "No reconstruction data from BayesTraits received.")
 
 # 2.2. Save outfile and delete temp files
     GFO.saveFile(outFn_raw, dataH)
@@ -121,7 +140,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
                 r = 0
             matchVals.append(r)
         if len(matchHeaders) != len(matchVals):
-            sys.exit(colored("  ERROR: ", "magenta") + "Something wrong with parsing the reconstruction results!")
+            sys.exit(colored("  ERROR: ", "white", "on_red") + "Error when parsing the reconstruction results!")
 # 3.2.2. Important step
         if sum(matchVals) > 0:                                          # IMPORTANT STEP: only write line if reconstruction present
             tmpL = []
@@ -143,21 +162,20 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
 #   4.2. Save table
     GFO.saveFile(outFn_table, outD)
 
-
-
-# EXECUTE
+###########
+# EXECUTE #
+###########
 
 print ""
 print colored("  Script name: "+sys.argv[0], 'cyan')
 print colored("  Author: "+__author__, 'cyan')
 print colored("  Version: "+__version__, 'cyan')
-#print colored("  Notes:", 'yellow')
-#print colored("  1. ", 'yellow')
-#print colored("  2. ", 'yellow')
 print ""
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Performing ASR with BayesTraits; 2015 Michael Gruenstaeudl')
+    introL = [colored("Reconstructing Ancestral Character States using BayesTraits", "green"),
+              colored("(http://www.evolution.reading.ac.uk/BayesTraits.html)", "green")]
+    parser = argparse.ArgumentParser(description="\n".join(introL))
     parser.add_argument('-t', '--treedistr',
                         help='/path_to_working_dir/treedistr.nex',
                         required=True)

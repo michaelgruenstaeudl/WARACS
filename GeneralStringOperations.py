@@ -9,13 +9,19 @@ __version__ = "2015.10.09.1800"
 # IMPORT OPERATIONS #
 #####################
 
-from termcolor import colored
-import numpy
 import random
 import re
 import string
 import sys
+import GeneralInstallOperations as GIO
 
+opt_deps = ["termcolor"]
+try:
+    map(__import__, opt_deps)
+except:
+    GIO.installPkgs(opt_deps)
+
+from termcolor import colored
 
 ###########
 # CLASSES #
@@ -53,9 +59,9 @@ class errorReport:
         self.err = b
     def go(self):
         if "ERROR" in self.out.upper():
-            sys.exit(colored("  Error: ", 'magenta') + self.out)
+            sys.exit(colored("  ERROR: ", "white", "on_red") + self.out)
         if self.err:
-            sys.exit(colored("  Error: ", 'magenta') + self.err)
+            sys.exit(colored("  ERROR: ", "white", "on_red") + self.err)
 
 class replaceStr:
     ''' Replaces a string via kw delimitation.
@@ -92,8 +98,8 @@ class clearSplit:
     def go(self):
         splitL = self.inStr.split(self.delim)
         if len(splitL) < 2:
-            print "*** Error in " + self.__class__.__name__
-            print "*** Less than two elements after split."
+            print colored("  ERROR: ", "white", "on_red") + self.__class__.__name__
+            print "  Less than two elements after split."
         outlist = []
         if len(splitL) == 2:
             if not self.rflag:

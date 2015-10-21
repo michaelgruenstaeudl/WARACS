@@ -1,31 +1,43 @@
 #!/usr/bin/env python2
-''' Visualize the results of an Ancestral State Reconstructions (ASR)
-Conversion TRE->PNG including all associated steps (nex->xtg, labelling nodes, adding pie labels and charts) '''
+'''Visualizing Character State Reconstruction Results using TreeGraph2'''
 __author__ = "Michael Gruenstaeudl, PhD"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __email__ = "mi.gruenstaeudl@gmail.com"
-__version__ = "2015.10.06.1100"
-__status__ = "Working"
-__example__ = "python2 /path_to_script/ASR_Viz.py -i myreconstrdata.csv -t mytrees.tre -p /path_to_program/TreeGraph.jar -c /path_to_working_dir/mycolordict.csv"
+__version__ = "2015.10.09.2300"
 
-# IMPORT OPERATIONS
-from collections import OrderedDict as OrdDict
+#####################
+# IMPORT OPERATIONS #
+#####################
+
 from subprocess import Popen, PIPE
-from termcolor import colored
-import argparse
 import os
 import re
 import sys
-#import ExternalProgramComm as EPC
 import GeneralFileOperations as GFO
 import GeneralStringOperations as GSO
+
+opt_deps = ["argparse", "collections", "termcolor", "xml"]
+try:
+    map(__import__, opt_deps)
+except:
+    GIO.installPkgs(opt_deps)
+
+from collections import OrderedDict as OrdDict
+from termcolor import colored
+import argparse
 import xml.etree.ElementTree as ET
 
-# DEBUG HELPER
+#############
+# DEBUGGING #
+#############
+
 #import pdb
 #pdb.set_trace()
 
-# GLOBAL VARIABLES
+####################
+# GLOBAL VARIABLES #
+####################
+
 labelMargin_xml_1 = '<LabelMargin Left="1.0" Top="0.0" Right="1.0" Bottom="0.0"></LabelMargin>'
 labelMargin_xml_2 = '<LabelMargin Left="1.0" Top="1.0" Right="1.0" Bottom="1.0"></LabelMargin>'
 #labelMargin_xml_3 = '<LabelMargin Left="1.0" Top="0.0" Right="1.0" Bottom="1.0"></LabelMargin>' # optimal for phylograms
@@ -34,8 +46,10 @@ pieChartLabel_xml = '<PieChartLabel LineColor="#000000" LineWidth="0.2" Width="8
 
 textLabel_xml = '<TextLabel Text="" IsDecimal="false" TextColor="#000000" TextHeight="3.0" TextStyle="" FontFamily="Arial" DecimalFormat="#0.0#####" LocaleLang="en" LocaleCountry="" LocaleVariant="" Id="internals" Above="true" LineNo="" LinePos="0"></TextLabel>'
 
+###########
+# CLASSES #
+###########
 
-# CLASSES
 class CustomizeXTG_Nodes:
     ''' class for parsing XTG files: turning raw XTG code into
         publication-ready XTG code '''
@@ -246,7 +260,7 @@ class ConversionXTG2IMG:
         try:
             inD = os.path.join(cwd, GSO.rmext(self.inFn) + ".xtg")
         except: 
-            sys.exit(colored("  ERROR: ", 'red') + ".xtg file not found")
+            sys.exit(colored("  ERROR: ", "white", "on_red") + ".xtg file not found")
 
 #     1.b. Set if plotting as phylo- or cladogram
         resolut = "-width 600mm -res 120ppi"
@@ -300,8 +314,9 @@ class PrettyPrintXTG:
 
         return outStr
 
-
-# MODULES
+###########
+# MODULES #
+###########
 
 def main(reconstrFn, treeFn, colordictFn, pathToTG2, flags):
 
@@ -317,9 +332,9 @@ def main(reconstrFn, treeFn, colordictFn, pathToTG2, flags):
     for line in colorTmp:
         tmp = line.split(",")
         if len(tmp[0]) != 1:
-            sys.exit(colored("  ERROR: ", 'red') + "Problem with area codes in color dictionary")
+            sys.exit(colored("  ERROR: ", "white", "on_red") + "Problem with area codes in color dictionary")
         if tmp[1][0] != "#" or len(tmp[1]) != 7:
-            sys.exit(colored("  ERROR: ", 'red') + "Problem with color codes in color dictionary")
+            sys.exit(colored("  ERROR: ", "white", "on_red") + "Problem with color codes in color dictionary")
         colorDict[tmp[0]] = tmp[1]
 
 #   2.1. Conversion from .nex to .xtg format
@@ -398,7 +413,9 @@ print colored("  (Note: Reconstructions must have occurred over multiple trees.)
 print ""
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Visualizing ASR results; 2015 Michael Gruenstaeudl')
+    introL = [colored("Visualizing Character State Reconstruction Results using TreeGraph2", "green"),
+              colored("(http://treegraph.bioinfweb.info/)", "green")]
+    parser = argparse.ArgumentParser(description="\n".join(introL))
     parser.add_argument('-r', '--reconstrdata',
                         help='/path_to_working_dir/reconstrdata.csv',
                         required=True)
