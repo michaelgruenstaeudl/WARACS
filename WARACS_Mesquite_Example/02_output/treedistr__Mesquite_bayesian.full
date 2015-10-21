@@ -1,0 +1,63 @@
+
+Window "
+Tree window
+Showing Stored Trees for taxa "Taxa"
+Original Tree:  STATE 20010000 (id 102, version 154)
+
+Tree Description:  (Arnoseris_minima_E:0.05609102597163639,((Tolpis_macrorhiza_M:0.015409541021764108,(Tolpis_azorica_A:0.00829638436803228,(Tolpis_succulenta_M:0.0032143429435536955,Tolpis_succulenta_A:0.0032143429435536955):0.005082041424478585):0.007113156653731828):0.013517172346003437,((Tolpis_virgata_E:0.016000336280911763,Tolpis_barbata_E:0.016000336280911763):0.004037681416576042,(Tolpis_spnov_G:0.007307871447187598,(Tolpis_farinulosa_C:0.0058757848138937235,(Tolpis_laciniata_PH:0.004168960443941803,((Tolpis_crassiuscula_T:0.0038768194150906625,(((Tolpis_webbii_T:0.0011164123367089474,Tolpis_santosii_P:0.0011164123367089474):0.00103829687990044,Tolpis_lagopoda_TR:0.0021547092166093874):0.0014975215279037892,Tolpis_glabrescens_T:0.0036522307445131766):0.00022458867057748586):0.00008637038814108232,Tolpis_coronopifolia_T:0.003963189803231745):0.000205770640710058):0.0017068243699519207):0.0014320866332938748):0.012730146250300207):0.00888869567027974):0.027164312603868847);
+Tree with node numbers:
+       ,=====================================================3 Arnoseris minima E
+       |
+       |         ,===========================================6 Tolpis macrorhiza M
+       |    ,===5|
+======2|    |    |    ,======================================8 Tolpis azorica A
+       |    |    `===7|
+       |    |         |    ,================================10 Tolpis succulenta M
+       |    |         `===9|
+       `===4|              `================================11 Tolpis succulenta A
+            |
+            |         ,=====================================14 Tolpis virgata E
+            |    ,==13|
+            |    |    `=====================================15 Tolpis barbata E
+            `==12|
+                 |    ,=====================================17 Tolpis spnov G
+                 |    |
+                 `==16|    ,================================19 Tolpis farinulosa C
+                      |    |
+                      |    |    ,===========================21 Tolpis laciniata PH
+                      `==18|    |
+                           |    |         ,=================24 Tolpis crassiuscula T
+                           |    |         |
+                           `==20|         |              ,==28 Tolpis webbii T
+                                |    ,==23|         ,==27|
+                                |    |    |    ,==26|    `==29 Tolpis santosii P
+                                |    |    |    |    |
+                                `==22|    `==25|    `=======30 Tolpis lagopoda TR
+                                     |         |
+                                     |         `============31 Tolpis glabrescens T
+                                     |
+                                     `======================32 Tolpis coronopifolia T
+
+
+--------------- Trace Character Over Trees ---------------
+
+Character 1
+Reconstructed Ancestral States (Stochastic Character Mapping (Categorical)) over 101 trees (Stored Trees; Trees """ from file iagujk.tmp).  Shown for each state at each node is the number of trees on which the reconstructed state set at the node includes that state (it may also include other states as equally or sufficiently optimal according to the reconstruction criteria).
+
+node 2:  Node in 101 trees.  Optimal states and count of trees with each: E: 22; C: 79
+node 4:  Node in 101 trees.  Optimal states and count of trees with each: E: 56; C: 45
+node 5:  Node in 12 trees.  Optimal states and count of trees with each: E: 6; C: 2; M: 4
+node 7:  Node in 101 trees.  Optimal states and count of trees with each: A: 87; E: 4; C: 9; M: 1
+node 9:  Node in 101 trees.  Optimal states and count of trees with each: A: 79; E: 5; C: 11; M: 6
+node 12:  Node in 97 trees.  Optimal states and count of trees with each: E: 50; C: 47
+node 13:  Node in 14 trees.  Optimal states and count of trees with each: E: 12; C: 2
+node 16:  Node in 101 trees.  Optimal states and count of trees with each: C: 101
+node 18:  Node in 46 trees.  Optimal states and count of trees with each: C: 46
+node 20:  Node in 11 trees.  Optimal states and count of trees with each: C: 11
+node 22:  Node in 5 trees.  Optimal states and count of trees with each: C: 5
+node 23:  Node in 1 trees.  Optimal states and count of trees with each: C: 1
+node 25:  Node in 5 trees.  Optimal states and count of trees with each: C: 5
+node 26:  Node in 22 trees.  Optimal states and count of trees with each: C: 22
+node 27:  Node in 12 trees.  Optimal states and count of trees with each: C: 12
+
+

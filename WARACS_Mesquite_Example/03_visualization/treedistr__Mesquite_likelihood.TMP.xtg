@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?><TreegraphDocument xmlns="http://bioinfweb.info/xmlns/xtg" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://bioinfweb.info/xmlns/xtg http://bioinfweb.info/xmlns/xtg/1.2.xsd">
+<GlobalFormats AlignToSubtree="true" BgColor="#FFFFFF" BranchLengthScale="1016.1596" LabelsLeft="true" ShowRooted="true" ShowScaleBar="false"><DocMargin Bottom="2.0" Left="2.0" Right="2.0" Top="2.0" /></GlobalFormats>
+<Tree>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_1">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0">
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="1" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="A 0.250" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="2" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="E 0.250" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="3" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="C 0.250" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="4" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="M 0.250" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<PieChartLabel Above="true" Height="8.0" Id="internals" InternalLines="true" LineColor="#000000" LineNo="0" LinePos="0" LineWidth="0.2" NullLines="false" Width="8.0">
+		<LabelMargin Bottom="1.0" Left="1.0" Right="1.0" Top="1.0" />
+			<DataIds> 
+			<DataId PieColor="#0000FF">A</DataId>
+			<DataId PieColor="#00FF00">E</DataId>
+			<DataId PieColor="#FFFF00">C</DataId>
+			<DataId PieColor="#FF0000">M</DataId></DataIds></PieChartLabel> 
+			<InvisibleData Id="A" IsDecimal="true" Text="0.250" />
+			<InvisibleData Id="E" IsDecimal="true" Text="0.250" />
+			<InvisibleData Id="C" IsDecimal="true" Text="0.250" />
+			<InvisibleData Id="M" IsDecimal="true" Text="0.250" /></Branch>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" IsDecimal="false" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="Arnoseris minima E" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_2">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.0560910259716" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0" /></Node>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_3">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.0271643126039" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0">
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="1" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="A 0.250" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="2" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="E 0.250" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="3" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="C 0.250" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="4" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="M 0.250" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<PieChartLabel Above="true" Height="8.0" Id="internals" InternalLines="true" LineColor="#000000" LineNo="0" LinePos="0" LineWidth="0.2" NullLines="false" Width="8.0">
+		<LabelMargin Bottom="1.0" Left="1.0" Right="1.0" Top="1.0" />
+			<DataIds> 
+			<DataId PieColor="#0000FF">A</DataId>
+			<DataId PieColor="#00FF00">E</DataId>
+			<DataId PieColor="#FFFF00">C</DataId>
+			<DataId PieColor="#FF0000">M</DataId></DataIds></PieChartLabel> 
+			<InvisibleData Id="A" IsDecimal="true" Text="0.250" />
+			<InvisibleData Id="E" IsDecimal="true" Text="0.250" />
+			<InvisibleData Id="C" IsDecimal="true" Text="0.250" />
+			<InvisibleData Id="M" IsDecimal="true" Text="0.250" /></Branch>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_4">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.013517172346" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0">
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="1" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="A 0.250" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="2" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="E 0.250" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="3" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="C 0.250" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="4" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="M 0.250" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<PieChartLabel Above="true" Height="8.0" Id="internals" InternalLines="true" LineColor="#000000" LineNo="0" LinePos="0" LineWidth="0.2" NullLines="false" Width="8.0">
+		<LabelMargin Bottom="1.0" Left="1.0" Right="1.0" Top="1.0" />
+			<DataIds> 
+			<DataId PieColor="#0000FF">A</DataId>
+			<DataId PieColor="#00FF00">E</DataId>
+			<DataId PieColor="#FFFF00">C</DataId>
+			<DataId PieColor="#FF0000">M</DataId></DataIds></PieChartLabel> 
+			<InvisibleData Id="A" IsDecimal="true" Text="0.250" />
+			<InvisibleData Id="E" IsDecimal="true" Text="0.250" />
+			<InvisibleData Id="C" IsDecimal="true" Text="0.250" />
+			<InvisibleData Id="M" IsDecimal="true" Text="0.250" /></Branch>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" IsDecimal="false" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="Tolpis macrorhiza M" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_5">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.0154095410218" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0" /></Node>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_6">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00711315665373" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0">
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="1" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="A 0.771" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="2" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="M 0.229" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<PieChartLabel Above="true" Height="8.0" Id="internals" InternalLines="true" LineColor="#000000" LineNo="0" LinePos="0" LineWidth="0.2" NullLines="false" Width="8.0">
+		<LabelMargin Bottom="1.0" Left="1.0" Right="1.0" Top="1.0" />
+			<DataIds> 
+			<DataId PieColor="#0000FF">A</DataId>
+			<DataId PieColor="#FF0000">M</DataId></DataIds></PieChartLabel> 
+			<InvisibleData Id="A" IsDecimal="true" Text="0.771" />
+			<InvisibleData Id="M" IsDecimal="true" Text="0.229" /></Branch>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" IsDecimal="false" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="Tolpis azorica A" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_7">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00829638436803" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0" /></Node>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_8">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00508204142448" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0">
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="1" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="A 0.574" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="2" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="M 0.426" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<PieChartLabel Above="true" Height="8.0" Id="internals" InternalLines="true" LineColor="#000000" LineNo="0" LinePos="0" LineWidth="0.2" NullLines="false" Width="8.0">
+		<LabelMargin Bottom="1.0" Left="1.0" Right="1.0" Top="1.0" />
+			<DataIds> 
+			<DataId PieColor="#0000FF">A</DataId>
+			<DataId PieColor="#FF0000">M</DataId></DataIds></PieChartLabel> 
+			<InvisibleData Id="A" IsDecimal="true" Text="0.574" />
+			<InvisibleData Id="M" IsDecimal="true" Text="0.426" /></Branch>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" IsDecimal="false" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="Tolpis succulenta M" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_9">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00321434294355" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0" /></Node>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" IsDecimal="false" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="Tolpis succulenta A" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_10">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00321434294355" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0" /></Node></Node></Node></Node>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_11">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00888869567028" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0">
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="1" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="A 0.228" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="2" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="E 0.298" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="3" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="C 0.298" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="4" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="M 0.175" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<PieChartLabel Above="true" Height="8.0" Id="internals" InternalLines="true" LineColor="#000000" LineNo="0" LinePos="0" LineWidth="0.2" NullLines="false" Width="8.0">
+		<LabelMargin Bottom="1.0" Left="1.0" Right="1.0" Top="1.0" />
+			<DataIds> 
+			<DataId PieColor="#0000FF">A</DataId>
+			<DataId PieColor="#00FF00">E</DataId>
+			<DataId PieColor="#FFFF00">C</DataId>
+			<DataId PieColor="#FF0000">M</DataId></DataIds></PieChartLabel> 
+			<InvisibleData Id="A" IsDecimal="true" Text="0.228" />
+			<InvisibleData Id="E" IsDecimal="true" Text="0.298" />
+			<InvisibleData Id="C" IsDecimal="true" Text="0.298" />
+			<InvisibleData Id="M" IsDecimal="true" Text="0.175" /></Branch>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_12">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00403768141658" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0">
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="1" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="A 0.038" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="2" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="E 0.538" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="3" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="C 0.423" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<PieChartLabel Above="true" Height="8.0" Id="internals" InternalLines="true" LineColor="#000000" LineNo="0" LinePos="0" LineWidth="0.2" NullLines="false" Width="8.0">
+		<LabelMargin Bottom="1.0" Left="1.0" Right="1.0" Top="1.0" />
+			<DataIds> 
+			<DataId PieColor="#0000FF">A</DataId>
+			<DataId PieColor="#00FF00">E</DataId>
+			<DataId PieColor="#FFFF00">C</DataId></DataIds></PieChartLabel> 
+			<InvisibleData Id="A" IsDecimal="true" Text="0.038" />
+			<InvisibleData Id="E" IsDecimal="true" Text="0.538" />
+			<InvisibleData Id="C" IsDecimal="true" Text="0.423" /></Branch>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" IsDecimal="false" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="Tolpis virgata E" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_13">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.0160003362809" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0" /></Node>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" IsDecimal="false" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="Tolpis barbata E" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_14">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.0160003362809" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0" /></Node></Node>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_15">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.0127301462503" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0">
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="1" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="C 1.000" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<PieChartLabel Above="true" Height="8.0" Id="internals" InternalLines="true" LineColor="#000000" LineNo="0" LinePos="0" LineWidth="0.2" NullLines="false" Width="8.0">
+		<LabelMargin Bottom="1.0" Left="1.0" Right="1.0" Top="1.0" />
+			<DataIds> 
+			<DataId PieColor="#FFFF00">C</DataId></DataIds></PieChartLabel> 
+			<InvisibleData Id="C" IsDecimal="true" Text="1.000" /></Branch>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" IsDecimal="false" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="Tolpis spnov G" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_16">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00730787144719" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0" /></Node>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_17">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00143208663329" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0">
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="1" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="C 1.000" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<PieChartLabel Above="true" Height="8.0" Id="internals" InternalLines="true" LineColor="#000000" LineNo="0" LinePos="0" LineWidth="0.2" NullLines="false" Width="8.0">
+		<LabelMargin Bottom="1.0" Left="1.0" Right="1.0" Top="1.0" />
+			<DataIds> 
+			<DataId PieColor="#FFFF00">C</DataId></DataIds></PieChartLabel> 
+			<InvisibleData Id="C" IsDecimal="true" Text="1.000" /></Branch>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" IsDecimal="false" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="Tolpis farinulosa C" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_18">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00587578481389" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0" /></Node>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_19">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00170682436995" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0">
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="1" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="C 1.000" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<PieChartLabel Above="true" Height="8.0" Id="internals" InternalLines="true" LineColor="#000000" LineNo="0" LinePos="0" LineWidth="0.2" NullLines="false" Width="8.0">
+		<LabelMargin Bottom="1.0" Left="1.0" Right="1.0" Top="1.0" />
+			<DataIds> 
+			<DataId PieColor="#FFFF00">C</DataId></DataIds></PieChartLabel> 
+			<InvisibleData Id="C" IsDecimal="true" Text="1.000" /></Branch>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" IsDecimal="false" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="Tolpis laciniata PH" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_20">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00416896044394" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0" /></Node>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_21">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="2.0577064071E-4" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0">
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="1" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="C 1.000" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<PieChartLabel Above="true" Height="8.0" Id="internals" InternalLines="true" LineColor="#000000" LineNo="0" LinePos="0" LineWidth="0.2" NullLines="false" Width="8.0">
+		<LabelMargin Bottom="1.0" Left="1.0" Right="1.0" Top="1.0" />
+			<DataIds> 
+			<DataId PieColor="#FFFF00">C</DataId></DataIds></PieChartLabel> 
+			<InvisibleData Id="C" IsDecimal="true" Text="1.000" /></Branch>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_22">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="8.63703881411E-5" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0">
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="1" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="C 1.000" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<PieChartLabel Above="true" Height="8.0" Id="internals" InternalLines="true" LineColor="#000000" LineNo="0" LinePos="0" LineWidth="0.2" NullLines="false" Width="8.0">
+		<LabelMargin Bottom="1.0" Left="1.0" Right="1.0" Top="1.0" />
+			<DataIds> 
+			<DataId PieColor="#FFFF00">C</DataId></DataIds></PieChartLabel> 
+			<InvisibleData Id="C" IsDecimal="true" Text="1.000" /></Branch>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" IsDecimal="false" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="Tolpis crassiuscula T" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_23">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00387681941509" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0" /></Node>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_24">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="2.24588670577E-4" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0">
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="1" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="C 1.000" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<PieChartLabel Above="true" Height="8.0" Id="internals" InternalLines="true" LineColor="#000000" LineNo="0" LinePos="0" LineWidth="0.2" NullLines="false" Width="8.0">
+		<LabelMargin Bottom="1.0" Left="1.0" Right="1.0" Top="1.0" />
+			<DataIds> 
+			<DataId PieColor="#FFFF00">C</DataId></DataIds></PieChartLabel> 
+			<InvisibleData Id="C" IsDecimal="true" Text="1.000" /></Branch>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_25">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.0014975215279" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0">
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="1" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="C 1.000" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<PieChartLabel Above="true" Height="8.0" Id="internals" InternalLines="true" LineColor="#000000" LineNo="0" LinePos="0" LineWidth="0.2" NullLines="false" Width="8.0">
+		<LabelMargin Bottom="1.0" Left="1.0" Right="1.0" Top="1.0" />
+			<DataIds> 
+			<DataId PieColor="#FFFF00">C</DataId></DataIds></PieChartLabel> 
+			<InvisibleData Id="C" IsDecimal="true" Text="1.000" /></Branch>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_26">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.0010382968799" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0">
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="1" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="C 1.000" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<TextLabel Above="true" DecimalFormat="#0.0#####" FontFamily="Arial" Id="internals" IsDecimal="false" LineNo="0" LinePos="0" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="" TextColor="#000000" TextHeight="3.0" TextStyle="">
+		<LabelMargin Bottom="0.0" Left="1.0" Right="1.0" Top="0.0" /></TextLabel>
+		<PieChartLabel Above="true" Height="8.0" Id="internals" InternalLines="true" LineColor="#000000" LineNo="0" LinePos="0" LineWidth="0.2" NullLines="false" Width="8.0">
+		<LabelMargin Bottom="1.0" Left="1.0" Right="1.0" Top="1.0" />
+			<DataIds> 
+			<DataId PieColor="#FFFF00">C</DataId></DataIds></PieChartLabel> 
+			<InvisibleData Id="C" IsDecimal="true" Text="1.000" /></Branch>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" IsDecimal="false" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="Tolpis webbii T" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_27">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00111641233671" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0" /></Node>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" IsDecimal="false" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="Tolpis santosii P" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_28">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00111641233671" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0" /></Node></Node>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" IsDecimal="false" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="Tolpis lagopoda TR" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_29">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00215470921661" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0" /></Node></Node>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" IsDecimal="false" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="Tolpis glabrescens T" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_30">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00365223074451" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0" /></Node></Node></Node>
+<Node DecimalFormat="#0.0#####" EdgeRadius="0.9" FontFamily="Arial" IsDecimal="false" LineColor="#000000" LineWidth="0.6" LocaleCountry="" LocaleLang="en" LocaleVariant="" Text="Tolpis coronopifolia T" TextColor="#000000" TextHeight="5.0" TextStyle="Italics" UniqueName="Node_31">
+	<LeafMargin Bottom="0.3" Left="1.0" Right="1.0" Top="0.3" />
+	<Branch ConstantWidth="false" Length="0.00396318980323" LineColor="#000000" LineWidth="0.6" MinLength="4.0" MinSpaceAbove="0.0" MinSpaceBelow="0.0" /></Node></Node></Node></Node></Node></Node></Node></Node>
+<ScaleBar Align="left" DecimalFormat="#0.0#####" FontFamily="Arial" Height="3.0" Increasing="true" LineColor="#000000" LineWidth="0.3" LocaleCountry="" LocaleLang="en" LocaleVariant="" LongInterval="10" SmallInterval="0.002" StartLeft="true" TextColor="#000000" TextHeight="4.0" TextStyle="" TreeDistance="2.0" Width="20.0mm" /></Tree>
+</TreegraphDocument>
