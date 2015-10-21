@@ -1,6 +1,10 @@
 # MANUAL
 WARACS: Wrappers to Automate the Reconstruction of Ancestral Character States
 
+### - Prerequisites
+* Python v.2.7 ()
+* Python package *setuptools* (https://pypi.python.org/pypi/setuptools)
+
 ### - Commandline Usage via Linux and MacOSX
 ###### 1. Specify input directory
 ```
