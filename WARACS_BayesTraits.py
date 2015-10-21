@@ -66,6 +66,15 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
     outFn_tree = fileprfx + "__BayesTraits_" + kw + ".tre"
     outFn_table = fileprfx + "__BayesTraits_" + kw + ".csv"
 
+    # 1.2. Setting outfilenames
+    fileprfx = GSO.rmext(treedistrFn)
+    fileinfo = "__BayesTraits_" + kw + "_char" + str(charnum)
+    #if charmodel:                                                      # Not yet implemented
+    #    fileinfo = fileinfo + "__charmodel_" + charmodel.replace(";",".").replace(",",".")
+    outFn_raw = fileprfx + fileinfo + ".full"
+    outFn_tree = fileprfx + fileinfo + ".tre"
+    outFn_table = fileprfx + fileinfo + ".csv"
+
     charsFnTmp = charsFn + ".tmp"
     cmdFnTmp = GSO.randomword(6) + ".tmp"
 

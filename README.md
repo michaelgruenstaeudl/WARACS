@@ -43,8 +43,8 @@ python2.7 ~/git/github.com_WARACS/WARACS_BayesTraits.py
 ###### 5. Visualize character state reconstruction results via [TreeGraph2](http://treegraph.bioinfweb.info/)
 ```
 python2.7 ~/git/github.com_WARACS/WARACS_TreeGraph2.py
-  -r treedistr__BayesTraits_likelihood.csv
-  -p treedistr__BayesTraits_likelihood.tre
+  -r treedistr__BayesTraits_likelihood_char2.csv
+  -p treedistr__BayesTraits_likelihood_char2.tre
   -c $INDIR/colordict.csv
   -s /home/waracs_user/binaries/Treegraph2/TreeGraph.jar
 ```
