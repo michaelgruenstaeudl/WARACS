@@ -14,9 +14,9 @@ import csv
 import os
 import sys
 import time
-import GeneralFileOperations as GFO
-import GeneralInstallOperations as GIO
-import GeneralStringOperations as GSO
+import CustomFileOps as GFO
+import CustomInstallOps as GIO
+import CustomStringOps as GSO
 
 opt_deps = ["argparse", "dendropy", "numpy", "termcolor", "prettytable"]
 try:

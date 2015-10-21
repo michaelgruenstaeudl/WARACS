@@ -13,7 +13,7 @@ import random
 import re
 import string
 import sys
-import GeneralInstallOperations as GIO
+import CustomInstallOps as GIO
 
 opt_deps = ["termcolor"]
 try:

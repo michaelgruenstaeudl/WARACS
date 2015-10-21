@@ -13,8 +13,8 @@ from subprocess import Popen, PIPE
 import os
 import re
 import sys
-import GeneralFileOperations as GFO
-import GeneralStringOperations as GSO
+import CustomFileOps as GFO
+import CustomStringOps as GSO
 
 opt_deps = ["argparse", "collections", "termcolor", "xml"]
 try:

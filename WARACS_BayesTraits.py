@@ -13,8 +13,8 @@ import csv
 import os
 import string
 import sys
-import GeneralFileOperations as GFO
-import GeneralStringOperations as GSO
+import CustomFileOps as GFO
+import CustomStringOps as GSO
 
 opt_deps = ["argparse", "cStringIO", "dendropy", "numpy", "termcolor", "prettytable"]
 try:
