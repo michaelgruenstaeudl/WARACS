@@ -299,7 +299,7 @@ print ""
 
 if __name__ == '__main__':
     introL = [colored("Reconstructing Ancestral Character States using Mesquite", "green"),
-              colored("(https://mesquiteproject.wikispaces.com/)", "green")]
+              colored("(http://mesquiteproject.org)", "green")]
     parser = argparse.ArgumentParser(description="\n".join(introL))
     parser.add_argument('-t', '--treedistr',
                         help='/path_to_working_dir/treedistr.nex',
