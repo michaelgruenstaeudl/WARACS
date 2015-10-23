@@ -6,7 +6,7 @@ WARACS: Wrappers to Automate the Reconstruction of Ancestral Character States
 * Python package *setuptools* (https://pypi.python.org/pypi/setuptools)
 
 ### - Wrapped Applications
-* Mesquite (https://mesquiteproject.wikispaces.com/)
+* Mesquite (http://mesquiteproject.org)
 * BayesTraits (http://www.evolution.reading.ac.uk/BayesTraits.html)
 * TreeGraph2 (http://treegraph.bioinfweb.info/)
 
@@ -20,7 +20,7 @@ INDIR=/home/waracs_user/git/WARACS/examples/WARACS_BayesTraits_Example/01_input/
 mkdir -p ~/Desktop/
 cd ~/Desktop/
 ```
-###### 3. Perform an ancestral character state reconstruction via [Mesquite](https://mesquiteproject.wikispaces.com/)
+###### 3. Perform an ancestral character state reconstruction via [Mesquite](http://mesquiteproject.org)
 ```
 python2.7 ~/git/github.com_WARACS/WARACS_Mesquite.py
   -t $INDIR/treedistr.tre
