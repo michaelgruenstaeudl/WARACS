@@ -5,15 +5,15 @@ WARACS: Wrappers to Automate the Reconstruction of Ancestral Character States
 * Python v.2.7 (https://www.python.org/download/releases/2.7/)
 * Python package *setuptools* (https://pypi.python.org/pypi/setuptools)
 
-### - Python Dependencies
-* Python package *DendroPy* (https://pypi.python.org/pypi/DendroPy)
-* Python package *numpy* (https://pypi.python.org/pypi/numpy)
-* Python package *PrettyTable* (https://pypi.python.org/pypi/PrettyTable)
-
 ### - Wrapped Applications
 * Mesquite (http://mesquiteproject.org)
 * BayesTraits (http://www.evolution.reading.ac.uk/BayesTraits.html)
 * TreeGraph2 (http://treegraph.bioinfweb.info/)
+
+### - Python Dependencies
+* Python package *DendroPy* (https://pypi.python.org/pypi/DendroPy)
+* Python package *numpy* (https://pypi.python.org/pypi/numpy)
+* Python package *PrettyTable* (https://pypi.python.org/pypi/PrettyTable)
 
 ### - Basic Usage
 ###### 1. Test the wrapper
@@ -42,7 +42,7 @@ python2.7 /path_to_git/WARACS/WARACS_BayesTraits.py
   -s /path_to_BayesTraits/BayesTraitsV2
   -v True
 ```
-###### 4. Visualize character state reconstruction results via [TreeGraph2](http://treegraph.bioinfweb.info/)
+###### 4. Visualize the character state reconstruction results via [TreeGraph2](http://treegraph.bioinfweb.info/)
 ```
 python2.7 /path_to_git/WARACS/WARACS_TreeGraph2.py
   -r /path_to_input/tree_distribution__Mesquite_likelihood_char2.csv
@@ -54,12 +54,11 @@ python2.7 /path_to_git/WARACS/WARACS_TreeGraph2.py
 ### - Special Notes for Windows
 ###### 1. Regarding Installation
 * Users on Windows need to have administrative rights on their systems.
-* Users on Windows need to ensure that their Python Scripts directory is in the PATH environment variable (https://pythonhosted.org/setuptools/easy_install.html#executables-and-launchers).
-* Users on Windows may need to install the latest Microsoft Visual C++ Compiler in order to install the Python package *numpy* (http://stackoverflow.com/questions/28413824/installing-numpy-on-windows).
+* Users on Windows need to ensure that the Scripts directory of Python is in the PATH environment variable (https://pythonhosted.org/setuptools/easy_install.html#executables-and-launchers).
+* Users on Windows may need to install the latest Microsoft Visual C++ Compiler in order to compile the Python package *numpy* (http://stackoverflow.com/questions/28413824/installing-numpy-on-windows).
 
 ###### 2. Regarding Usage
 * Usage follows the following format:
 ```
 C:\Python27\python.exe \path_to_git\WARACS\WARACS_Mesquite.py -h
 ```
-
