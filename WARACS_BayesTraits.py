@@ -200,9 +200,8 @@ if __name__ == '__main__':
                         default='likelihood',
                         required=True)
     parser.add_argument('-s', '--software',
-                        help='/path_to_Mesquite/mesquite.sh',
-                        required=True,
-                        default='/home/michael_science/binaries/mesquite3.03/mesquite.sh')
+                        help='/path_to_software/mesquite.sh',
+                        required=True)
     parser.add_argument('-k', '--keep',
                         help='Keeping the temporary input file; a boolean operator',
                         required=False,

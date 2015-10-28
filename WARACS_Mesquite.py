@@ -9,7 +9,11 @@ __version__ = "2015.10.28.1800"
 # IMPORT OPERATIONS #
 #####################
 
+# LEGACYCODE:
 from subprocess import Popen, PIPE
+import subprocess
+import commands
+
 import argparse
 import csv
 import os
@@ -43,7 +47,7 @@ from prettytable import PrettyTable
 ####################
 
 mesquite_block1 = "Begin MESQUITE;\n\tMESQUITESCRIPTVERSION 2;\n\tTITLE AUTO;\n\ttell ProjectCoordinator;\n\tgetEmployee #mesquite.minimal.ManageTaxa.ManageTaxa;\n\ttell It;\n\t\tsetID 0 111; \n\tendTell;\n\tgetEmployee #mesquite.charMatrices.ManageCharacters.ManageCharacters;\n\ttell It;\n\t\tsetID 0 222; \n\tendTell;\n\tString.resultsFile 'RAWRESULTS_treeID_reconstID.txt';\n\tgetWindow;\n\tgetEmployee  #mesquite.trees.BasicTreeWindowCoord.BasicTreeWindowCoord; \n\ttell It;\n\t\tmakeTreeWindow #111  #mesquite.trees.BasicTreeWindowMaker.BasicTreeWindowMaker; \n\t\ttell It;\n\t\t\tsetTreeSource  #mesquite.trees.StoredTrees.StoredTrees; \n\t\t\ttell It;\n\t\t\t\tsetTreeBlock 2;\n\t\t\t\ttoggleUseWeights off;\n\t\t\tendTell;\n\t\t\tgetTreeWindow;\n\t\t\ttell It;\n\t\t\t\tsetTreeNumber 1; \n\t\t\t\tnewAssistant  #mesquite.ancstates.TraceCharOverTrees.TraceCharOverTrees;\n\t\t\t\ttell It;\n\t\t\t\t\tsuppress;\n\t\t\t\t\tsetHistorySource  #mesquite.ancstates.RecAncestralStates.RecAncestralStates;\n\t\t\t\t\ttell It;\n\t\t\t\t\t\tgetCharacterSource  #mesquite.charMatrices.CharSrcCoordObed.CharSrcCoordObed;\n\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\tsetCharacterSource #mesquite.charMatrices.StoredCharacters.StoredCharacters;\n\t\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\t\tsetDataSet #222;\n\t\t\t\t\t\t\tendTell;\n\t\t\t\t\t\tendTell;"
-mesquite_block2 = "\t\t\t\t\tendTell;\n\t\t\t\t\tsetCharacter 1;\n\t\t\t\t\tsetTreeSource  #mesquite.trees.StoredTrees.StoredTrees;\n\t\t\t\t\ttell It;\n\t\t\t\t\t\tsetTreeBlock 1;\n\t\t\t\t\t\ttoggleUseWeights off;\n\t\t\t\t\tendTell;\n\t\t\t\t\tsetNumTrees 100;\n\t\t\t\t\tsetMode Count_All_Trees_with_State;\n\t\t\t\t\tdesuppress;\n\t\t\t\tendTell; \n\t\t\tendTell; \n\t\t\ttell It;\n\t\t\t\ttext;\n\t\t\tendTell;\n\t\tendTell; \n\tendTell; \n\tendTell;\n\tcloseFileAfterRead;\nend;"
+mesquite_block2 = "\t\t\t\t\tendTell;\n\t\t\t\t\tsetCharacter 1;\n\t\t\t\t\tsetTreeSource  #mesquite.trees.StoredTrees.StoredTrees;\n\t\t\t\t\ttell It;\n\t\t\t\t\t\tsetTreeBlock 1;\n\t\t\t\t\t\ttoggleUseWeights off;\n\t\t\t\t\tendTell;\n\t\t\t\t\tsetNumTrees 100;\n\t\t\t\t\tsetMode Count_All_Trees_with_State;\n\t\t\t\t\tdesuppress;\n\t\t\t\tendTell; \n\t\t\tendTell; \n\t\t\ttell It;\n\t\t\t\ttext;\n\t\t\tendTell;\n\t\tendTell; \n\tendTell; \n\tendTell;\n\tcloseFileAfterRead;\nend;\n"
 parsimonyModel = "\t\t\t\t\t\tsetMethod  #mesquite.parsimony.ParsAncestralStates.ParsAncestralStates; \n\t\t\t\t\t\ttell It; \n\t\t\t\t\t\t\tsetModelSource  #mesquite.parsimony.CurrentParsModels.CurrentParsModels; \n\t\t\t\t\t\tendTell;"
 likeModel = "\t\t\t\t\t\tsetMethod  #mesquite.stochchar.MargProbAncStates.MargProbAncStates;\n\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\tsetModelSource  #mesquite.stochchar.CurrentProbModels.CurrentProbModels;\n\t\t\t\t\t\t\tgetEmployee #mesquite.stochchar.zMargLikeCateg.zMargLikeCateg;\n\t\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\t\tsetReportMode Proportional_Likelihoods;\n\t\t\t\t\t\t\t\tsetRootMode Use_Root_State_Frequencies_as_Prior;\n\t\t\t\t\t\t\t\tsetDecision 2.0;\n\t\t\t\t\t\t\t\tsetUnderflowCheckFreq 2;\n\t\t\t\t\t\t\tendTell;\n\t\t\t\t\t\tendTell;"
 bayesModel = "\t\t\t\t\t\tsetMethod  #mesquite.stochchar.StochCharMapper.StochCharMapper;\n\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\tsetModelSource  #mesquite.stochchar.CurrentProbModels.CurrentProbModels;\n\t\t\t\t\t\t\tgetEmployee #mesquite.stochchar.zMargLikeCateg.zMargLikeCateg;\n\t\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\t\tsetReportMode Proportional_Likelihoods;\n\t\t\t\t\t\t\t\tsetRootMode Use_Root_State_Frequencies_as_Prior;\n\t\t\t\t\t\t\t\tsetDecision 2.0;\n\t\t\t\t\t\t\t\tsetUnderflowCheckFreq 2;\n\t\t\t\t\t\t\tendTell;\n\t\t\t\t\t\tendTell;"
@@ -207,24 +211,41 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     if verbose.upper() in ["T", "TRUE"]:
         print "  Character Reconstruction in Mesquite"
         print "  Selected Reconstruction Method:", optcrit
-    startMesquite = "sh " + pathToSoftware
-    p = Popen(startMesquite, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
-    time.sleep(5)                                                       # WIthout such waiting times, scripting Mesquite does not work.
-    p.stdin.write("cd " + os.getcwd() + "/\n")                          # Can contain underscores
-    time.sleep(2)
-    p.stdin.write("openFile " + tmpFn + "\n")                           # Must not contain underscores, because Mesquite cannot load filenames containing underscores! Hence, I chose "tmp".
-    time.sleep(45)
+
+    calctime = len(treedistrL)*0.05
+    cmd = pathToSoftware + " " + tmpFn
+    p = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
+    time.sleep(calctime)
+    # Change this line dependning on operating system?
     p.stdin.write("quit\n")
     output, error = p.communicate()
-    data_handle = [output, error]
+    data_handle = output
+    CFO.saveFile(outFn_raw, data_handle)
+
+# ALTERNATIVE:
+#    calctime = len(treedistrL)*0.05
+#    cmdL = ["timeout", str(calctime), pathToSoftware, tmpFn]
+#    cmdStr = " ".join(cmdL)
+#    p = Popen(cmdStr, stdin=PIPE, stdout=PIPE, shell=True)              # Other shell invocations (os.system, subprocess.call) don't work; I have tried many of them.
+#    data_handle = p.communicate()
+
+# LEGACYCODE:
+#    startMesquite = "sh " + pathToSoftware
+#    p = Popen(startMesquite, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
+#    time.sleep(5)                                                       # WIthout such waiting times, scripting Mesquite does not work.
+#    p.stdin.write("cd " + os.getcwd() + "/\n")                          # Can contain underscores
+#    time.sleep(2)
+#    p.stdin.write("openFile " + tmpFn + "\n")                           # Must not contain underscores, because Mesquite cannot load filenames containing underscores! Hence, I chose "tmp".
+#    time.sleep(45)
+#    p.stdin.write("quit\n")
+#    output, error = p.communicate()
+#    data_handle = [output, error]
+
     if not data_handle:
         sys.exit("  ERROR: No reconstruction data from Mesquite received.")
 
 #   2.3. Parsing out the relevant section of the reconstruction output and saving it to file
-    mainD = CSO.exstr(data_handle[0], "Reading block: MESQUITE", "File reading complete")
-    CFO.saveFile(outFn_raw, mainD)
-
-#   2.4. More parsing of the reconstruction output for subsequent parsed_data generation
+    mainD = CSO.exstr(data_handle, "Reading block: MESQUITE", "File reading complete")
     keywds = ["Trace Character Over Trees", "Trace Character History"]
     for k in keywds:
         if k in mainD:
@@ -320,9 +341,8 @@ if __name__ == '__main__':
                         default='likelihood',
                         required=True)
     parser.add_argument('-s', '--software',
-                        help='/path_to_program/mesquite.sh',
-                        required=True,
-                        default='/home/michael_science/binaries/mesquite3.03/mesquite.sh')
+                        help='/path_to_software/mesquite.sh',
+                        required=True)
     parser.add_argument('-k', '--keep',
                         help='Keeping the temporary input file; a boolean operator',
                         required=False,

@@ -427,18 +427,17 @@ def main(reconstrFn, treeFn, colordictFn, pathToTG2, flags, keepTmpFile, verbose
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="  --  ".join([__author__, __copyright__, __info__, __version__]))
     parser.add_argument('-r', '--reconstrdata',
-                        help='/path_to_working_dir/reconstrdata.csv',
+                        help='/path_to_input/reconstrdata.csv',
                         required=True)
     parser.add_argument('-p', '--plottree',
-                        help='/path_to_working_dir/plotting_tree.tre',
+                        help='/path_to_input/plotting_tree.tre',
                         required=True)
     parser.add_argument('-c', '--colordict',
-                        help='/path_to_working_dir/color_dictionary.csv',
+                        help='/path_to_input/color_dictionary.csv',
                         required=True)
     parser.add_argument('-s', '--software',
-                        help='/path_to_program/TreeGraph.jar',
-                        required=True,
-                        default='/home/michael_science/binaries/treegraph2/TreeGraph.jar')
+                        help='/path_to_software/TreeGraph.jar',
+                        required=True)
     parser.add_argument('-f', '--flags',
                         help='BS(bootstrap),\
                         CLADO(cladogram), PHYLO(phylogram),\

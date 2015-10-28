@@ -3,7 +3,7 @@
 __author__ = "Michael Gruenstaeudl, PhD"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __email__ = "mi.gruenstaeudl@gmail.com"
-__version__ = "2015.10.21.1300"
+__version__ = "2015.10.28.2200"
 
 #####################
 # IMPORT OPERATIONS #
@@ -93,6 +93,14 @@ class ListFilesInDir:
     def go(self):
         return os.listdir(self.dr)
 
+class IsExe:
+    ''' Checking if executable exists. '''
+    def __init__(self, a):
+        self.fpath = a
+    def go(self):
+        return os.path.isfile(self.fpath) and os.access(self.fpath, os.X_OK)
+        
+
 
 ###############
 # DEFINITIONS #
@@ -121,3 +129,6 @@ def deleteFile(a):
 
 def listAllFilesInDir(a):
     return ListFilesInDir(a).go()
+
+def isExe(a):
+    return IsExe(a).go()
