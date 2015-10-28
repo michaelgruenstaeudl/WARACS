@@ -1,9 +1,9 @@
 #!/usr/bin/env python2
 '''Reconstructing Ancestral Character States using BayesTraits'''
-__author__ = "Michael Gruenstaeudl, PhD"
+__author__ = "Michael Gruenstaeudl, PhD <mi.gruenstaeudl@gmail.com>"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
-__email__ = "mi.gruenstaeudl@gmail.com"
-__version__ = "2015.10.09.2300"
+__info__ = "Reconstructing Ancestral Character States using BayesTraits (http://www.evolution.reading.ac.uk/BayesTraits.html)"
+__version__ = "2015.10.28.1800"
 
 #####################
 # IMPORT OPERATIONS #
@@ -15,17 +15,18 @@ import csv
 import os
 import string
 import sys
-import CustomFileOps as GFO
-import CustomStringOps as GSO
+import CustomFileOps as CFO
+import CustomInstallOps as CIO
+import CustomStringOps as CSO
 
-opt_deps = ["dendropy", "numpy", "termcolor", "prettytable"]
-try:
-    map(__import__, opt_deps)
-except:
-    GIO.installPkgs(opt_deps)
+opt_deps = ["dendropy", "numpy", "prettytable"]
+if opt_deps:
+    try:
+        map(__import__, opt_deps)
+    except:
+        CIO.installPkgs(opt_deps)
 
 from prettytable import PrettyTable
-from termcolor import colored
 import dendropy
 import numpy
 
@@ -49,7 +50,7 @@ likeKw = "Tree No\tLh"
 # MODULES #
 ###########
 
-def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
+def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keepTmpFile, verbose):
 
     # 1.1. Decision on model
     kw = rcnmdl.lower()
@@ -61,13 +62,13 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
         parseKw = bayesKw
 
     # 1.2. Setting outfilenames
-    fileprfx = GSO.rmext(treedistrFn)
+    fileprfx = CSO.rmpath(CSO.rmext(treedistrFn))
     outFn_raw = fileprfx + "__BayesTraits_" + kw + ".full"
     outFn_tree = fileprfx + "__BayesTraits_" + kw + ".tre"
     outFn_table = fileprfx + "__BayesTraits_" + kw + ".csv"
 
     # 1.2. Setting outfilenames
-    fileprfx = GSO.rmext(treedistrFn)
+    fileprfx = CSO.rmext(treedistrFn)
     fileinfo = "__BayesTraits_" + kw + "_char" + str(charnum)
     #if charmodel:                                                      # Not yet implemented
     #    fileinfo = fileinfo + "__charmodel_" + charmodel.replace(";",".").replace(",",".")
@@ -76,7 +77,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
     outFn_table = fileprfx + fileinfo + ".csv"
 
     charsFnTmp = charsFn + ".tmp"
-    cmdFnTmp = GSO.randomword(6) + ".tmp"
+    cmdFnTmp = CSO.randomword(6) + ".tmp"
 
     # 1.3. Generate tip list
     nodespecL, nodeL = [], []
@@ -97,32 +98,32 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
         p.add_row(row)
     tmp = p.get_string(header=False, border=False)
     out = "\n".join([i.strip() for i in tmp.splitlines()])              # left-justify the string
-    GFO.saveFile(charsFnTmp, out)
+    CFO.saveFile(charsFnTmp, out)
 
     # 1.5. Generate command string as save to file
     cmdStr = mdl + node_specs + "\nrun\n"
-    GFO.saveFile(cmdFnTmp, cmdStr)
+    CFO.saveFile(cmdFnTmp, cmdStr)
 
 
 # 2. Reconstruction
 # 2.1. Conduct reconstruction
-    print "  Character Reconstruction in BayesTraits"
-    print "  Selected Reconstruction Method:", rcnmdl
+    if verbose.upper() in ["T", "TRUE"]:
+        print "  Character Reconstruction in BayesTraits"
+        print "  Selected Reconstruction Method:", rcnmdl
     cmd = pathToSoftware + " " + treedistrFn + " " + charsFnTmp + " < " + cmdFnTmp
     dataH = os.popen(cmd).read()
     if parseKw not in dataH:
-        sys.exit(colored("  ERROR: ", "white", "on_red") + "No reconstruction data from BayesTraits received.")
+        sys.exit("  ERROR: No reconstruction data from BayesTraits received.")
 
 # 2.2. Save outfile and delete temp files
-    GFO.saveFile(outFn_raw, dataH)
-    GFO.deleteFile(charsFnTmp + ".log.txt")
-    GFO.deleteFile(charsFnTmp)
-    GFO.deleteFile(cmdFnTmp)
+    CFO.saveFile(outFn_raw, dataH)
+    CFO.deleteFile(charsFnTmp + ".log.txt")
+    CFO.deleteFile(charsFnTmp)
 
 
 # 3. Parse reconstruction data
 # 3.1. Get section
-    tmp = GSO.exstrkeepkw(dataH, parseKw, "Sec:")
+    tmp = CSO.exstrkeepkw(dataH, parseKw, "Sec:")
     reader = csv.reader(StringIO(tmp), delimiter="\t")                  # csv.reader can only read file object
     arr = numpy.array(list(reader))                                     # reader holds the data only for one execution; hence immediately transfer it to variable "arr"
 
@@ -149,13 +150,13 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
                 r = 0
             matchVals.append(r)
         if len(matchHeaders) != len(matchVals):
-            sys.exit(colored("  ERROR: ", "white", "on_red") + "Error when parsing the reconstruction results!")
+            sys.exit("  ERROR: Error when parsing the reconstruction results.")
 # 3.2.2. Important step
         if sum(matchVals) > 0:                                          # IMPORTANT STEP: only write line if reconstruction present
             tmpL = []
             for h, v in zip(matchHeaders, matchVals):
                 if v > 0:                                               # IMPORTANT STEP: only write area if present
-                    tmpL.append(GSO.exstr(h,"(",")") + ":" + str(v))
+                    tmpL.append(CSO.exstr(h,"(",")") + ":" + str(v))
             node_recon = ";".join(tmpL)
             tmpStr = str(node) + "," + node_recon
             outL.append(tmpStr)
@@ -166,50 +167,59 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware):
 #   4.1. Converting tree from nexus into newick
     treeH = dendropy.Tree.get_from_path(plottreeFn, schema="nexus")     # Converting tree from nexus into newick format, because nexus format may contain translation table, which TreeGraph2 cannot parse
     plottree_newick = treeH.as_string(schema='newick')
-    GFO.saveFile(outFn_tree, plottree_newick)
+    CFO.saveFile(outFn_tree, plottree_newick)
 
 #   4.2. Save table
-    GFO.saveFile(outFn_table, outD)
+    CFO.saveFile(outFn_table, outD)
+    
+#   4.3. Decision on deleting temporary input file
+    if keepTmpFile.upper() in ["F", "FALSE"]:
+        CFO.deleteFile(cmdFnTmp)
 
-###########
-# EXECUTE #
-###########
-
-print ""
-print colored("  Script name: "+sys.argv[0], 'cyan')
-print colored("  Author: "+__author__, 'cyan')
-print colored("  Version: "+__version__, 'cyan')
-print ""
+############
+# ARGPARSE #
+############
 
 if __name__ == '__main__':
-    introL = [colored("Reconstructing Ancestral Character States using BayesTraits", "green"),
-              colored("(http://www.evolution.reading.ac.uk/BayesTraits.html)", "green")]
-    parser = argparse.ArgumentParser(description="\n".join(introL))
+    parser = argparse.ArgumentParser(description="  --  ".join([__author__, __copyright__, __info__, __version__]))
     parser.add_argument('-t', '--treedistr',
-                        help='/path_to_working_dir/treedistr.nex',
+                        help='/path_to_input/tree_distribution.tre',
                         required=True)
     parser.add_argument('-p', '--plottree',
-                        help='/path_to_working_dir/plottree.nex',
+                        help='/path_to_input/plotting_tree.tre',
                         required=True)
     parser.add_argument('-c', '--chars',
-                        help='/path_to_working_dir/characters.csv',
+                        help='/path_to_input/character_state_distribution.csv',
                         required=True)
     parser.add_argument('-n', '--charnumber',
                         help='which character to use (e.g. 1)',
                         default='1',
                         required=True)
-    parser.add_argument('-m', '--reconmodel',
-                        help='likelihood, bayesian',
+    parser.add_argument('-o', '--optcrit',
+                        help='models of character evolution; available: likelihood, bayesian',
                         default='likelihood',
                         required=True)
     parser.add_argument('-s', '--software',
-                        help='/path_to_program/mesquite.sh',
+                        help='/path_to_Mesquite/mesquite.sh',
                         required=True,
                         default='/home/michael_science/binaries/mesquite3.03/mesquite.sh')
+    parser.add_argument('-k', '--keep',
+                        help='Keeping the temporary input file; a boolean operator',
+                        required=False,
+                        default='False')
+    parser.add_argument('-v', '--verbose',
+                        help='Displaying full; a boolean operator',
+                        required=False,
+                        default='False')
+    parser.add_argument('-V', '--version', 
+                        help='Print version information and exit',
+                        action='version',
+                        version='%(prog)s ' + __version__)
     args = parser.parse_args()
 
-main(args.treedistr, args.plottree, args.chars, args.charnumber, args.reconmodel, args.software)
 
-print ""
-print colored("  Done.", 'cyan')
-print ""
+########
+# MAIN #
+########
+
+main(args.treedistr, args.plottree, args.chars, args.charnumber, args.optcrit, args.software, args.keep, args.verbose)

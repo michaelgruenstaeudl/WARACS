@@ -9,19 +9,20 @@ __version__ = "2015.10.09.1800"
 # IMPORT OPERATIONS #
 #####################
 
+from sys import platform as _platform
 import random
 import re
 import string
 import sys
 import CustomInstallOps as GIO
 
-opt_deps = ["termcolor"]
-try:
-    map(__import__, opt_deps)
-except:
-    GIO.installPkgs(opt_deps)
+opt_deps = []
+if opt_deps:
+    try:
+        map(__import__, opt_deps)
+    except:
+        GIO.installPkgs(opt_deps)
 
-from termcolor import colored
 
 ###########
 # CLASSES #
@@ -59,9 +60,9 @@ class errorReport:
         self.err = b
     def go(self):
         if "ERROR" in self.out.upper():
-            sys.exit(colored("  ERROR: ", "white", "on_red") + self.out)
+            sys.exit("  ERROR: ", self.out)
         if self.err:
-            sys.exit(colored("  ERROR: ", "white", "on_red") + self.err)
+            sys.exit("  ERROR: ", self.err)
 
 class replaceStr:
     ''' Replaces a string via kw delimitation.
@@ -98,7 +99,7 @@ class clearSplit:
     def go(self):
         splitL = self.inStr.split(self.delim)
         if len(splitL) < 2:
-            print colored("  ERROR: ", "white", "on_red") + self.__class__.__name__
+            print "  ERROR: ", self.__class__.__name__
             print "  Less than two elements after split."
         outlist = []
         if len(splitL) == 2:
@@ -138,6 +139,24 @@ class removeExt:
     def go(self):
         sep = "."
         return self.inStr[:self.inStr.rfind(sep)]
+
+class removePath:
+    ''' Returns inStr without the prepending file path.
+    Args:
+        string <a>
+    Returns:
+        string
+    '''
+    def __init__(self, a):
+        self.inStr = a
+    def go(self):
+        if _platform == "linux" or _platform == "linux2":
+            sep = "/"
+        elif _platform == "darwin":
+            sep = "/"
+        elif _platform == "win32":
+            sep = "\\"
+        return self.inStr[self.inStr.rfind(sep)+len(sep):]
 
 class isEven:
     ''' Checking if number is even.
@@ -256,6 +275,9 @@ def rmblanklns(inFile):
 
 def rmext(inStr):
     return removeExt(inStr).go()
+
+def rmpath(inStr):
+    return removePath(inStr).go()
 
 def splitkeepsep(inStr, sep):
     return splitKeepSep(inStr, sep).go()

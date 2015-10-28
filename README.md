@@ -10,43 +10,41 @@ WARACS: Wrappers to Automate the Reconstruction of Ancestral Character States
 * BayesTraits (http://www.evolution.reading.ac.uk/BayesTraits.html)
 * TreeGraph2 (http://treegraph.bioinfweb.info/)
 
-### - Commandline Usage via Linux and MacOSX
-###### 1. Specify input directory
+### - Basic Usage via Linux
+###### 1. Test the wrapper
 ```
-INDIR=/home/waracs_user/git/WARACS/examples/WARACS_BayesTraits_Example/01_input/
+python2.7 /path_to_git/WARACS/WARACS_Mesquite.py -h
 ```
-###### 2. Change into desired output directory
+###### 2. Perform an ancestral character state reconstruction via [Mesquite](http://mesquiteproject.org)
 ```
-mkdir -p ~/Desktop/
-cd ~/Desktop/
-```
-###### 3. Perform an ancestral character state reconstruction via [Mesquite](http://mesquiteproject.org)
-```
-python2.7 ~/git/github.com_WARACS/WARACS_Mesquite.py
-  -t $INDIR/treedistr.tre
-  -p $INDIR/plottree.tre
-  -c $INDIR/chars.csv
-  -n 1
-  -m likelihood
-  -s /home/waracs_user/binaries/Mesquite3.03/mesquite.sh
-```
-###### 4. Perform an ancestral character state reconstruction via [BayesTraits](http://www.evolution.reading.ac.uk/BayesTraits.html)
-```
-python2.7 ~/git/github.com_WARACS/WARACS_BayesTraits.py
-  -t $INDIR/treedistr.tre
-  -p $INDIR/plottree.tre
-  -c $INDIR/chars.csv
+python2.7 /path_to_git/WARACS/WARACS_Mesquite.py
+  -c /path_to_input/character_state_distribution.csv
+  -t /path_to_input/tree_distribution.tre
+  -p /path_to_input/plotting_tree.tre
+  -o likelihood
   -n 2
-  -m likelihood
-  -s /home/waracs_user/binaries/BayesTraits_V2/BayesTraitsV2
+  -s /path_to_Mesquite/mesquite.sh
+  -v True
 ```
-###### 5. Visualize character state reconstruction results via [TreeGraph2](http://treegraph.bioinfweb.info/)
+###### 3. Perform an ancestral character state reconstruction via [BayesTraits](http://www.evolution.reading.ac.uk/BayesTraits.html)
 ```
-python2.7 ~/git/github.com_WARACS/WARACS_TreeGraph2.py
-  -r treedistr__BayesTraits_likelihood_char2.csv
-  -p treedistr__BayesTraits_likelihood_char2.tre
-  -c $INDIR/colordict.csv
-  -s /home/waracs_user/binaries/Treegraph2/TreeGraph.jar
+python2.7 /path_to_git/WARACS/WARACS_BayesTraits.py
+  -c /path_to_input/character_state_distribution.csv
+  -t /path_to_input/tree_distribution.tre
+  -p /path_to_input/plotting_tree.tre
+  -n 1
+  -o likelihood
+  -s /path_to_BayesTraits/BayesTraitsV2
+  -v True
 ```
-### - Commandline Usage via Windows
+###### 4. Visualize character state reconstruction results via [TreeGraph2](http://treegraph.bioinfweb.info/)
+```
+python2.7 /path_to_git/WARACS/WARACS_TreeGraph2.py
+  -r /path_to_input/tree_distribution__Mesquite_likelihood_char2.csv
+  -p /path_to_input/tree_distribution__Mesquite_likelihood_char2.tre
+  -c /path_to_input/color_dictionary.csv
+  -s /path_to_TreeGraph2/TreeGraph.jar
+  -v True
+```
+### - Basic Usage via Windows
 (in prep.)

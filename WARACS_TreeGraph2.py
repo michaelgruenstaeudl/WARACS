@@ -1,9 +1,9 @@
 #!/usr/bin/env python2
 '''Visualizing Character State Reconstruction Results using TreeGraph2'''
-__author__ = "Michael Gruenstaeudl, PhD"
+__author__ = "Michael Gruenstaeudl, PhD <mi.gruenstaeudl@gmail.com>"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
-__email__ = "mi.gruenstaeudl@gmail.com"
-__version__ = "2015.10.09.2300"
+__info__ = "Visualizing Character State Reconstruction Results using TreeGraph2 (http://treegraph.bioinfweb.info/)"
+__version__ = "2015.10.28.1800"
 
 #####################
 # IMPORT OPERATIONS #
@@ -15,17 +15,17 @@ import argparse
 import os
 import re
 import sys
-import CustomFileOps as GFO
-import CustomStringOps as GSO
+import CustomFileOps as CFO
+import CustomInstallOps as CIO
+import CustomStringOps as CSO
 import xml.etree.ElementTree as ET
 
-opt_deps = ["termcolor"]
-try:
-    map(__import__, opt_deps)
-except:
-    GIO.installPkgs(opt_deps)
-
-from termcolor import colored
+opt_deps = []
+if opt_deps:
+    try:
+        map(__import__, opt_deps)
+    except:
+        CIO.installPkgs(opt_deps)
 
 #############
 # DEBUGGING #
@@ -114,12 +114,10 @@ class AddPieCharts:
             nodeinfo = 'UniqueName="' + nodeN + '"'
 
             #if aList[1] == "0":                                        # REACTIVATE, WHEN N OF TREES WITHOUT NODE RELEVANT
-            #    print colored("    Warning: Node " + node + " was not present in reconstruction trees.", 'magenta')
+            #    print "  Warning: Node " + node + " was not present in reconstruction trees."
             #if nodeinfo not in self.inStr:
-            #    print colored("    Warning: Node " + node + " was not present in plotting tree.", 'magenta')
+            #    print "    Warning: Node " + node + " was not present in plotting tree."
             #if aList[1] != "0" and nodeinfo in self.inStr:
-
-            print "    Adding pie labels and charts for node: " + node
             aDict = OrdDict()
             try:
                 inL = aList[1].split(";")
@@ -139,7 +137,7 @@ class AddPieCharts:
                         prop = prop + " *"                              # Adding back asterisk for significant reconstructions
                     aDict[area] = prop
             if len(aDict.keys()) < 1:
-                print colored("    Warning:", 'magenta'), "Pie data for node " + node + " not parsed"
+                print "    Warning: Pie data for node " + node + " not parsed."
             for n in tree.iter("Node"):                                 # Must be inside loop "for line in piedata"
                 if n.attrib["UniqueName"] == nodeN:                     # Stop at the correct node
 
@@ -194,15 +192,15 @@ class AddPieCharts:
 #            kw = '<TextLabel Text="'
 #
 #            for line in out_list:
-#                if (kw in line and GSO.afind(line, kw) in 
+#                if (kw in line and CSO.afind(line, kw) in 
 #                    [str(s) for s in [1]+range(5, 10)]):
-#                    bsvalue = GSO.exstr(line, 'Text="', '"')[:-2]
-#                    line = GSO.replstr(line, 'Text="', '"', bsvalue)
+#                    bsvalue = CSO.exstr(line, 'Text="', '"')[:-2]
+#                    line = CSO.replstr(line, 'Text="', '"', bsvalue)
 #                    line = line.replace('IsDecimal="true"', 'IsDecimal="false"')
 #                    line = line.replace('Above="true"', 'Above="false"')
 #                    new_out_list.append(line)
 #
-#                if (kw in line and GSO.afind(line, kw) in 
+#                if (kw in line and CSO.afind(line, kw) in 
 #                    [str(s) for s in [0]]):
 #                    line = line.replace('Above="true"', 'Above="false"')
 #                    new_out_list.append(line)
@@ -232,16 +230,16 @@ class ConversionNEX2XTG:
 
 #     1 Generating in- and output specs for nex2xtg
         inPath = os.path.join(cwd, self.inFn)                              # Note: os.path.join constructs pathnames while accounting for platform-dependent special cases (backslashes in Win)
-        outPath = os.path.join(cwd, GSO.rmext(self.inFn) + ".xtg")
+        outPath = os.path.join(cwd, CSO.rmext(self.inFn) + ".xtg")
 
 #     2. Performing nex2xtg via Treegraph2 and reporting output/error
         cmd = "java -jar " + self.pathToTG2 + " -convert " + inPath + " -xtg " + outPath
         p = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
         output, error = p.communicate()
-        GSO.errep(output, error)
+        CSO.errep(output, error)
 
 #     3. Loading xtg-file into memory
-        return GFO.loadR(outPath)
+        return CFO.loadR(outPath)
 
 
 class ConversionXTG2IMG:
@@ -258,9 +256,9 @@ class ConversionXTG2IMG:
 
 #     1.a. Check if xtg-file present
         try:
-            inD = os.path.join(cwd, GSO.rmext(self.inFn) + ".xtg")
+            inD = os.path.join(cwd, self.inFn)
         except: 
-            sys.exit(colored("  ERROR: ", "white", "on_red") + ".xtg file not found")
+            sys.exit("  ERROR: .xtg file not found.")
 
 #     1.b. Set if plotting as phylo- or cladogram
         resolut = "-width 600mm -res 120ppi"
@@ -274,7 +272,7 @@ class ConversionXTG2IMG:
             cmd = "java -jar " + self.pathToTG2 + " -image " + inD + " " + inD + fend + " " + resolut
             p = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
             output, error = p.communicate()
-            GSO.errep(output, error)
+            CSO.errep(output, error)
 
 
 class LabelingNodesXTG:
@@ -318,70 +316,84 @@ class PrettyPrintXTG:
 # MODULES #
 ###########
 
-def main(reconstrFn, treeFn, colordictFn, pathToTG2, flags):
+def main(reconstrFn, treeFn, colordictFn, pathToTG2, flags, keepTmpFile, verbose):
 
 # 1. Setting file names and load infiles
-    tmpFn = GSO.rmext(reconstrFn)+".TMP.xtg"
-    outFn = GSO.rmext(reconstrFn)+".xtg"
-    reconstrD = GFO.loadR(reconstrFn)
+    fileprfx = CSO.rmpath(CSO.rmext(reconstrFn))
+    tmpFn1 = fileprfx + ".TMP.xtg"
+    tmpFn2 = fileprfx + ".xtg"
+    reconstrD = CFO.loadR(reconstrFn)
 
 # 1.2. Loading color dictionary and running rudimentary checks
-    colorTmp = GFO.loadR(colordictFn).split("\n")
+    colorTmp = CFO.loadR(colordictFn).split("\n")
     colorTmp = filter(None, colorTmp)                                   # removing all empty elements of tmp
     colorDict = {}
     for line in colorTmp:
         tmp = line.split(",")
         if len(tmp[0]) != 1:
-            sys.exit(colored("  ERROR: ", "white", "on_red") + "Problem with area codes in color dictionary")
+            sys.exit("  ERROR: Problem with area codes in color dictionary.")
         if tmp[1][0] != "#" or len(tmp[1]) != 7:
-            sys.exit(colored("  ERROR: ", "white", "on_red") + "Problem with color codes in color dictionary")
+            sys.exit("  ERROR: Problem with color codes in color dictionary.")
         colorDict[tmp[0]] = tmp[1]
 
 #   2.1. Conversion from .nex to .xtg format
-    print "  Step 1: Conversion .nex -> .xtg"
+    if verbose.upper() in ["T", "TRUE"]:
+        print "  Step 1: Conversion .nex -> .xtg"
     out_step1 = ConversionNEX2XTG(treeFn, pathToTG2).go()
+    CFO.deleteFile(CSO.rmext(treeFn) + ".xtg")
 
 #   2.2. Extraction of relevant XML part
     split1 = out_step1.split("<GlobalFormats")
     split1[1] = "<GlobalFormats" + split1[1]
-    split2 = GSO.splitkeepsep2(split1[1], "</GlobalFormats>")           # Extract element "<Tree></Tree>", because parser cannot read flanking code
-    split3 = GSO.splitkeepsep2(split2[1], "</Tree>")
+    split2 = CSO.splitkeepsep2(split1[1], "</GlobalFormats>")           # Extract element "<Tree></Tree>", because parser cannot read flanking code
+    split3 = CSO.splitkeepsep2(split2[1], "</Tree>")
 
-    start_cap_1, start_cap_2, out_step1 = split1[0], split2[0], split3[0]
+    start_cap_1, start_cap_2 = split1[0], split2[0]
     end_cap = "</TreegraphDocument>"
     
+    try:
+        out_step1 = CSO.splitkeepsep2(split3[0], "<Tree>")[1]
+        out_step1 = "<Tree>\n" + out_step1
+    except:
+        out_step1 = split3[0]
 
 #   3. Pretty-print the .xtg file
-    print "  Step 2: Pretty-print of xtg code"
+    if verbose.upper() in ["T", "TRUE"]:
+        print "  Step 2: Pretty-print of xtg code"
     out_step2 = PrettyPrintXTG(out_step1).go()
-    GFO.saveFile(tmpFn, out_step2)
+    CFO.saveFile(tmpFn1, out_step2)
 
 #   4. Label internal nodes
-    print "  Step 3: Labeling nodes of tree"
-    LabelingNodesXTG(tmpFn).go()
+    if verbose.upper() in ["T", "TRUE"]:
+        print "  Step 3: Labeling nodes of tree"
+    LabelingNodesXTG(tmpFn1).go()
 
 #   5. Customize XTG file
-    print "  Step 4: Customize XTG file"
-    CustomizeXTG_Nodes(tmpFn).go()
+    if verbose.upper() in ["T", "TRUE"]:
+        print "  Step 4: Customize XTG file"
+    CustomizeXTG_Nodes(tmpFn1).go()
     start_cap_2 = CustomizeXTG_Global(start_cap_2, flags).go()
 
 #   6. Add Pie labels and charts
-    out_step5 = GFO.loadR(tmpFn)
+    out_step5 = CFO.loadR(tmpFn1)
     if reconstrD:
-        print "  Step 5: Adding pie labels and charts"
+        if verbose.upper() in ["T", "TRUE"]:
+            print "  Step 5: Adding pie labels and charts"
         out_step5 = AddPieCharts(out_step5, reconstrD, colorDict).go()      # Indentation important, because pie data if statement above
     else:
-        print colored("   Warning:", 'magenta'), "Skipping Step 5: No pie data available"
-    GFO.saveFile(tmpFn, out_step5)
+        print "  Warning: Skipping step: No pie data available."
+    CFO.saveFile(tmpFn1, out_step5)
 
 #   7. Pretty-print the .xtg file
-    print "  Step 6: Pretty-print of xtg code"
+    if verbose.upper() in ["T", "TRUE"]:
+        print "  Step 6: Pretty-print of xtg code"
     out_step6 = PrettyPrintXTG(out_step5).go()
-    GFO.saveFile(tmpFn, out_step6)
+    CFO.saveFile(tmpFn1, out_step6)
 
 #   8. Improving visualization
-    print "  Step 7: Improving visualization"
-    tree = ET.parse(tmpFn)
+    if verbose.upper() in ["T", "TRUE"]:
+        print "  Step 7: Improving visualization"
+    tree = ET.parse(tmpFn1)
     root = tree.getroot()
     for n in root.iter('Text'):
         n.attrib["TextColor"] = "#808080"                               # Make pielabels grey
@@ -390,40 +402,38 @@ def main(reconstrFn, treeFn, colordictFn, pathToTG2, flags):
             n.attrib["Text"] = bsvalue
             n.attrib["IsDecimal"] = "false"
     FinalTreeXML = ET.tostring(root)
-    GFO.saveFile(tmpFn, FinalTreeXML)
+    CFO.saveFile(tmpFn1, FinalTreeXML)
 
 #   9. Combining all parts
-    print "  Step 8: Combining all xml sections"
+    if verbose.upper() in ["T", "TRUE"]:
+        print "  Step 8: Combining all xml sections"
     finalL = [start_cap_1, start_cap_2, FinalTreeXML, end_cap]
-    GFO.saveFile(outFn, "\n".join(finalL))
-    GFO.deleteFile(tmpFn)
+    CFO.saveFile(tmpFn2, "\n".join(finalL))
+    CFO.deleteFile(tmpFn1)
 
 #   10. Conversion from .xtg to .png format
-    print "  Step 9: Conversion .xtg  -> .png"
-    ConversionXTG2IMG(outFn, pathToTG2, flags).go()
+    if verbose.upper() in ["T", "TRUE"]:
+        print "  Step 9: Conversion .xtg  -> .png"
+    ConversionXTG2IMG(tmpFn2, pathToTG2, flags).go()
 
+#   11. Decision on deleting temporary input file
+    if keepTmpFile.upper() in ["F", "FALSE"]:
+        CFO.deleteFile(tmpFn2)
 
-# EXECUTE
-
-print ""
-print colored("  Script name: "+sys.argv[0], 'cyan')
-print colored("  Author: "+__author__, 'cyan')
-print colored("  Version: "+__version__, 'cyan')
-print colored("  (Note: Reconstructions must have occurred over multiple trees.)", 'yellow')
-print ""
+############
+# ARGPARSE #
+############
 
 if __name__ == '__main__':
-    introL = [colored("Visualizing Character State Reconstruction Results using TreeGraph2", "green"),
-              colored("(http://treegraph.bioinfweb.info/)", "green")]
-    parser = argparse.ArgumentParser(description="\n".join(introL))
+    parser = argparse.ArgumentParser(description="  --  ".join([__author__, __copyright__, __info__, __version__]))
     parser.add_argument('-r', '--reconstrdata',
                         help='/path_to_working_dir/reconstrdata.csv',
                         required=True)
     parser.add_argument('-p', '--plottree',
-                        help='/path_to_working_dir/plottree.tre',
+                        help='/path_to_working_dir/plotting_tree.tre',
                         required=True)
     parser.add_argument('-c', '--colordict',
-                        help='/path_to_working_dir/colordict.csv',
+                        help='/path_to_working_dir/color_dictionary.csv',
                         required=True)
     parser.add_argument('-s', '--software',
                         help='/path_to_program/TreeGraph.jar',
@@ -437,10 +447,22 @@ if __name__ == '__main__':
                         BRLX3(multiply branch length scale by 3)',
                         required=False,
                         default="CLADO,BRLX2")
+    parser.add_argument('-k', '--keep',
+                        help='Keeping the temporary input file; a boolean operator',
+                        required=False,
+                        default='False')
+    parser.add_argument('-v', '--verbose',
+                        help='Displaying full; a boolean operator',
+                        required=False,
+                        default='False')
+    parser.add_argument('-V', '--version', 
+                        help='Print version information and exit',
+                        action='version',
+                        version='%(prog)s ' + __version__)
     args = parser.parse_args()
 
-main(args.reconstrdata, args.plottree, args.colordict, args.software, args.flags)
+########
+# MAIN #
+########
 
-print ""
-print colored("  Done.", 'cyan')
-print ""
+main(args.reconstrdata, args.plottree, args.colordict, args.software, args.flags, args.keep, args.verbose)
