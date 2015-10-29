@@ -3,17 +3,13 @@ WARACS: Wrappers to Automate the Reconstruction of Ancestral Character States
 
 ### - Prerequisites
 * Python v.2.7 (https://www.python.org/download/releases/2.7/)
-* Python package *setuptools* (https://pypi.python.org/pypi/setuptools)
+* Python package *DendroPy* (https://pypi.python.org/pypi/DendroPy)
 * Python package *numpy* (https://pypi.python.org/pypi/numpy)
 
 ### - Wrapped Applications
 * Mesquite (http://mesquiteproject.org)
 * BayesTraits (http://www.evolution.reading.ac.uk/BayesTraits.html)
 * TreeGraph2 (http://treegraph.bioinfweb.info/)
-
-### - Python Dependencies
-* Python package *DendroPy* (https://pypi.python.org/pypi/DendroPy)
-* Python package *PrettyTable* (https://pypi.python.org/pypi/PrettyTable)
 
 ### - Usage in Linux and MacOS
 ###### 1. Test the wrapper
