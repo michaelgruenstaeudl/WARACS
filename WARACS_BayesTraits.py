@@ -22,10 +22,11 @@ opt_deps = ["numpy"]
 if opt_deps:
     try:
         map(__import__, opt_deps)
-    except:
-        CFO.installPkgs(opt_deps)
-
-import numpy
+    except ImportError:
+        _exit("  ERROR: Please install Python package 'numpy'.")
+        # FUTURE CODE:
+        # CFO.installPkgs(opt_deps)
+from numpy import array as _array
 
 #############
 # DEBUGGING #
@@ -78,7 +79,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keep
 
     # 1.4. Modify chars-file
     reader = _csvreader(open(charsFn, "rb"), delimiter=",")
-    arr = numpy.array(list(reader))
+    arr = _array(list(reader))
     arr = arr[:,[0,charnum]]
     out_handle = CSO.makeprettytable(arr)
     CFO.saveFile(charsFnTmp, out_handle)
@@ -110,7 +111,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keep
 # 3.1. Get section
     tmp = CSO.exstrkeepkw(data_handle, parseKw, "Sec:")
     reader = _csvreader(StringIO(tmp), delimiter="\t")                  # csv.reader can only read file object
-    arr = numpy.array(list(reader))                                     # reader holds the data only for one execution; hence immediately transfer it to variable "arr"
+    arr = _array(list(reader))                                     # reader holds the data only for one execution; hence immediately transfer it to variable "arr"
 
 # 3.2. Extract all those cols that contain keyw
     colHeaders = list(arr[0])

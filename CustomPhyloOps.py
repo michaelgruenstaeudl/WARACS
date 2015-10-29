@@ -3,7 +3,7 @@
 __author__ = "Michael Gruenstaeudl, PhD"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __email__ = "mi.gruenstaeudl@gmail.com"
-__version__ = "2015.10.29.1800"
+__version__ = "2015.10.29.2100"
 
 #####################
 # IMPORT OPERATIONS #
@@ -15,9 +15,10 @@ opt_deps = ["dendropy"]
 if opt_deps:
     try:
         map(__import__, opt_deps)
-    except:
-        CFO.installPkgs(opt_deps)
-
+    except ImportError:
+        _exit("  ERROR: Please install Python package 'dendropy'.")
+        # FUTURE CODE:
+        # CFO.installPkgs(opt_deps)
 import dendropy
 
 ###########
@@ -25,7 +26,7 @@ import dendropy
 ###########
 
 class convertNexusToNewick:
-    ''' Convert a pyhlogenetic tree in NEXUS format to a phylogenetic tree in NEWICK format
+    ''' Convert a phylogenetic tree in NEXUS format to a phylogenetic tree in NEWICK format
     Args:
         string <a>
     Returns:
@@ -45,10 +46,10 @@ class getNodeListFromTree:
         str, list
     '''
     def __init__(self, a):
-        self.inStr = a
+        self.inFn = a
     def go(self):
         nodespecL, nodeL = [], []
-        treeH = dendropy.Tree.get_from_path(self.inStr, schema="nexus")
+        treeH = dendropy.Tree.get_from_path(self.inFn, schema="nexus")
         for c, node in enumerate(treeH.nodes(), start=1):
             tips = [tip.taxon.label.replace(" ", "_") for tip in node.leaf_nodes()]
             if len(tips) > 1:

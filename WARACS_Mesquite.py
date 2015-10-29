@@ -3,7 +3,7 @@
 __author__ = "Michael Gruenstaeudl, PhD <mi.gruenstaeudl@gmail.com>"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __info__ = "Reconstructing Ancestral Character States using Mesquite (http://mesquiteproject.org)"
-__version__ = "2015.10.29.1700"
+__version__ = "2015.10.29.2100"
 
 #####################
 # IMPORT OPERATIONS #
@@ -21,10 +21,11 @@ opt_deps = ["numpy"]
 if opt_deps:
     try:
         map(__import__, opt_deps)
-    except:
-        CFO.installPkgs(opt_deps)
-
-import numpy
+    except ImportError:
+        _exit("  ERROR: Please install Python package 'numpy'.")
+        # FUTURE CODE:
+        # CFO.installPkgs(opt_deps)
+from numpy import array as _array
 
 #############
 # DEBUGGING #
@@ -64,7 +65,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     # 1.2. Setting outfilenames
     fileprfx = CSO.rmpath(CSO.rmext(treedistrFn))
     fileinfo = "__Mesquite_" + kw + "_char" + str(charnum)
-# FUTURE CODE
+# FUTURE CODE:
 #    if charmodel:
 #        fileinfo = fileinfo + "__optcrit_" + optcrit.replace(";",".").replace(",",".")
     outFn_raw = fileprfx + fileinfo + ".txt"
@@ -123,7 +124,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     block3 = "\n;\nEND;\n"
     try:
         reader = _csvreader(open(charsFn, "r"), delimiter=",")
-        matrx = numpy.array(list(reader))
+        matrx = _array(list(reader))
         n = int(charnum)
         charstates = set(matrx[:, n])
         charstates = [x for x in charstates if x != "?"]                # Question mark is not a character state, but indicates missing data
@@ -260,7 +261,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
         try:
             tmp = i[2].split("each: ")[1]
             tmp = tmp.replace(" ","")
-            arr = numpy.array([i.split(":") for i in tmp.split(";")])
+            arr = _array([i.split(":") for i in tmp.split(";")])
             l = arr[:,1]
             sm = sum([float(i) for i in l])
             tmpL = []
