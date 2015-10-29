@@ -3,7 +3,7 @@
 __author__ = "Michael Gruenstaeudl, PhD <mi.gruenstaeudl@gmail.com>"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __info__ = "Visualizing Character State Reconstruction Results using TreeGraph2 (http://treegraph.bioinfweb.info/)"
-__version__ = "2015.10.29.1700"
+__version__ = "2015.10.29.2100"
 
 #####################
 # IMPORT OPERATIONS #
@@ -167,28 +167,28 @@ class AddPieCharts:
                     n.find("Branch").append(pieChartLabel_1)
                     n.find("Branch").append(tmp)
 
-# REACTIVATE, WHEN TIME
-#   1.4. Switch position of bootstrap values to below branches, b/c they would conflict with pie charts
-#        if "BS" in self.flags.upper():
-#            new_out_list = []
-#            kw = '<TextLabel Text="'
-#
-#            for line in out_list:
-#                if (kw in line and CSO.afind(line, kw) in 
-#                    [str(s) for s in [1]+range(5, 10)]):
-#                    bsvalue = CSO.exstr(line, 'Text="', '"')[:-2]
-#                    line = CSO.replstr(line, 'Text="', '"', bsvalue)
-#                    line = line.replace('IsDecimal="true"', 'IsDecimal="false"')
-#                    line = line.replace('Above="true"', 'Above="false"')
-#                    new_out_list.append(line)
-#
-#                if (kw in line and CSO.afind(line, kw) in 
-#                    [str(s) for s in [0]]):
-#                    line = line.replace('Above="true"', 'Above="false"')
-#                    new_out_list.append(line)
-#
-#                else:
-#                    new_out_list.append(line)
+                    # REACTIVATE, WHEN TIME
+                    #   1.4. Switch position of bootstrap values to below branches, b/c they would conflict with pie charts
+                    #        if "BS" in self.flags.upper():
+                    #            new_out_list = []
+                    #            kw = '<TextLabel Text="'
+                    #
+                    #            for line in out_list:
+                    #                if (kw in line and CSO.afind(line, kw) in 
+                    #                    [str(s) for s in [1]+range(5, 10)]):
+                    #                    bsvalue = CSO.exstr(line, 'Text="', '"')[:-2]
+                    #                    line = CSO.replstr(line, 'Text="', '"', bsvalue)
+                    #                    line = line.replace('IsDecimal="true"', 'IsDecimal="false"')
+                    #                    line = line.replace('Above="true"', 'Above="false"')
+                    #                    new_out_list.append(line)
+                    #
+                    #                if (kw in line and CSO.afind(line, kw) in 
+                    #                    [str(s) for s in [0]]):
+                    #                    line = line.replace('Above="true"', 'Above="false"')
+                    #                    new_out_list.append(line)
+                    #
+                    #                else:
+                    #                    new_out_list.append(line)
 
         outStr = _ET.tostring(tree)
         outStr = outStr.replace("<Temp>","")
@@ -240,11 +240,6 @@ class ConversionXTG2IMG:
             cmdL = ["java -jar", self.pathToTG2, "-image", self.inFn, outPath, resolut]
             CFO.extprog(cmdL)
 
-            # LEGACYCODE:
-            #cmd = " ".join(cmdL)
-            #p = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
-            #output, error = p.communicate()
-
 class LabelingNodesXTG:
     '''class for labeling nodes of phylogenetic tree in XTG format'''
 
@@ -286,9 +281,9 @@ def main(reconstrFn, treeFn, colordictFn, pathToTG2, flags, keepTmpFile, verbose
 
 # 1. Setting file names and load infiles
     fileprfx = CSO.rmpath(CSO.rmext(reconstrFn))
-    #tmpFn1 = fileprfx + ".TMP.xtg"
-    tmpFn1 = fileprfx + ".tmp"
-    tmpFn2 = fileprfx + ".xtg"
+    #tmpFn = fileprfx + ".TMP.xtg"
+    tmpFn = fileprfx + ".tmp"
+    compiledInFn = fileprfx + ".xtg"
     reconstrD = CFO.loadR(reconstrFn)
 
 # 1.2. Loading color dictionary and running rudimentary checks
@@ -328,39 +323,39 @@ def main(reconstrFn, treeFn, colordictFn, pathToTG2, flags, keepTmpFile, verbose
     if verbose.upper() in ["T", "TRUE"]:
         print "  Step 2: Pretty-print of xtg code"
     out_step2 = PrettyPrintXTG(out_step1).go()
-    CFO.saveFile(tmpFn1, out_step2)
+    CFO.saveFile(tmpFn, out_step2)
 
 #   4. Label internal nodes
     if verbose.upper() in ["T", "TRUE"]:
         print "  Step 3: Labeling nodes of tree"
-    LabelingNodesXTG(tmpFn1).go()
+    LabelingNodesXTG(tmpFn).go()
 
 #   5. Customize XTG file
     if verbose.upper() in ["T", "TRUE"]:
         print "  Step 4: Customize XTG file"
-    CustomizeXTG_Nodes(tmpFn1).go()
+    CustomizeXTG_Nodes(tmpFn).go()
     #start_cap_2 = CustomizeXTG_Global(start_cap_2, flags).go()
 
 #   6. Add Pie labels and charts
-    out_step5 = CFO.loadR(tmpFn1)
+    out_step5 = CFO.loadR(tmpFn)
     if reconstrD:
         if verbose.upper() in ["T", "TRUE"]:
             print "  Step 5: Adding pie labels and charts"
         out_step5 = AddPieCharts(out_step5, reconstrD, colorDict).go()      # Indentation important, because pie data if statement above
     else:
         print "  Warning: Skipping step: No pie data available."
-    CFO.saveFile(tmpFn1, out_step5)
+    CFO.saveFile(tmpFn, out_step5)
 
 #   7. Pretty-print the .xtg file
     if verbose.upper() in ["T", "TRUE"]:
         print "  Step 6: Pretty-print of xtg code"
     out_step6 = PrettyPrintXTG(out_step5).go()
-    CFO.saveFile(tmpFn1, out_step6)
+    CFO.saveFile(tmpFn, out_step6)
 
 #   8. Improving visualization
     if verbose.upper() in ["T", "TRUE"]:
         print "  Step 7: Improving visualization"
-    tree = _ET.parse(tmpFn1)
+    tree = _ET.parse(tmpFn)
     root = tree.getroot()
     for n in root.iter('Text'):
         n.attrib["TextColor"] = "#808080"                               # Make pielabels grey
@@ -369,23 +364,23 @@ def main(reconstrFn, treeFn, colordictFn, pathToTG2, flags, keepTmpFile, verbose
             n.attrib["Text"] = bsvalue
             n.attrib["IsDecimal"] = "false"
     FinalTreeXML = _ET.tostring(root)
-    CFO.saveFile(tmpFn1, FinalTreeXML)
+    CFO.saveFile(tmpFn, FinalTreeXML)
 
 #   9. Combining all parts
     if verbose.upper() in ["T", "TRUE"]:
         print "  Step 8: Combining all xml sections"
     finalL = [start_cap_1, start_cap_2, FinalTreeXML, end_cap]
-    CFO.saveFile(tmpFn2, "\n".join(finalL))
-    CFO.deleteFile(tmpFn1)
+    CFO.saveFile(compiledInFn, "\n".join(finalL))
+    CFO.deleteFile(tmpFn)
 
 #   10. Conversion from .xtg to .png format
     if verbose.upper() in ["T", "TRUE"]:
         print "  Step 9: Conversion .xtg  -> .png"
-    ConversionXTG2IMG(tmpFn2, pathToTG2, flags).go()
+    ConversionXTG2IMG(compiledInFn, pathToTG2, flags).go()
 
 #   11. Decision on deleting temporary input file
     if keepTmpFile.upper() in ["F", "FALSE"]:
-        CFO.deleteFile(tmpFn2)
+        CFO.deleteFile(compiledInFn)
 
 ############
 # ARGPARSE #

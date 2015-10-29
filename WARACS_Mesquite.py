@@ -3,7 +3,7 @@
 __author__ = "Michael Gruenstaeudl, PhD <mi.gruenstaeudl@gmail.com>"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __info__ = "Reconstructing Ancestral Character States using Mesquite (http://mesquiteproject.org)"
-__version__ = "2015.10.29.2100"
+__version__ = "2015.10.29.2200"
 
 #####################
 # IMPORT OPERATIONS #
@@ -25,7 +25,7 @@ if opt_deps:
         _exit("  ERROR: Please install Python package 'numpy'.")
         # FUTURE CODE:
         # CFO.installPkgs(opt_deps)
-from numpy import array as _array
+import numpy
 
 #############
 # DEBUGGING #
@@ -65,9 +65,9 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     # 1.2. Setting outfilenames
     fileprfx = CSO.rmpath(CSO.rmext(treedistrFn))
     fileinfo = "__Mesquite_" + kw + "_char" + str(charnum)
-# FUTURE CODE:
-#    if charmodel:
-#        fileinfo = fileinfo + "__optcrit_" + optcrit.replace(";",".").replace(",",".")
+    # FUTURE CODE:
+    #    if charmodel:
+    #        fileinfo = fileinfo + "__optcrit_" + optcrit.replace(";",".").replace(",",".")
     outFn_raw = fileprfx + fileinfo + ".txt"
     outFn_tree = fileprfx + fileinfo + ".tre"
     outFn_table = fileprfx + fileinfo + ".csv"
@@ -124,7 +124,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     block3 = "\n;\nEND;\n"
     try:
         reader = _csvreader(open(charsFn, "r"), delimiter=",")
-        matrx = _array(list(reader))
+        matrx = numpy.array(list(reader))
         n = int(charnum)
         charstates = set(matrx[:, n])
         charstates = [x for x in charstates if x != "?"]                # Question mark is not a character state, but indicates missing data
@@ -142,45 +142,45 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     except: 
         _exit("  ERROR: Error when parsing the character states.")
 
-# FUTURE CODE
-#    # 1.7. Character models
-#    if optcrit:
-#    # 1.7.1. Parsimony stepmatrix
-#        if kw == "parsimony":
-#            block4 = "\n\nBEGIN ASSUMPTIONS;\n\tUSERTYPE STEPMATRIX (STEPMATRIX) ="
-#            block5 = ";\n\tTYPESET * UNTITLED (CHARACTERS = 'MYCHARS') = unord: 1;\nEND;\n"
-#            try:
-#                stpmtrx_L = optcrit.split(";")
-#                charstate_L = stpmtrx_L[0].split(",")
-#                ncharstates = len(charstate_L)
-#                if ncharstates != len(charstates):
-#                    _exit("  ERROR: Error when parsing the character model.")
-#                stpmtrx = '\n'.join([i.replace(","," ") for i in stpmtrx_L])
-#                charmdl = block4 + str(ncharstates) + "\n" + stpmtrx + "\n" + block5
-#            except: 
-#                _exit("  ERROR: Error when parsing the character model.")
-#            # Once optcrit has been formatted
-#            kw_find = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.parsimony.CurrentParsModels.CurrentParsModels;"
-#            kw_replace = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.parsimony.StoredParsModel.StoredParsModel;\n\t\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\t\tsetModel 2  STEPMATRIX;\n\t\t\t\t\t\t\tendTell;"
-#            mdl = mdl.replace(kw_find, kw_replace)
-#    # 1.7.2. 2P-MarkovK Model
-#        if kw == "likelihood" and optcrit or kw == "bayesian" and optcrit :
-#            block6 = "\nBEGIN MESQUITECHARMODELS;\n\tCharModel 'CUSTOM_MARKOVK_MODEL' (AsymmMk) ="
-#            block7 = " equilibAsPrior;\n\tProbModelSet * UNTITLED (CHARACTERS = 'MYCHARS') = 'Mk1 (est.)': 1;\nEND;\n"
-#            try:
-#                tpmarkovmdl_L = optcrit.split(",")
-#                if len(tpmarkovmdl_L) != len(charstates):
-#                    _exit("  ERROR: Unequal number of character states between input data and character model.")
-#                tmp = " forward " + tpmarkovmdl_L[0] + " backward " + tpmarkovmdl_L[1]
-#                charmdl = block6 + tmp + block7
-#            except: 
-#                _exit("  ERROR: Error when parsing the character model.")
-#            # Once optcrit has been formatted
-#            kw_find = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.stochchar.CurrentProbModels.CurrentProbModels;"
-#            kw_replace = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.stochchar.StoredProbModel.StoredProbModel;\n\t\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\t\tsetModel 2   'CUSTOM_MARKOVK_MODEL';\n\t\t\t\t\t\t\tendTell;"
-#            mdl = mdl.replace(kw_find, kw_replace)
-#    else:
-#        charmdl = ""
+    # FUTURE CODE
+    #    # 1.7. Character models
+    #    if optcrit:
+    #    # 1.7.1. Parsimony stepmatrix
+    #        if kw == "parsimony":
+    #            block4 = "\n\nBEGIN ASSUMPTIONS;\n\tUSERTYPE STEPMATRIX (STEPMATRIX) ="
+    #            block5 = ";\n\tTYPESET * UNTITLED (CHARACTERS = 'MYCHARS') = unord: 1;\nEND;\n"
+    #            try:
+    #                stpmtrx_L = optcrit.split(";")
+    #                charstate_L = stpmtrx_L[0].split(",")
+    #                ncharstates = len(charstate_L)
+    #                if ncharstates != len(charstates):
+    #                    _exit("  ERROR: Error when parsing the character model.")
+    #                stpmtrx = '\n'.join([i.replace(","," ") for i in stpmtrx_L])
+    #                charmdl = block4 + str(ncharstates) + "\n" + stpmtrx + "\n" + block5
+    #            except: 
+    #                _exit("  ERROR: Error when parsing the character model.")
+    #            # Once optcrit has been formatted
+    #            kw_find = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.parsimony.CurrentParsModels.CurrentParsModels;"
+    #            kw_replace = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.parsimony.StoredParsModel.StoredParsModel;\n\t\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\t\tsetModel 2  STEPMATRIX;\n\t\t\t\t\t\t\tendTell;"
+    #            mdl = mdl.replace(kw_find, kw_replace)
+    #    # 1.7.2. 2P-MarkovK Model
+    #        if kw == "likelihood" and optcrit or kw == "bayesian" and optcrit :
+    #            block6 = "\nBEGIN MESQUITECHARMODELS;\n\tCharModel 'CUSTOM_MARKOVK_MODEL' (AsymmMk) ="
+    #            block7 = " equilibAsPrior;\n\tProbModelSet * UNTITLED (CHARACTERS = 'MYCHARS') = 'Mk1 (est.)': 1;\nEND;\n"
+    #            try:
+    #                tpmarkovmdl_L = optcrit.split(",")
+    #                if len(tpmarkovmdl_L) != len(charstates):
+    #                    _exit("  ERROR: Unequal number of character states between input data and character model.")
+    #                tmp = " forward " + tpmarkovmdl_L[0] + " backward " + tpmarkovmdl_L[1]
+    #                charmdl = block6 + tmp + block7
+    #            except: 
+    #                _exit("  ERROR: Error when parsing the character model.")
+    #            # Once optcrit has been formatted
+    #            kw_find = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.stochchar.CurrentProbModels.CurrentProbModels;"
+    #            kw_replace = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.stochchar.StoredProbModel.StoredProbModel;\n\t\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\t\tsetModel 2   'CUSTOM_MARKOVK_MODEL';\n\t\t\t\t\t\t\tendTell;"
+    #            mdl = mdl.replace(kw_find, kw_replace)
+    #    else:
+    #        charmdl = ""
 
     charmdl = ""
 
@@ -192,38 +192,38 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
 # 2. Character Reconstruction
 
 #   2.1. Saving of tempfile
-    tmpFn = CSO.randomword(6) + ".tmp"
-    CFO.saveFile(tmpFn, "\n".join([inD, mdl]))                           # a temporary infile without underscores is generated, but deleted immediately after execution.
+    compiledInFn = "compiledInfileMesquite.tmp"
+    CFO.saveFile(compiledInFn, "\n".join([inD, mdl]))                           # a temporary infile without underscores is generated, but deleted immediately after execution.
 
 #   2.2. Run Mesquite on data
     if verbose.upper() in ["T", "TRUE"]:
         print "  Character Reconstruction in Mesquite"
         print "  Selected Reconstruction Method:", optcrit
     waittime = len(treedistrL)*0.05
-    cmdL = [pathToSoftware, tmpFn]
+    cmdL = [pathToSoftware, compiledInFn]
     data_handle = CFO.extprog(cmdL, waittime)
     if not data_handle:
         _exit("  ERROR: No reconstruction data from Mesquite received.")
     CFO.saveFile(outFn_raw, data_handle)
-#
-# ALTERNATIVE:
-#    calctime = len(treedistrL)*0.05
-#    cmdL = ["timeout", str(calctime), pathToSoftware, tmpFn]
-#    cmdStr = " ".join(cmdL)
-#    p = Popen(cmdStr, stdin=PIPE, stdout=PIPE, shell=True)              # Other shell invocations (os.system, subprocess.call) don't work; I have tried many of them.
-#    data_handle = p.communicate()
-#
-# LEGACYCODE:
-#    startMesquite = "sh " + pathToSoftware
-#    p = Popen(startMesquite, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
-#    time.sleep(5)                                                       # WIthout such waiting times, scripting Mesquite does not work.
-#    p.stdin.write("cd " + os.getcwd() + "/\n")                          # Can contain underscores
-#    time.sleep(2)
-#    p.stdin.write("openFile " + tmpFn + "\n")                           # Must not contain underscores, because Mesquite cannot load filenames containing underscores! Hence, I chose "tmp".
-#    time.sleep(45)
-#    p.stdin.write("quit\n")
-#    output, error = p.communicate()
-#    data_handle = [output, error]
+
+    # ALTERNATIVE:
+    #    calctime = len(treedistrL)*0.05
+    #    cmdL = ["timeout", str(calctime), pathToSoftware, compiledInFn]
+    #    cmdStr = " ".join(cmdL)
+    #    p = Popen(cmdStr, stdin=PIPE, stdout=PIPE, shell=True)              # Other shell invocations (os.system, subprocess.call) don't work; I have tried many of them.
+    #    data_handle = p.communicate()
+    #
+    # LEGACYCODE:
+    #    startMesquite = "sh " + pathToSoftware
+    #    p = Popen(startMesquite, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
+    #    time.sleep(5)                                                       # WIthout such waiting times, scripting Mesquite does not work.
+    #    p.stdin.write("cd " + os.getcwd() + "/\n")                          # Can contain underscores
+    #    time.sleep(2)
+    #    p.stdin.write("openFile " + compiledInFn + "\n")                           # Must not contain underscores, because Mesquite cannot load filenames containing underscores! Hence, I chose "tmp".
+    #    time.sleep(45)
+    #    p.stdin.write("quit\n")
+    #    output, error = p.communicate()
+    #    data_handle = [output, error]
 
 
 #   2.3. Parsing out the relevant section of the reconstruction output and saving it to file
@@ -253,15 +253,17 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
         except: 
             print "  Warning: No node number information recovered."
             pass
+
         #try:                                                           # REACTIVATE, WHEN N OF TREES WITHOUT NODE RELEVANT
         #    Ntrees = CSO.exstr(i[1], 'Node in ', ' trees.')
         #except: 
         #    print "  Warning: No N_of_Trees information recovered!"
         #    pass
+
         try:
             tmp = i[2].split("each: ")[1]
             tmp = tmp.replace(" ","")
-            arr = _array([i.split(":") for i in tmp.split(";")])
+            arr = numpy.array([i.split(":") for i in tmp.split(";")])
             l = arr[:,1]
             sm = sum([float(i) for i in l])
             tmpL = []
@@ -291,12 +293,14 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     plottree_newick = CPO.ConvertNexusToNewick(plottree)                # Converting tree from nexus into newick format, because nexus format may contain translation table, which TreeGraph2 cannot parse
     CFO.saveFile(outFn_tree, plottree_newick)
 
-#   4.2. Save table
+#   4.2. Save main results
     CFO.saveFile(outFn_table, outD)
 
 #   4.3. Decision on deleting temporary input file
     if keepTmpFile.upper() in ["F", "FALSE"]:
-        CFO.deleteFile(tmpFn)
+        CFO.deleteFile(compiledInFn)
+        CFO.deleteFile(outFn_raw)
+
 
 ############
 # ARGPARSE #
@@ -314,33 +318,34 @@ if __name__ == '__main__':
                         help='/path_to_input/character_state_distribution.csv',
                         required=True)
     parser.add_argument('-n', '--charnumber',
-                        help='which character state distribution to be used (e.g. 1); an integer',
+                        help='Which character state distribution to be used (e.g. 1); an integer',
                         default='1',
                         required=True)
     parser.add_argument('-o', '--optcrit',
-                        help='models of character evolution; available: parsimony, likelihood, bayesian',
+                        help='Models of character evolution; available: parsimony, likelihood, bayesian',
                         default='likelihood',
                         required=True)
     parser.add_argument('-s', '--software',
                         help='/path_to_software/mesquite.sh',
                         required=True)
     parser.add_argument('-k', '--keep',
-                        help='Keeping the temporary input file; a boolean operator',
+                        help='Keep temporary files; a boolean operator',
                         required=False,
                         default='False')
     parser.add_argument('-v', '--verbose',
-                        help='Displaying full; a boolean operator',
+                        help='Display full screen output; a boolean operator',
                         required=False,
                         default='False')
     parser.add_argument('-V', '--version', 
                         help='Print version information and exit',
                         action='version',
                         version='%(prog)s ' + __version__)
-# FUTURE CODE
-#    parser.add_argument('-a', '--charmodel',
-#                        help='values of a character state transition model (parsimony example: "A,B,C;0,1,1;1,0,1;1,1,0"; likelihood example: "1,0")',
-#                        required=False)
+    # FUTURE CODE
+    # parser.add_argument('-a', '--charmodel',
+    #                   help='values of a character state transition model (parsimony example: "A,B,C;0,1,1;1,0,1;1,1,0"; likelihood example: "1,0")',
+    #                   required=False)
     args = parser.parse_args()
+
 
 ########
 # MAIN #

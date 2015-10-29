@@ -49,7 +49,7 @@ python2.7 /path_to_git/WARACS/WARACS_TreeGraph2.py
 ```
 ### - Usage in Windows
 
-###### Testing the wrapper; other commands work correspondingly
+###### Testing the wrapper; the other commands work correspondingly
 ```
 C:\Python27\python.exe \path_to_git\WARACS\WARACS_Mesquite.py -h
 ```
