@@ -4,6 +4,7 @@ WARACS: Wrappers to Automate the Reconstruction of Ancestral Character States
 ### - Prerequisites
 * Python v.2.7 (https://www.python.org/download/releases/2.7/)
 * Python package *setuptools* (https://pypi.python.org/pypi/setuptools)
+* Python package *numpy* (https://pypi.python.org/pypi/numpy)
 
 ### - Wrapped Applications
 * Mesquite (http://mesquiteproject.org)
@@ -12,10 +13,9 @@ WARACS: Wrappers to Automate the Reconstruction of Ancestral Character States
 
 ### - Python Dependencies
 * Python package *DendroPy* (https://pypi.python.org/pypi/DendroPy)
-* Python package *numpy* (https://pypi.python.org/pypi/numpy)
 * Python package *PrettyTable* (https://pypi.python.org/pypi/PrettyTable)
 
-### - Basic Usage
+### - Usage in Linux and MacOS
 ###### 1. Test the wrapper
 ```
 python2.7 /path_to_git/WARACS/WARACS_Mesquite.py -h
@@ -51,14 +51,9 @@ python2.7 /path_to_git/WARACS/WARACS_TreeGraph2.py
   -s /path_to_TreeGraph2/TreeGraph.jar
   -v True
 ```
-### - Special Notes for Windows operating systems
-###### 1. Installation
-* Users on Windows need to have administrative rights on their systems.
-* Users on Windows need to ensure that the Python directory *Scripts* is part of the PATH environment (https://pythonhosted.org/setuptools/easy_install.html#executables-and-launchers).
-* Users on Windows may need to install the latest Microsoft Visual C++ Compiler in order to successfully install the Python package *numpy* (http://stackoverflow.com/questions/28413824/installing-numpy-on-windows).
+### - Notes for Usage in Windows
 
-###### 2. Basic Usage
-* Usage follows the following format:
+###### Usage follows the below format
 ```
 C:\Python27\python.exe \path_to_git\WARACS\WARACS_Mesquite.py -h
 ```

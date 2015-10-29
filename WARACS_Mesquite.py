@@ -3,36 +3,28 @@
 __author__ = "Michael Gruenstaeudl, PhD <mi.gruenstaeudl@gmail.com>"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __info__ = "Reconstructing Ancestral Character States using Mesquite (http://mesquiteproject.org)"
-__version__ = "2015.10.28.1800"
+__version__ = "2015.10.29.1700"
 
 #####################
 # IMPORT OPERATIONS #
 #####################
 
-# LEGACYCODE:
-from subprocess import Popen, PIPE
-import subprocess
-import commands
+from sys import exit as _exit
+from csv import reader as _csvreader
 
 import argparse
-import csv
-import os
-import sys
-import time
 import CustomFileOps as CFO
-import CustomInstallOps as CIO
+import CustomPhyloOps as CPO
 import CustomStringOps as CSO
 
-opt_deps = ["dendropy", "numpy", "prettytable"]
+opt_deps = ["numpy"]
 if opt_deps:
     try:
         map(__import__, opt_deps)
     except:
-        CIO.installPkgs(opt_deps)
+        CFO.installPkgs(opt_deps)
 
-import dendropy
 import numpy
-from prettytable import PrettyTable
 
 #############
 # DEBUGGING #
@@ -75,7 +67,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
 # FUTURE CODE
 #    if charmodel:
 #        fileinfo = fileinfo + "__optcrit_" + optcrit.replace(";",".").replace(",",".")
-    outFn_raw = fileprfx + fileinfo + ".full"
+    outFn_raw = fileprfx + fileinfo + ".txt"
     outFn_tree = fileprfx + fileinfo + ".tre"
     outFn_table = fileprfx + fileinfo + ".csv"
 
@@ -122,7 +114,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
         pos = plottreeH.find("BEGIN TREES;") + len("BEGIN TREES;")
         plottreeH = plottreeH[:pos] + "\nTitle 'block2'" + plottreeH[pos:]
     except: 
-        sys.exit("  ERROR: Error with plotting tree.")
+        _exit("  ERROR: Error with plotting tree.")
 
     # 1.6. Parse characters
     #mdl = mdl.replace("setCharacter 1;", "".join(["setCharacter ", charnum, ";"]))  # Adjusting character in question in mdl
@@ -130,29 +122,24 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     block2 = "';\nMATRIX\n"
     block3 = "\n;\nEND;\n"
     try:
-        reader = csv.reader(open(charsFn, "r"), delimiter=",")
+        reader = _csvreader(open(charsFn, "r"), delimiter=",")
         matrx = numpy.array(list(reader))
-        #nchars = matrx.shape[1]-1
         n = int(charnum)
         charstates = set(matrx[:, n])
         charstates = [x for x in charstates if x != "?"]                # Question mark is not a character state, but indicates missing data
-        #pdb.set_trace()
         if kw == "parsimony":
             if "I" in charstates:
-                sys.exit("  ERROR: Character state 'I' is a reserved state and cannot be used.")
+                _exit("  ERROR: Character state 'I' is a reserved state and cannot be used.")
         if kw == "likelihood" or kw == "bayesian":
             try:
                 [int(c) for c in charstates]
             except ValueError:
-                sys.exit("  ERROR: Likelihood reconstruction in Mesquite requires character states to be coded as integers, starting at 0.")
-        p = PrettyTable()
-        matrx_used = matrx[:, [0,n]]
-        for row in matrx_used:
-            p.add_row(row)
-        matrxStr = p.get_string(header=False, border=False)
-        chars = block1 + " ".join(charstates) + block2 + matrxStr + block3
+                _exit("  ERROR: Likelihood reconstruction in Mesquite requires character states to be coded as integers, starting at 0.")
+        arr = matrx[:, [0,n]]
+        arrStr = CSO.makeprettytable(arr)
+        chars = block1 + " ".join(charstates) + block2 + arrStr + block3
     except: 
-        sys.exit("  ERROR: Error when parsing the character states.")
+        _exit("  ERROR: Error when parsing the character states.")
 
 # FUTURE CODE
 #    # 1.7. Character models
@@ -166,11 +153,11 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
 #                charstate_L = stpmtrx_L[0].split(",")
 #                ncharstates = len(charstate_L)
 #                if ncharstates != len(charstates):
-#                    sys.exit("  ERROR: Error when parsing the character model.")
+#                    _exit("  ERROR: Error when parsing the character model.")
 #                stpmtrx = '\n'.join([i.replace(","," ") for i in stpmtrx_L])
 #                charmdl = block4 + str(ncharstates) + "\n" + stpmtrx + "\n" + block5
 #            except: 
-#                sys.exit("  ERROR: Error when parsing the character model.")
+#                _exit("  ERROR: Error when parsing the character model.")
 #            # Once optcrit has been formatted
 #            kw_find = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.parsimony.CurrentParsModels.CurrentParsModels;"
 #            kw_replace = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.parsimony.StoredParsModel.StoredParsModel;\n\t\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\t\tsetModel 2  STEPMATRIX;\n\t\t\t\t\t\t\tendTell;"
@@ -182,11 +169,11 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
 #            try:
 #                tpmarkovmdl_L = optcrit.split(",")
 #                if len(tpmarkovmdl_L) != len(charstates):
-#                    sys.exit("  ERROR: Unequal number of character states between input data and character model.")
+#                    _exit("  ERROR: Unequal number of character states between input data and character model.")
 #                tmp = " forward " + tpmarkovmdl_L[0] + " backward " + tpmarkovmdl_L[1]
 #                charmdl = block6 + tmp + block7
 #            except: 
-#                sys.exit("  ERROR: Error when parsing the character model.")
+#                _exit("  ERROR: Error when parsing the character model.")
 #            # Once optcrit has been formatted
 #            kw_find = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.stochchar.CurrentProbModels.CurrentProbModels;"
 #            kw_replace = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.stochchar.StoredProbModel.StoredProbModel;\n\t\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\t\tsetModel 2   'CUSTOM_MARKOVK_MODEL';\n\t\t\t\t\t\t\tendTell;"
@@ -207,28 +194,24 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     tmpFn = CSO.randomword(6) + ".tmp"
     CFO.saveFile(tmpFn, "\n".join([inD, mdl]))                           # a temporary infile without underscores is generated, but deleted immediately after execution.
 
-#   2.2. Execute and then delete tempfile
+#   2.2. Run Mesquite on data
     if verbose.upper() in ["T", "TRUE"]:
         print "  Character Reconstruction in Mesquite"
         print "  Selected Reconstruction Method:", optcrit
-
-    calctime = len(treedistrL)*0.05
-    cmd = pathToSoftware + " " + tmpFn
-    p = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
-    time.sleep(calctime)
-    # Change this line dependning on operating system?
-    p.stdin.write("quit\n")
-    output, error = p.communicate()
-    data_handle = output
+    waittime = len(treedistrL)*0.05
+    cmdL = [pathToSoftware, tmpFn]
+    data_handle = CFO.extprog(cmdL, waittime)
+    if not data_handle:
+        _exit("  ERROR: No reconstruction data from Mesquite received.")
     CFO.saveFile(outFn_raw, data_handle)
-
+#
 # ALTERNATIVE:
 #    calctime = len(treedistrL)*0.05
 #    cmdL = ["timeout", str(calctime), pathToSoftware, tmpFn]
 #    cmdStr = " ".join(cmdL)
 #    p = Popen(cmdStr, stdin=PIPE, stdout=PIPE, shell=True)              # Other shell invocations (os.system, subprocess.call) don't work; I have tried many of them.
 #    data_handle = p.communicate()
-
+#
 # LEGACYCODE:
 #    startMesquite = "sh " + pathToSoftware
 #    p = Popen(startMesquite, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
@@ -241,8 +224,6 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
 #    output, error = p.communicate()
 #    data_handle = [output, error]
 
-    if not data_handle:
-        sys.exit("  ERROR: No reconstruction data from Mesquite received.")
 
 #   2.3. Parsing out the relevant section of the reconstruction output and saving it to file
     mainD = CSO.exstr(data_handle, "Reading block: MESQUITE", "File reading complete")
@@ -255,7 +236,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     mainD = mainD[mainD.find("\nnode"):].splitlines()                   # This steps split the string into a list!
     mainD = filter(None, mainD)                                         # removing all empty elements of mainD
     if not mainD:
-        sys.exit("  ERROR: Parsing of reconstr. data unsuccessful. Possible issue: Malformed NEXUS file.")
+        _exit("  ERROR: Parsing of reconstr. data unsuccessful. Possible issue: Malformed NEXUS file.")
 
 
 # 3. Parsing the reconstruction output
@@ -301,13 +282,12 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
             pass
     outD = "\n".join(outD)                                              # must be outside of loop
     if not outD:
-        sys.exit("  ERROR: Parsing of reconstruction data unsuccessful.")
+        _exit("  ERROR: Parsing of reconstruction data unsuccessful.")
 
 
 # 4. Saving files to disk
-#   4.1. Converting tree from nexus into newick
-    treeH = dendropy.Tree.get_from_string(plottree, schema="nexus")     # Converting tree from nexus into newick format, because nexus format may contain translation table, which TreeGraph2 cannot parse
-    plottree_newick = treeH.as_string(schema='newick')
+#   4.1. Converting tree from nexus to newick
+    plottree_newick = CPO.ConvertNexusToNewick(plottree)                # Converting tree from nexus into newick format, because nexus format may contain translation table, which TreeGraph2 cannot parse
     CFO.saveFile(outFn_tree, plottree_newick)
 
 #   4.2. Save table

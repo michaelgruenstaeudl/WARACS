@@ -10,19 +10,11 @@ __version__ = "2015.10.09.1800"
 #####################
 
 from sys import platform as _platform
-import random
+from random import choice as _choice
+from string import lowercase as _lowercase
+from sys import exit as _exit
+
 import re
-import string
-import sys
-import CustomInstallOps as GIO
-
-opt_deps = []
-if opt_deps:
-    try:
-        map(__import__, opt_deps)
-    except:
-        GIO.installPkgs(opt_deps)
-
 
 ###########
 # CLASSES #
@@ -47,22 +39,6 @@ class exciseStr:
         pos1 = self.inStr.find(self.kw1)
         pos2 = self.inStr.find(self.kw2, pos1)
         return self.inStr[pos1:pos2]
-
-class errorReport:
-    ''' Reports errors during software execution.
-    Args:
-        inStr <a>, inStr <b>
-    Returns:
-        none
-    '''
-    def __init__(self, a, b):
-        self.out = a
-        self.err = b
-    def go(self):
-        if "ERROR" in self.out.upper():
-            sys.exit("  ERROR: ", self.out)
-        if self.err:
-            sys.exit("  ERROR: ", self.err)
 
 class replaceStr:
     ''' Replaces a string via kw delimitation.
@@ -190,7 +166,7 @@ class rmBlankLns:
     Args:
         file object <a>
     Returns:
-        file object
+        string
     '''
     def __init__(self, a):
         self.inFile = a
@@ -198,6 +174,10 @@ class rmBlankLns:
         aList = self.inFile.splitlines()
         aList = filter(None, aList)
         return "\n".join(aList)
+    def go2(self):                                                      # Faster alternative that go()
+        import os
+        aList = self.inFile.splitlines()
+        return os.linesep.join([s for s in aList if s])
 
 class splitKeepSep:
     ''' Split a string by separator, but keeps separator
@@ -239,7 +219,24 @@ class randomWord:
     def __init__(self, a):
         self.inInt = a
     def go(self):
-        return ''.join(random.choice(string.lowercase) for i in range(self.inInt))
+        return ''.join(_choice(_lowercase) for i in range(self.inInt))
+
+class makePrettyTable:
+    ''' Generate a table from an array
+    Args:
+        array <a>
+    Returns:
+        string
+    '''
+    def __init__(self, a):
+        self.inArray = a
+    def go(self):
+        longest_str = max(self.inArray[:,0], key=len)
+        outStr = ""
+        for row in self.inArray:
+            whitespaces = len(longest_str)-len(row[0])
+            outStr += row[0].ljust(whitespaces) + " " + row[1] + "\n"
+        return outStr
 
 
 ###############
@@ -258,11 +255,11 @@ def exstr(inStr, kw1, kw2):
 def exstrkeepkw(inStr, kw1, kw2):
     return exciseStr(inStr, kw1, kw2).keepKw1()
 
-def errep(inStr1, inStr2):
-    return errorReport(inStr1, inStr2).go()
-
 def iseven(inInt):
     return isEven(inInt).go()
+
+def makeprettytable(inArray):
+    return makePrettyTable(inArray).go()
 
 def randomword(length):
    return randomWord(length).go()
@@ -271,7 +268,7 @@ def replstr(inStr, kw1, kw2, replc):
     return replaceStr(inStr, kw1, kw2, replc).go()
 
 def rmblanklns(inFile):
-    return rmBlankLns(inFile).go()
+    return rmBlankLns(inFile).go2()
 
 def rmext(inStr):
     return removeExt(inStr).go()

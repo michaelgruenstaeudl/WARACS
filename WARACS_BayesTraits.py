@@ -3,31 +3,28 @@
 __author__ = "Michael Gruenstaeudl, PhD <mi.gruenstaeudl@gmail.com>"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __info__ = "Reconstructing Ancestral Character States using BayesTraits (http://www.evolution.reading.ac.uk/BayesTraits.html)"
-__version__ = "2015.10.28.1800"
+__version__ = "2015.10.29.1800"
 
 #####################
 # IMPORT OPERATIONS #
 #####################
 
 from cStringIO import StringIO
+from sys import exit as _exit
+from csv import reader as _csvreader
+
 import argparse
-import csv
-import os
-import string
-import sys
 import CustomFileOps as CFO
-import CustomInstallOps as CIO
+import CustomPhyloOps as CPO
 import CustomStringOps as CSO
 
-opt_deps = ["dendropy", "numpy", "prettytable"]
+opt_deps = ["numpy"]
 if opt_deps:
     try:
         map(__import__, opt_deps)
     except:
-        CIO.installPkgs(opt_deps)
+        CFO.installPkgs(opt_deps)
 
-from prettytable import PrettyTable
-import dendropy
 import numpy
 
 #############
@@ -47,6 +44,11 @@ likeModel = "1\n1\n"
 likeKw = "Tree No\tLh"
 
 ###########
+# CLASSES #
+###########
+
+
+###########
 # MODULES #
 ###########
 
@@ -63,42 +65,23 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keep
 
     # 1.2. Setting outfilenames
     fileprfx = CSO.rmpath(CSO.rmext(treedistrFn))
-    outFn_raw = fileprfx + "__BayesTraits_" + kw + ".full"
-    outFn_tree = fileprfx + "__BayesTraits_" + kw + ".tre"
-    outFn_table = fileprfx + "__BayesTraits_" + kw + ".csv"
-
-    # 1.2. Setting outfilenames
-    fileprfx = CSO.rmext(treedistrFn)
     fileinfo = "__BayesTraits_" + kw + "_char" + str(charnum)
-    #if charmodel:                                                      # Not yet implemented
-    #    fileinfo = fileinfo + "__charmodel_" + charmodel.replace(";",".").replace(",",".")
-    outFn_raw = fileprfx + fileinfo + ".full"
+    outFn_raw = fileprfx + fileinfo + ".txt"
     outFn_tree = fileprfx + fileinfo + ".tre"
     outFn_table = fileprfx + fileinfo + ".csv"
-
     charsFnTmp = charsFn + ".tmp"
     cmdFnTmp = CSO.randomword(6) + ".tmp"
 
     # 1.3. Generate tip list
-    nodespecL, nodeL = [], []
-    treeH = dendropy.Tree.get_from_path(plottreeFn, schema="nexus")
-    for c, node in enumerate(treeH.nodes(), start=1):
-        tips = [tip.taxon.label.replace(" ", "_") for tip in node.leaf_nodes()]
-        if len(tips) > 1:
-            nodespecL.append("AddNode Node" + str(c) + " " + " ".join(tips))
-            nodeL.append(c)                                             # generate list of relevant node numbers
-    node_specs = "\n".join(nodespecL)
+    out_handle = CPO.GetNodeListFromTree(plottreeFn)
+    node_specs, nodeL = out_handle[0], out_handle[1]
 
     # 1.4. Modify chars-file
-    reader = csv.reader(open(charsFn, "rb"), delimiter=",")
+    reader = _csvreader(open(charsFn, "rb"), delimiter=",")
     arr = numpy.array(list(reader))
     arr = arr[:,[0,charnum]]
-    p = PrettyTable()
-    for row in arr:
-        p.add_row(row)
-    tmp = p.get_string(header=False, border=False)
-    out = "\n".join([i.strip() for i in tmp.splitlines()])              # left-justify the string
-    CFO.saveFile(charsFnTmp, out)
+    out_handle = CSO.makeprettytable(arr)
+    CFO.saveFile(charsFnTmp, out_handle)
 
     # 1.5. Generate command string as save to file
     cmdStr = mdl + node_specs + "\nrun\n"
@@ -110,21 +93,23 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keep
     if verbose.upper() in ["T", "TRUE"]:
         print "  Character Reconstruction in BayesTraits"
         print "  Selected Reconstruction Method:", rcnmdl
-    cmd = pathToSoftware + " " + treedistrFn + " " + charsFnTmp + " < " + cmdFnTmp
-    dataH = os.popen(cmd).read()
-    if parseKw not in dataH:
-        sys.exit("  ERROR: No reconstruction data from BayesTraits received.")
+    cmdL = [pathToSoftware, treedistrFn, charsFnTmp, "<", cmdFnTmp]
+    data_handle = CFO.extprog(cmdL)
+    # LEGACYCODE:
+    #dataH = os.popen(cmd).read()
+    if not data_handle or parseKw not in data_handle:
+        _exit("  ERROR: No reconstruction data from BayesTraits received.")
 
 # 2.2. Save outfile and delete temp files
-    CFO.saveFile(outFn_raw, dataH)
+    CFO.saveFile(outFn_raw, data_handle)
     CFO.deleteFile(charsFnTmp + ".log.txt")
     CFO.deleteFile(charsFnTmp)
 
 
 # 3. Parse reconstruction data
 # 3.1. Get section
-    tmp = CSO.exstrkeepkw(dataH, parseKw, "Sec:")
-    reader = csv.reader(StringIO(tmp), delimiter="\t")                  # csv.reader can only read file object
+    tmp = CSO.exstrkeepkw(data_handle, parseKw, "Sec:")
+    reader = _csvreader(StringIO(tmp), delimiter="\t")                  # csv.reader can only read file object
     arr = numpy.array(list(reader))                                     # reader holds the data only for one execution; hence immediately transfer it to variable "arr"
 
 # 3.2. Extract all those cols that contain keyw
@@ -150,7 +135,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keep
                 r = 0
             matchVals.append(r)
         if len(matchHeaders) != len(matchVals):
-            sys.exit("  ERROR: Error when parsing the reconstruction results.")
+            _exit("  ERROR: Error when parsing the reconstruction results.")
 # 3.2.2. Important step
         if sum(matchVals) > 0:                                          # IMPORTANT STEP: only write line if reconstruction present
             tmpL = []
@@ -163,10 +148,10 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keep
     outD = "\n".join(outL)
 
 
-# 4. Saving files to disk
-#   4.1. Converting tree from nexus into newick
-    treeH = dendropy.Tree.get_from_path(plottreeFn, schema="nexus")     # Converting tree from nexus into newick format, because nexus format may contain translation table, which TreeGraph2 cannot parse
-    plottree_newick = treeH.as_string(schema='newick')
+# 4. Saving files to disk  
+#   4.1. Converting tree from nexus to newick
+    plottree = CFO.loadR(plottreeFn)
+    plottree_newick = CPO.ConvertNexusToNewick(plottree)                # Converting tree from nexus into newick format, because nexus format may contain translation table, which TreeGraph2 cannot parse
     CFO.saveFile(outFn_tree, plottree_newick)
 
 #   4.2. Save table
