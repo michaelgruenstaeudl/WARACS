@@ -51,13 +51,13 @@ python2.7 /path_to_git/WARACS/WARACS_TreeGraph2.py
   -s /path_to_TreeGraph2/TreeGraph.jar
   -v True
 ```
-### - Special Notes for Windows
-###### 1. Regarding Installation
+### - Special Notes for Windows operating systems
+###### 1. Installation
 * Users on Windows need to have administrative rights on their systems.
-* Users on Windows need to ensure that the Scripts directory of Python is in the PATH environment variable (https://pythonhosted.org/setuptools/easy_install.html#executables-and-launchers).
-* Users on Windows may need to install the latest Microsoft Visual C++ Compiler in order to compile the Python package *numpy* (http://stackoverflow.com/questions/28413824/installing-numpy-on-windows).
+* Users on Windows need to ensure that the Python directory *Scripts* is part of the PATH environment (https://pythonhosted.org/setuptools/easy_install.html#executables-and-launchers).
+* Users on Windows may need to install the latest Microsoft Visual C++ Compiler in order to successfully install the Python package *numpy* (http://stackoverflow.com/questions/28413824/installing-numpy-on-windows).
 
-###### 2. Regarding Usage
+###### 2. Basic Usage
 * Usage follows the following format:
 ```
 C:\Python27\python.exe \path_to_git\WARACS\WARACS_Mesquite.py -h
