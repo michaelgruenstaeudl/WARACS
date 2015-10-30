@@ -11,7 +11,7 @@ WARACS: Wrappers to Automate the Reconstruction of Ancestral Character States
 * BayesTraits (http://www.evolution.reading.ac.uk/BayesTraits.html)
 * TreeGraph2 (http://treegraph.bioinfweb.info/)
 
-### - Usage in Linux and Mac OS
+### - Usage under Linux and Mac OS
 ###### 1. Test the wrapper
 ```
 python2.7 /path_to_git/WARACS/WARACS_Mesquite.py -h
@@ -47,7 +47,7 @@ python2.7 /path_to_git/WARACS/WARACS_TreeGraph2.py
   -s /path_to_TreeGraph2/TreeGraph.jar
   -v True
 ```
-### - Usage in Windows
+### - Usage under Windows
 
 ###### Testing the wrapper; the other commands work correspondingly
 ```
