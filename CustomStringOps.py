@@ -139,6 +139,18 @@ class makePairwise:
         next(b, None)
         return izip(a, b)
 
+class randomWord:
+    ''' Generate a random word of defined length
+    Args:
+        integer <a>
+    Returns:
+        string
+    '''
+    def __init__(self, a):
+        self.inInt = a
+    def go(self):
+        return ''.join(_choice(_lowercase) for i in range(self.inInt))
+
 class removeExt:
     ''' Returns inStr without extension (i.e. ".txt" or ".trees").
     Args:
@@ -239,17 +251,19 @@ class splitKeepSep2:                                                    # Proble
     def go(self):
         return [e + self.sep for e in self.inStr.split(self.sep) if e != ""]
 
-class randomWord:
-    ''' Generate a random word of defined length
+class sublistInList:
+    ''' Checks is sublist is in list
     Args:
-        integer <a>
+        list <a>, list <b>
     Returns:
-        string
+        list
     '''
-    def __init__(self, a):
-        self.inInt = a
+    def __init__(self, a, b):
+        self.alist = a
+        self.sublist = a
     def go(self):
-        return ''.join(_choice(_lowercase) for i in range(self.inInt))
+        n = len(self.sublist)
+        return any((self.sublist == self.alist[i:i+n]) for i in xrange(len(self.alist)-n+1))
 
 
 ###############
@@ -297,3 +311,6 @@ def splitkeepsep(inStr, sep):
 
 def splitkeepsep2(inStr, sep):
     return splitKeepSep2(inStr, sep).go()
+
+def sublistinlist(alist, sublist):
+    return sublistInList(alist, sublist).go()

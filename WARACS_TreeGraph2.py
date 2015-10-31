@@ -339,7 +339,7 @@ def main(reconstrFn, treeFn, pathToTG2, colordictFn, flags, keepTmpFile, verbose
                     sys.exit("  ERROR: The colors in your color dictionary do not constitutes hex codes.")
                 colorDict[area] = color
 # 1.2.2.3. Checking if as many colors as reconstructions
-            if len(colorDict) != len(areaL):
+            if not CSO.sublistinlist(colorDict.keys(), areaL):
                 sys.exit("  ERROR: Number of areas in reconstruction results unequal to number of areas in color dictionary.")
 # 1.2.3. If color dictionary not supplied by user
         if not colordictFn:
@@ -460,7 +460,10 @@ def main(reconstrFn, treeFn, pathToTG2, colordictFn, flags, keepTmpFile, verbose
             CFO.deleteFile(compiledInFn)
 # 10.2. Always delete unnecessary files
     finally:
-        CFO.deleteFile(tmpFn)
+        try:
+            CFO.deleteFile(tmpFn)
+        except:
+            pass
 
 
 ############

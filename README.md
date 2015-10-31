@@ -1,6 +1,8 @@
 # WARACS
 WARACS: Wrappers to Automate the Reconstruction of Ancestral Character States
 
+![](https://github.com/michaelgruenstaeudl/WARACS/blob/master/examples/example_TreeGraph2/02_output/tree_distribution__BayesTraits_likelihood_char1.xtg.png)
+
 ### - Prerequisites
 * Python v.2.7 (https://www.python.org/download/releases/2.7/)
 * Python package *DendroPy* (https://pypi.python.org/pypi/DendroPy)
