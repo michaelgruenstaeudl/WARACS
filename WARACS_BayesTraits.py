@@ -10,10 +10,10 @@ __version__ = "2015.10.29.1800"
 #####################
 
 from cStringIO import StringIO
-from sys import exit as _exit
 from csv import reader as _csvreader
 
 import argparse
+import sys
 import CustomFileOps as CFO
 import CustomPhyloOps as CPO
 import CustomStringOps as CSO
@@ -22,8 +22,10 @@ opt_deps = ["numpy"]
 if opt_deps:
     try:
         map(__import__, opt_deps)
-    except ImportError:
-        _exit("  ERROR: Please install Python package 'numpy'.")
+#    except ImportError:                                                # Not all systems raise the exception "ImportError"; others raise different exception.
+    except:
+        print sys.exc_info()[0]
+        sys.exit("  ERROR: Please install the following Python packages: " + ", ".join(opt_deps))
         # FUTURE CODE:
         # CFO.installPkgs(opt_deps)
 import numpy
@@ -96,7 +98,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keep
     cmdL = [pathToSoftware, treedistrFn, charsFnTmp, "<", compiledInFn]
     data_handle = CFO.extprog(cmdL)
     if not data_handle or parseKw not in data_handle:
-        _exit("  ERROR: No reconstruction data from BayesTraits received.")
+        sys.exit("  ERROR: No reconstruction data from BayesTraits received.")
     CFO.saveFile(outFn_raw, data_handle)
 
 # 3. Parse reconstruction data
@@ -129,7 +131,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keep
                 r = 0
             matchVals.append(r)
         if len(matchHeaders) != len(matchVals):
-            _exit("  ERROR: Error when parsing the reconstruction results.")
+            sys.exit("  ERROR: Error when parsing the reconstruction results.")
 
 # 3.2.2. Important step
         if sum(matchVals) > 0:                                          # IMPORTANT STEP: only write line if reconstruction present

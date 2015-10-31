@@ -3,16 +3,16 @@
 __author__ = "Michael Gruenstaeudl, PhD <mi.gruenstaeudl@gmail.com>"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __info__ = "Reconstructing Ancestral Character States using Mesquite (http://mesquiteproject.org)"
-__version__ = "2015.10.29.2200"
+__version__ = "2015.10.31.1500"
 
 #####################
 # IMPORT OPERATIONS #
 #####################
 
-from sys import exit as _exit
 from csv import reader as _csvreader
 
 import argparse
+import sys
 import CustomFileOps as CFO
 import CustomPhyloOps as CPO
 import CustomStringOps as CSO
@@ -21,8 +21,10 @@ opt_deps = ["numpy"]
 if opt_deps:
     try:
         map(__import__, opt_deps)
-    except ImportError:
-        _exit("  ERROR: Please install Python package 'numpy'.")
+#    except ImportError:                                                # Not all systems raise the exception "ImportError"; others raise different exception.
+    except:
+        print sys.exc_info()[0]
+        sys.exit("  ERROR: Please install the following Python packages: " + ", ".join(opt_deps))
         # FUTURE CODE:
         # CFO.installPkgs(opt_deps)
 import numpy
@@ -114,8 +116,8 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     try:
         pos = plottreeH.find("BEGIN TREES;") + len("BEGIN TREES;")
         plottreeH = plottreeH[:pos] + "\nTitle 'block2'" + plottreeH[pos:]
-    except: 
-        _exit("  ERROR: Error with plotting tree.")
+    except:
+        sys.exit("  ERROR: Error with plotting tree.")
 
     # 1.6. Parse characters
     #mdl = mdl.replace("setCharacter 1;", "".join(["setCharacter ", charnum, ";"]))  # Adjusting character in question in mdl
@@ -130,17 +132,18 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
         charstates = [x for x in charstates if x != "?"]                # Question mark is not a character state, but indicates missing data
         if kw == "parsimony":
             if "I" in charstates:
-                _exit("  ERROR: Character state 'I' is a reserved state and cannot be used.")
+                sys.exit("  ERROR: Character state 'I' is a reserved state and cannot be used.")
         if kw == "likelihood" or kw == "bayesian":
             try:
                 [int(c) for c in charstates]
             except ValueError:
-                _exit("  ERROR: Likelihood reconstruction in Mesquite requires character states to be coded as integers, starting at 0.")
+                sys.exit("  ERROR: Likelihood reconstruction in Mesquite requires character states to be coded as integers, starting at 0.")
         arr = matrx[:, [0,n]]
         arrStr = CSO.makeprettytable(arr)
         chars = block1 + " ".join(charstates) + block2 + arrStr + block3
-    except: 
-        _exit("  ERROR: Error when parsing the character states.")
+    except:
+        print sys.exc_info()[0]
+        sys.exit("  ERROR: Error when parsing the character states.")
 
     # FUTURE CODE
     #    # 1.7. Character models
@@ -154,11 +157,11 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     #                charstate_L = stpmtrx_L[0].split(",")
     #                ncharstates = len(charstate_L)
     #                if ncharstates != len(charstates):
-    #                    _exit("  ERROR: Error when parsing the character model.")
+    #                    sys.exit("  ERROR: Error when parsing the character model.")
     #                stpmtrx = '\n'.join([i.replace(","," ") for i in stpmtrx_L])
     #                charmdl = block4 + str(ncharstates) + "\n" + stpmtrx + "\n" + block5
     #            except: 
-    #                _exit("  ERROR: Error when parsing the character model.")
+    #                sys.exit("  ERROR: Error when parsing the character model.")
     #            # Once optcrit has been formatted
     #            kw_find = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.parsimony.CurrentParsModels.CurrentParsModels;"
     #            kw_replace = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.parsimony.StoredParsModel.StoredParsModel;\n\t\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\t\tsetModel 2  STEPMATRIX;\n\t\t\t\t\t\t\tendTell;"
@@ -170,11 +173,11 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     #            try:
     #                tpmarkovmdl_L = optcrit.split(",")
     #                if len(tpmarkovmdl_L) != len(charstates):
-    #                    _exit("  ERROR: Unequal number of character states between input data and character model.")
+    #                    sys.exit("  ERROR: Unequal number of character states between input data and character model.")
     #                tmp = " forward " + tpmarkovmdl_L[0] + " backward " + tpmarkovmdl_L[1]
     #                charmdl = block6 + tmp + block7
     #            except: 
-    #                _exit("  ERROR: Error when parsing the character model.")
+    #                sys.exit("  ERROR: Error when parsing the character model.")
     #            # Once optcrit has been formatted
     #            kw_find = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.stochchar.CurrentProbModels.CurrentProbModels;"
     #            kw_replace = "\n\t\t\t\t\t\t\tsetModelSource  #mesquite.stochchar.StoredProbModel.StoredProbModel;\n\t\t\t\t\t\t\ttell It;\n\t\t\t\t\t\t\t\tsetModel 2   'CUSTOM_MARKOVK_MODEL';\n\t\t\t\t\t\t\tendTell;"
@@ -203,7 +206,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     cmdL = [pathToSoftware, compiledInFn]
     data_handle = CFO.extprog(cmdL, waittime)
     if not data_handle:
-        _exit("  ERROR: No reconstruction data from Mesquite received.")
+        sys.exit("  ERROR: No reconstruction data from Mesquite received.")
     CFO.saveFile(outFn_raw, data_handle)
 
     # ALTERNATIVE:
@@ -237,7 +240,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     mainD = mainD[mainD.find("\nnode"):].splitlines()                   # This steps split the string into a list!
     mainD = filter(None, mainD)                                         # removing all empty elements of mainD
     if not mainD:
-        _exit("  ERROR: Parsing of reconstr. data unsuccessful. Possible issue: Malformed NEXUS file.")
+        sys.exit("  ERROR: Parsing of reconstr. data unsuccessful. Possible issue: Malformed NEXUS file.")
 
 
 # 3. Parsing the reconstruction output
@@ -285,7 +288,8 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
             pass
     outD = "\n".join(outD)                                              # must be outside of loop
     if not outD:
-        _exit("  ERROR: Parsing of reconstruction data unsuccessful.")
+        print sys.exc_info()[0]
+        sys.exit("  ERROR: Parsing of reconstruction data unsuccessful.")
 
 
 # 4. Saving files to disk

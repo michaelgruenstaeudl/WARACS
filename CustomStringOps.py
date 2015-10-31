@@ -20,46 +20,19 @@ import re
 # CLASSES #
 ###########
 
-class exciseStr:
-    ''' Excises string via kw delimitation.
-    Args:
-        inStr <a>, kw1 <b>, kw2 <c>
-    Returns:
-        outstring
+class afterFind:
     '''
-    def __init__(self, a, b, c):
-        self.inStr = a
-        self.kw1 = b
-        self.kw2 = c
-    def afterKw(self):
-        pos1 = afterFind(self.inStr, self.kw1).go()
-        pos2 = self.inStr.find(self.kw2, pos1)
-        return self.inStr[pos1:pos2]
-    def keepKw1(self):
-        pos1 = self.inStr.find(self.kw1)
-        pos2 = self.inStr.find(self.kw2, pos1)
-        return self.inStr[pos1:pos2]
-
-class replaceStr:
-    ''' Replaces a string via kw delimitation.
     Args:
-        inStr <a>, kw1 <b>, kw2 <c>, replc <d>
+        string <a>, string <b>
     Returns:
-        original string containing replc(s)
-    Note:
-        currently requires that kws are only found once;
-        otherwise use TFL:
-        return self.inStr.replace(self.inStr[pos1:pos2],self.replc)
+        integer
     '''
-    def __init__(self, a, b, c, d):
+    def __init__(self, a, b):
         self.inStr = a
-        self.kw1 = b
-        self.kw2 = c
-        self.replc = d
+        self.kw = b
     def go(self):
-        pos1 = afterFind(self.inStr, self.kw1).go()
-        pos2 = self.inStr.find(self.kw2, pos1)
-        return self.inStr[:pos1] + self.replc + self.inStr[pos2:]
+        pos1 = self.inStr.find(self.kw) + len(self.kw)
+        return pos1
 
 class clearSplit:
     ''' Splits string without removing delim.
@@ -89,19 +62,82 @@ class clearSplit:
                 outlist.append(a+b)
         return outlist
 
-class afterFind:
-    '''
+class exciseStr:
+    ''' Excises string via kw delimitation.
     Args:
-        string <a>, string <b>
+        inStr <a>, kw1 <b>, kw2 <c>
     Returns:
-        integer
+        outstring
+    '''
+    def __init__(self, a, b, c):
+        self.inStr = a
+        self.kw1 = b
+        self.kw2 = c
+    def afterKw(self):
+        pos1 = afterFind(self.inStr, self.kw1).go()
+        pos2 = self.inStr.find(self.kw2, pos1)
+        return self.inStr[pos1:pos2]
+    def keepKw1(self):
+        pos1 = self.inStr.find(self.kw1)
+        pos2 = self.inStr.find(self.kw2, pos1)
+        return self.inStr[pos1:pos2]
+
+class findAll:
+    ''' class to find all instances of a substring in string 
+    Args:
+        substring <a>, string <b>
+    Returns:
+        list
     '''
     def __init__(self, a, b):
-        self.inStr = a
-        self.kw = b
+        self.substring = a
+        self.astring = b
     def go(self):
-        pos1 = self.inStr.find(self.kw) + len(self.kw)
-        return pos1
+        return [elem.start() for elem in re.finditer(self.substring, self.astring)]
+
+class isEven:
+    ''' Checking if number is even.
+    Args:
+        integer <a>
+    Returns:
+        boolean
+    '''
+    def __init__(self, a):
+        self.inInt = a
+    def go(self):
+        return self.inInt % 2 == 0
+
+class makePrettyTable:
+    ''' Generate a table from an array
+    Args:
+        array <a>
+    Returns:
+        string
+    '''
+    def __init__(self, a):
+        self.inArray = a
+    def go(self):
+        longest_str = max(self.inArray[:,0], key=len)
+        outStr = ""
+        for row in self.inArray:
+            whitespaces = len(longest_str)-len(row[0])
+            outStr += row[0].ljust(whitespaces) + " " + row[1] + "\n"
+        return outStr
+
+class makePairwise:
+    ''' Converts a list into pairs of two.
+    Args:
+        list <a>
+    Returns:
+        list: list of pairs
+    '''
+    def __init__(self, a):
+        self.inL = a
+    def go(self):
+        from itertools import tee, izip
+        a, b = tee(self.inL)
+        next(b, None)
+        return izip(a, b)
 
 class removeExt:
     ''' Returns inStr without extension (i.e. ".txt" or ".trees").
@@ -134,32 +170,26 @@ class removePath:
             sep = "\\"
         return self.inStr[self.inStr.rfind(sep)+len(sep):]
 
-class isEven:
-    ''' Checking if number is even.
+class replaceStr:
+    ''' Replaces a string via kw delimitation.
     Args:
-        integer <a>
+        inStr <a>, kw1 <b>, kw2 <c>, replc <d>
     Returns:
-        boolean
+        original string containing replc(s)
+    Note:
+        currently requires that kws are only found once;
+        otherwise use TFL:
+        return self.inStr.replace(self.inStr[pos1:pos2],self.replc)
     '''
-    def __init__(self, a):
-        self.inInt = a
+    def __init__(self, a, b, c, d):
+        self.inStr = a
+        self.kw1 = b
+        self.kw2 = c
+        self.replc = d
     def go(self):
-        return self.inInt % 2 == 0
-
-class makePairwise:
-    ''' Converts a list into pairs of two.
-    Args:
-        list <a>
-    Returns:
-        list: list of pairs
-    '''
-    def __init__(self, a):
-        self.inL = a
-    def go(self):
-        from itertools import tee, izip
-        a, b = tee(self.inL)
-        next(b, None)
-        return izip(a, b)
+        pos1 = afterFind(self.inStr, self.kw1).go()
+        pos2 = self.inStr.find(self.kw2, pos1)
+        return self.inStr[:pos1] + self.replc + self.inStr[pos2:]
 
 class rmBlankLns:
     ''' Removes blank lines from file object
@@ -196,7 +226,7 @@ class splitKeepSep:
                   re.split("(%s)" % re.escape(self.sep), self.inStr)[1:], [])
         return outL
 
-class splitKeepSep2:
+class splitKeepSep2:                                                    # Problem: Difficult to know, if separator should be attached to left or right of element; currently to right 
     ''' Split a string by separator, but keeps separator
     Args:
         string <a>
@@ -221,23 +251,6 @@ class randomWord:
     def go(self):
         return ''.join(_choice(_lowercase) for i in range(self.inInt))
 
-class makePrettyTable:
-    ''' Generate a table from an array
-    Args:
-        array <a>
-    Returns:
-        string
-    '''
-    def __init__(self, a):
-        self.inArray = a
-    def go(self):
-        longest_str = max(self.inArray[:,0], key=len)
-        outStr = ""
-        for row in self.inArray:
-            whitespaces = len(longest_str)-len(row[0])
-            outStr += row[0].ljust(whitespaces) + " " + row[1] + "\n"
-        return outStr
-
 
 ###############
 # DEFINITIONS #
@@ -248,6 +261,9 @@ def afind(inStr, kw):
 
 def csplit(inStr, delim, rflag=False):
     return clearSplit(inStr, delim, rflag).go()
+
+def findall(substring, astring):
+    return findAll(substring, astring).go()
 
 def exstr(inStr, kw1, kw2):
     return exciseStr(inStr, kw1, kw2).afterKw()
@@ -268,7 +284,7 @@ def replstr(inStr, kw1, kw2, replc):
     return replaceStr(inStr, kw1, kw2, replc).go()
 
 def rmblanklns(inFile):
-    return rmBlankLns(inFile).go2()
+    return rmBlankLns(inFile).go()
 
 def rmext(inStr):
     return removeExt(inStr).go()

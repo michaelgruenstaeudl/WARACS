@@ -46,7 +46,7 @@ class LoadFile:
         infile = open(self.Fn, "r").read()
         return infile
     def readLines(self):
-        infile = open(self.Fn, "r").readlines()
+        infile = open(self.Fn, "r").read().splitlines()
         return infile
     def commaDelim(self):
         infile = open(self.Fn, "r").read().split(",")

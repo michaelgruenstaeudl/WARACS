@@ -10,13 +10,16 @@ __version__ = "2015.10.29.2100"
 #####################
 
 import CustomFileOps as GFO
+import sys
 
 opt_deps = ["dendropy"]
 if opt_deps:
     try:
         map(__import__, opt_deps)
-    except ImportError:
-        _exit("  ERROR: Please install Python package 'dendropy'.")
+#    except ImportError:                                                # Not all systems raise the exception "ImportError"; others raise different exception.
+    except:
+        print sys.exc_info()[0]
+        sys.exit("  ERROR: Please install the following Python packages: " + ", ".join(opt_deps))
         # FUTURE CODE:
         # CFO.installPkgs(opt_deps)
 import dendropy
