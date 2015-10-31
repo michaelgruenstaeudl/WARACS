@@ -16,6 +16,7 @@ from sys import exit as _exit
 from time import sleep as _sleep
 
 import os
+import signal
 
 ###########
 # CLASSES #
@@ -128,14 +129,21 @@ class PopenExtProg:
         self.flag = b
     def go(self):
         initCmd = " ".join(self.cmdL)
-        p = Popen(initCmd, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
-        if self.flag:
-            _sleep(float(self.flag))
-            p.stdin.write("quit\n")
+        if _platform == "linux" or _platform == "linux2" or _platform == "darwin":
+            p = Popen(initCmd, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True, preexec_fn=os.setsid)
+            if self.flag:
+                _sleep(float(self.flag))
+                os.killpg(p.pid, signal.SIGTERM)
+        if _platform == "win32":
+            p = Popen(initCmd, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
+            if self.flag:
+                _sleep(float(self.flag))
+                p.stdin.write("quit\n")
         outStream, errorStream = p.communicate()
         #if errorStream:                                                # too sensistive with many programs
         #    _exit("  ERROR: ", self.err)
         return outStream
+
 
 class RemoveFile:
     ''' Deleting files.

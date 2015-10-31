@@ -14,364 +14,347 @@
     <defs id="genericDefs"/>
     <g>
         <g fill="white" stroke="white">
-            <rect x="0" width="2835" height="1752" y="0" stroke="none"/>
+            <rect x="0" width="2835" height="2050" y="0" stroke="none"/>
             <path fill="black"
-                  d="M27 333.8304 L275 333.8304 L275 342.0731 L27 342.0731 Z"
+                  d="M32 390.6242 L226 390.6242 L226 400.2692 L32 400.2692 Z"
                   stroke="none"/>
         </g>
-        <g font-family="&apos;Arial&apos;" font-size="33">
-            <text x="41.2136" xml:space="preserve" y="274.5342" stroke="none"></text>
-            <text x="68.6894" xml:space="preserve" y="274.5342" stroke="none"></text>
-            <text x="96.1651" xml:space="preserve" y="274.5342" stroke="none"></text>
-            <text x="123.6409" xml:space="preserve" y="274.5342" stroke="none"></text>
+        <g font-family="&apos;Arial&apos;" font-size="39">
+            <text x="48.2252" xml:space="preserve" y="322.1363" stroke="none"></text>
             <path fill="rgb(141,211,199)"
-                  d="M261.0196 265.141 A54.9515 54.9515 0 0 0 169.9878 223.6937L 206.0681 265.141 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M261.0196 265.141 A54.9515 54.9515 0 0 0 169.9878 223.6937L 206.0681 265.141 Z"/>
+                  d="M208.9759 310.2489 A64.3003 64.3003 0 0 0 102.3461 261.8471L 144.6756 310.2489 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M208.9759 310.2489 A64.3003 64.3003 0 0 0 102.3461 261.8471L 144.6756 310.2489 Z"/>
             <path fill="rgb(255,255,179)"
-                  d="M169.9878 223.6937 A54.9515 54.9515 0 0 0 156.0564 242.3704L 206.0681 265.141 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M169.9878 223.6937 A54.9515 54.9515 0 0 0 156.0564 242.3704L 206.0681 265.141 Z"/>
+                  d="M102.3461 261.8471 A64.3003 64.3003 0 0 0 86.0834 283.7635L 144.6756 310.2489 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M102.3461 261.8471 A64.3003 64.3003 0 0 0 86.0834 283.7635L 144.6756 310.2489 Z"/>
             <path fill="rgb(190,186,218)"
-                  d="M156.0564 242.3704 A54.9515 54.9515 0 0 0 169.728 306.3607L 206.0681 265.141 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M156.0564 242.3704 A54.9515 54.9515 0 0 0 169.728 306.3607L 206.0681 265.141 Z"/>
+                  d="M86.0834 283.7635 A64.3003 64.3003 0 0 0 103.2668 359.4407L 144.6756 310.2489 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M86.0834 283.7635 A64.3003 64.3003 0 0 0 103.2668 359.4407L 144.6756 310.2489 Z"/>
             <path fill="rgb(251,128,114)"
-                  d="M169.728 306.3607 A54.9515 54.9515 0 0 0 261.0196 265.141L 206.0681 265.141 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M169.728 306.3607 A54.9515 54.9515 0 0 0 261.0196 265.141L 206.0681 265.141 Z"/>
-            <circle fill="none" stroke-width="2.7476" r="54.9515" cx="206.0681"
-                    cy="265.141"/>
-            <text x="89.4643" xml:space="preserve" y="185.238" stroke="none">A 0.364</text><text x="87.2547"
-                  xml:space="preserve" y="144.0244" stroke="none">C 0.068</text><text x="89.3682"
-                  xml:space="preserve" y="102.8107" stroke="none">E 0.203</text><text x="87.639"
-                  xml:space="preserve" y="61.5971" stroke="none">M 0.365</text><path fill="none"
-                  d="M296 145.659 L295.3643 145.659 L291.243 145.659 C284.4145 145.659 278.8789 151.1946 278.8789 158.0231 L278.8789 166.2658 L278.8789 501.3949 L278.8789 509.6376 C278.8789 516.4661 284.4145 522.0016 291.243 522.0016 L295.3643 522.0016 L296 522.0016"
-                  stroke-width="8.2427" stroke-linecap="butt"
+                  d="M103.2668 359.4407 A64.3003 64.3003 0 0 0 208.9759 310.2489L 144.6756 310.2489 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M103.2668 359.4407 A64.3003 64.3003 0 0 0 208.9759 310.2489L 144.6756 310.2489 Z"/>
+            <circle fill="none" stroke-width="3.215" r="64.3003" cx="144.6756"
+                    cy="310.2489"/>
+            <text x="56.4595" xml:space="preserve" y="217.6483" stroke="none">A 0.364</text><text x="53.874"
+                  xml:space="preserve" y="169.4231" stroke="none">C 0.068</text><text x="56.3471"
+                  xml:space="preserve" y="121.1979" stroke="none">E 0.206</text><text x="57.415"
+                  xml:space="preserve" y="72.9727" stroke="none">M 0.361</text><path fill="none"
+                  d="M250 170.4397 L249.1636 170.4397 L244.3411 170.4397 C236.3509 170.4397 229.8735 176.9171 229.8735 184.9073 L229.8735 194.5523 L229.8735 586.6962 L229.8735 596.3412 C229.8735 604.3314 236.3509 610.8088 244.3411 610.8088 L249.1636 610.8088 L250 610.8088"
+                  stroke-width="9.645" stroke-linecap="butt"
                   stroke-linejoin="bevel"/>
-            <path d="M295.3643 141.5377 L2534.6379 141.5377 L2534.6379 149.7804 L295.3643 149.7804 Z"
+            <path d="M249.1636 165.6172 L2483.5984 165.6172 L2483.5984 175.2622 L249.1636 175.2622 Z"
                   stroke="none"/>
-            <text font-style="italic" x="2548.3757" xml:space="preserve"
-                  font-size="55" y="161.3143" stroke="none">outgroup</text><path d="M295.3643 517.8803 L543 517.8803 L543 526.123 L295.3643 526.123 Z"
+            <text font-style="italic" x="2499.6736" xml:space="preserve"
+                  font-size="64" y="188.252" stroke="none">outgroup</text><path d="M249.1636 605.9862 L443 605.9862 L443 615.6312 L249.1636 615.6312 Z"
                   stroke="none"/>
-            <text x="309.1022" xml:space="preserve" y="458.5841" stroke="none"></text>
-            <text x="336.5779" xml:space="preserve" y="458.5841" stroke="none"></text>
-            <text x="364.0537" xml:space="preserve" y="458.5841" stroke="none"></text>
-            <text x="391.5294" xml:space="preserve" y="458.5841" stroke="none"></text>
+            <text x="265.2387" xml:space="preserve" y="537.4983" stroke="none"></text>
             <path fill="rgb(141,211,199)"
-                  d="M528.9082 449.1909 A54.9515 54.9515 0 0 0 431.7505 414.0013L 473.9567 449.1909 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M528.9082 449.1909 A54.9515 54.9515 0 0 0 431.7505 414.0013L 473.9567 449.1909 Z"/>
+                  d="M425.9894 525.6109 A64.3003 64.3003 0 0 0 311.6338 485.2501L 361.6891 525.6109 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M425.9894 525.6109 A64.3003 64.3003 0 0 0 311.6338 485.2501L 361.6891 525.6109 Z"/>
             <path fill="rgb(255,255,179)"
-                  d="M431.7505 414.0013 A54.9515 54.9515 0 0 0 425.8992 422.5424L 473.9567 449.1909 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M431.7505 414.0013 A54.9515 54.9515 0 0 0 425.8992 422.5424L 473.9567 449.1909 Z"/>
+                  d="M311.6338 485.2501 A64.3003 64.3003 0 0 0 304.9575 495.3445L 361.6891 525.6109 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M311.6338 485.2501 A64.3003 64.3003 0 0 0 304.9575 495.3445L 361.6891 525.6109 Z"/>
             <path fill="rgb(190,186,218)"
-                  d="M425.8992 422.5424 A54.9515 54.9515 0 0 0 431.0941 483.578L 473.9567 449.1909 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M425.8992 422.5424 A54.9515 54.9515 0 0 0 431.0941 483.578L 473.9567 449.1909 Z"/>
+                  d="M304.9575 495.3445 A64.3003 64.3003 0 0 0 312.4034 566.9079L 361.6891 525.6109 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M304.9575 495.3445 A64.3003 64.3003 0 0 0 312.4034 566.9079L 361.6891 525.6109 Z"/>
             <path fill="rgb(251,128,114)"
-                  d="M431.0941 483.578 A54.9515 54.9515 0 0 0 528.9082 449.1909L 473.9567 449.1909 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M431.0941 483.578 A54.9515 54.9515 0 0 0 528.9082 449.1909L 473.9567 449.1909 Z"/>
-            <circle fill="none" stroke-width="2.7476" r="54.9515" cx="473.9567"
-                    cy="449.1909"/>
-            <text x="357.2808" xml:space="preserve" y="369.2879" stroke="none">A 0.389</text><text x="355.2153"
-                  xml:space="preserve" y="328.0743" stroke="none">C 0.030</text><text x="357.2328"
-                  xml:space="preserve" y="286.8607" stroke="none">E 0.188</text><text x="355.7437"
-                  xml:space="preserve" y="245.6471" stroke="none">M 0.392</text><path fill="none"
-                  d="M564 222.5911 L563.2528 222.5911 L559.1315 222.5911 C552.303 222.5911 546.7674 228.1267 546.7674 234.9552 L546.7674 243.198 L546.7674 800.8054 L546.7674 809.0482 C546.7674 815.8766 552.303 821.4122 559.1315 821.4122 L563.2528 821.4122 L564 821.4122"
-                  stroke-width="8.2427" stroke-linecap="butt"
+                  d="M312.4034 566.9079 A64.3003 64.3003 0 0 0 425.9894 525.6109L 361.6891 525.6109 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M312.4034 566.9079 A64.3003 64.3003 0 0 0 425.9894 525.6109L 361.6891 525.6109 Z"/>
+            <circle fill="none" stroke-width="3.215" r="64.3003" cx="361.6891"
+                    cy="525.6109"/>
+            <text x="273.5573" xml:space="preserve" y="433.0103" stroke="none">A 0.392</text><text x="270.9717"
+                  xml:space="preserve" y="384.7851" stroke="none">C 0.030</text><text x="273.3324"
+                  xml:space="preserve" y="336.5599" stroke="none">E 0.189</text><text x="271.4214"
+                  xml:space="preserve" y="288.3347" stroke="none">M 0.389</text><path fill="none"
+                  d="M467 260.4601 L466.177 260.4601 L461.3545 260.4601 C453.3643 260.4601 446.887 266.9375 446.887 274.9277 L446.887 284.5727 L446.887 937.0448 L446.887 946.6899 C446.887 954.6801 453.3643 961.1574 461.3545 961.1574 L466.177 961.1574 L467 961.1574"
+                  stroke-width="9.645" stroke-linecap="butt"
                   stroke-linejoin="bevel"/>
-            <path d="M563.2529 218.4698 L2534.6379 218.4698 L2534.6379 226.7125 L563.2529 226.7125 Z"
+            <path d="M466.1771 255.6376 L2483.5986 255.6376 L2483.5986 265.2826 L466.1771 265.2826 Z"
                   stroke="none"/>
-            <text font-style="italic" x="2548.3757" xml:space="preserve"
-                  font-size="55" y="238.2464" stroke="none">taxonI</text><path d="M563.2529 817.2909 L811 817.2909 L811 825.5336 L563.2529 825.5336 Z"
+            <text font-style="italic" x="2499.6736" xml:space="preserve"
+                  font-size="64" y="278.2724" stroke="none">taxonI</text><path d="M466.1771 956.3349 L660 956.3349 L660 965.9799 L466.1771 965.9799 Z"
                   stroke="none"/>
-            <text x="576.9907" xml:space="preserve" y="757.9947" stroke="none"></text>
-            <text x="604.4665" xml:space="preserve" y="757.9947" stroke="none"></text>
-            <text x="631.9423" xml:space="preserve" y="757.9947" stroke="none"></text>
-            <text x="659.418" xml:space="preserve" y="757.9947" stroke="none"></text>
+            <text x="482.2521" xml:space="preserve" y="887.8469" stroke="none"></text>
             <path fill="rgb(141,211,199)"
-                  d="M796.7967 748.6015 A54.9515 54.9515 0 0 0 724.1101 696.5906L 741.8452 748.6015 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M796.7967 748.6015 A54.9515 54.9515 0 0 0 724.1101 696.5906L 741.8452 748.6015 Z"/>
+                  d="M643.0029 875.9595 A64.3003 64.3003 0 0 0 561.4265 814.0236L 578.7026 875.9595 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M643.0029 875.9595 A64.3003 64.3003 0 0 0 561.4265 814.0236L 578.7026 875.9595 Z"/>
             <path fill="rgb(255,255,179)"
-                  d="M724.1101 696.5906 A54.9515 54.9515 0 0 0 709.1693 704.4207L 741.8452 748.6015 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M724.1101 696.5906 A54.9515 54.9515 0 0 0 709.1693 704.4207L 741.8452 748.6015 Z"/>
+                  d="M561.4265 814.0236 A64.3003 64.3003 0 0 0 543.7924 821.9613L 578.7026 875.9595 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M561.4265 814.0236 A64.3003 64.3003 0 0 0 543.7924 821.9613L 578.7026 875.9595 Z"/>
             <path fill="rgb(190,186,218)"
-                  d="M709.1693 704.4207 A54.9515 54.9515 0 0 0 725.7542 801.1443L 741.8452 748.6015 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M709.1693 704.4207 A54.9515 54.9515 0 0 0 725.7542 801.1443L 741.8452 748.6015 Z"/>
+                  d="M543.7924 821.9613 A64.3003 64.3003 0 0 0 558.3333 936.9482L 578.7026 875.9595 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M543.7924 821.9613 A64.3003 64.3003 0 0 0 558.3333 936.9482L 578.7026 875.9595 Z"/>
             <path fill="rgb(251,128,114)"
-                  d="M725.7542 801.1443 A54.9515 54.9515 0 0 0 796.7967 748.6015L 741.8452 748.6015 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M725.7542 801.1443 A54.9515 54.9515 0 0 0 796.7967 748.6015L 741.8452 748.6015 Z"/>
-            <circle fill="none" stroke-width="2.7476" r="54.9515" cx="741.8452"
-                    cy="748.6015"/>
-            <text x="625.3135" xml:space="preserve" y="668.6985" stroke="none">A 0.302</text><text x="623.0319"
-                  xml:space="preserve" y="627.4849" stroke="none">C 0.049</text><text x="627.6912"
-                  xml:space="preserve" y="586.2712" stroke="none">E 0.351</text><text x="623.5122"
-                  xml:space="preserve" y="545.0576" stroke="none">M 0.297</text><path fill="none"
-                  d="M832 542.6837 L831.1414 542.6837 L827.02 542.6837 C820.1915 542.6837 814.6559 548.2192 814.6559 555.0477 L814.6559 563.2905 L814.6559 1079.5341 L814.6559 1087.7769 C814.6559 1094.6053 820.1915 1100.1409 827.02 1100.1409 L831.1414 1100.1409 L832 1100.1409"
-                  stroke-width="8.2427" stroke-linecap="butt"
+                  d="M558.3333 936.9482 A64.3003 64.3003 0 0 0 643.0029 875.9595L 578.7026 875.9595 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M558.3333 936.9482 A64.3003 64.3003 0 0 0 643.0029 875.9595L 578.7026 875.9595 Z"/>
+            <circle fill="none" stroke-width="3.215" r="64.3003" cx="578.7026"
+                    cy="875.9595"/>
+            <text x="490.4302" xml:space="preserve" y="783.3589" stroke="none">A 0.293</text><text x="487.9009"
+                  xml:space="preserve" y="735.1338" stroke="none">C 0.048</text><text x="490.374"
+                  xml:space="preserve" y="686.9086" stroke="none">E 0.357</text><text x="491.4419"
+                  xml:space="preserve" y="638.6833" stroke="none">M 0.301</text><path fill="none"
+                  d="M684 635.0093 L683.1906 635.0093 L678.368 635.0093 C670.3778 635.0093 663.9005 641.4866 663.9005 649.4769 L663.9005 659.1219 L663.9005 1263.1929 L663.9005 1272.8379 C663.9005 1280.8281 670.3778 1287.3055 678.368 1287.3055 L683.1906 1287.3055 L684 1287.3055"
+                  stroke-width="9.645" stroke-linecap="butt"
                   stroke-linejoin="bevel"/>
-            <path d="M831.1414 538.5623 L2247 538.5623 L2247 546.8049 L831.1414 546.8049 Z"
+            <path d="M683.1906 630.1868 L2179 630.1868 L2179 639.8318 L683.1906 639.8318 Z"
                   stroke="none"/>
-            <text x="1456.2147" xml:space="preserve" y="479.2661" stroke="none"></text>
-            <text x="1483.6906" xml:space="preserve" y="479.2661" stroke="none"></text>
+            <text x="1350.306" xml:space="preserve" y="561.6988" stroke="none"></text>
             <path fill="rgb(141,211,199)"
-                  d="M1621.0693 469.8729 A54.9515 54.9515 0 1 0 1512.4254 481.5691L 1566.1178 469.8729 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M1621.0693 469.8729 A54.9515 54.9515 0 1 0 1512.4254 481.5691L 1566.1178 469.8729 Z"/>
+                  d="M1511.0567 549.8114 A64.3003 64.3003 0 1 0 1384.1998 564.6839L 1446.7565 549.8114 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M1511.0567 549.8114 A64.3003 64.3003 0 1 0 1384.1998 564.6839L 1446.7565 549.8114 Z"/>
             <path fill="rgb(251,128,114)"
-                  d="M1512.4254 481.5691 A54.9515 54.9515 0 0 0 1621.0693 469.8729L 1566.1178 469.8729 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M1512.4254 481.5691 A54.9515 54.9515 0 0 0 1621.0693 469.8729L 1566.1178 469.8729 Z"/>
-            <circle fill="none" stroke-width="2.7476" r="54.9515" cx="1566.1178"
-                    cy="469.8729"/>
-            <text x="1477.0618" xml:space="preserve" y="389.9699" stroke="none">A 0.532</text><text x="1475.3085"
-                  xml:space="preserve" y="348.7563" stroke="none">M 0.464</text><path fill="none"
-                  d="M2267 484.9846 L2266.7493 484.9846 L2262.6279 484.9846 C2255.7996 484.9846 2250.2639 490.5201 2250.2639 497.3486 L2250.2639 505.5914 L2250.2639 579.7759 L2250.2639 588.0186 C2250.2639 594.8471 2255.7996 600.3827 2262.6279 600.3827 L2266.7493 600.3827 L2267 600.3827"
-                  stroke-width="8.2427" stroke-linecap="butt"
+                  d="M1384.1998 564.6839 A64.3003 64.3003 0 0 0 1511.0567 549.8114L 1446.7565 549.8114 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M1384.1998 564.6839 A64.3003 64.3003 0 0 0 1511.0567 549.8114L 1446.7565 549.8114 Z"/>
+            <circle fill="none" stroke-width="3.215" r="64.3003" cx="1446.7565"
+                    cy="549.8114"/>
+            <text x="1358.3716" xml:space="preserve" y="457.2108" stroke="none">A 0.535</text><text x="1359.4957"
+                  xml:space="preserve" y="408.9856" stroke="none">M 0.461</text><path fill="none"
+                  d="M2203 567.494 L2202.2847 567.494 L2197.4622 567.494 C2189.4719 567.494 2182.9946 573.9713 2182.9946 581.9615 L2182.9946 591.6066 L2182.9946 678.412 L2182.9946 688.057 C2182.9946 696.0472 2189.4719 702.5245 2197.4622 702.5245 L2202.2847 702.5245 L2203 702.5245"
+                  stroke-width="9.645" stroke-linecap="butt"
                   stroke-linejoin="bevel"/>
-            <path d="M2266.7493 480.8632 L2460 480.8632 L2460 489.1059 L2266.7493 489.1059 Z"
+            <path d="M2202.2847 562.6714 L2396 562.6714 L2396 572.3165 L2202.2847 572.3165 Z"
                   stroke="none"/>
-            <text x="2280.4873" xml:space="preserve" y="421.567" stroke="none"></text>
-            <text x="2307.9629" xml:space="preserve" y="421.567" stroke="none"></text>
+            <text x="2218.3599" xml:space="preserve" y="494.1835" stroke="none"></text>
             <path fill="rgb(141,211,199)"
-                  d="M2445.3417 412.1738 A54.9515 54.9515 0 0 0 2335.4412 411.6554L 2390.3902 412.1738 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M2445.3417 412.1738 A54.9515 54.9515 0 0 0 2335.4412 411.6554L 2390.3902 412.1738 Z"/>
+                  d="M2379.1106 482.2961 A64.3003 64.3003 0 1 0 2250.5113 482.7001L 2314.8103 482.2961 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M2379.1106 482.2961 A64.3003 64.3003 0 1 0 2250.5113 482.7001L 2314.8103 482.2961 Z"/>
             <path fill="rgb(251,128,114)"
-                  d="M2335.4412 411.6554 A54.9515 54.9515 0 1 0 2445.3417 412.1738L 2390.3902 412.1738 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M2335.4412 411.6554 A54.9515 54.9515 0 1 0 2445.3417 412.1738L 2390.3902 412.1738 Z"/>
-            <circle fill="none" stroke-width="2.7476" r="54.9515" cx="2390.3902"
-                    cy="412.1738"/>
-            <text x="2301.1902" xml:space="preserve" y="332.2708" stroke="none">A 0.498</text><text x="2302.0789"
-                  xml:space="preserve" y="291.0572" stroke="none">M 0.501</text><path fill="none"
-                  d="M2480 446.5185 L2479.6863 446.5185 L2475.5649 446.5185 C2468.7366 446.5185 2463.2009 452.0541 2463.2009 458.8826 L2463.2009 467.1253 L2463.2009 502.8438 L2463.2009 511.0865 C2463.2009 517.915 2468.7366 523.4506 2475.5649 523.4506 L2479.6863 523.4506 L2480 523.4506"
-                  stroke-width="8.2427" stroke-linecap="butt"
+                  d="M2250.5113 482.7001 A64.3003 64.3003 0 0 0 2379.1106 482.2961L 2314.8103 482.2961 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M2250.5113 482.7001 A64.3003 64.3003 0 0 0 2379.1106 482.2961L 2314.8103 482.2961 Z"/>
+            <circle fill="none" stroke-width="3.215" r="64.3003" cx="2314.8103"
+                    cy="482.2961"/>
+            <text x="2229.5168" xml:space="preserve" y="389.6955" stroke="none">A 0.501</text><text x="2224.5425"
+                  xml:space="preserve" y="341.4703" stroke="none">M 0.499</text><path fill="none"
+                  d="M2420 522.4838 L2419.2981 522.4838 L2414.4756 522.4838 C2406.4854 522.4838 2400.0081 528.9611 2400.0081 536.9514 L2400.0081 546.5964 L2400.0081 588.3916 L2400.0081 598.0366 C2400.0081 606.0268 2406.4854 612.5042 2414.4756 612.5042 L2419.2981 612.5042 L2420 612.5042"
+                  stroke-width="9.645" stroke-linecap="butt"
                   stroke-linejoin="bevel"/>
-            <path d="M2479.6865 442.3972 L2534.6379 442.3972 L2534.6379 450.6399 L2479.6865 450.6399 Z"
+            <path d="M2419.2983 517.6613 L2483.5986 517.6613 L2483.5986 527.3063 L2419.2983 527.3063 Z"
                   stroke="none"/>
-            <text font-style="italic" x="2548.3757" xml:space="preserve"
-                  font-size="55" y="462.1738" stroke="none">taxonL</text><path d="M2479.6865 519.3292 L2534.6379 519.3292 L2534.6379 527.5719 L2479.6865 527.5719 Z"
+            <text font-style="italic" x="2499.6736" xml:space="preserve"
+                  font-size="64" y="540.2961" stroke="none">taxonL</text><path d="M2419.2983 607.6816 L2483.5986 607.6816 L2483.5986 617.3267 L2419.2983 617.3267 Z"
                   stroke="none"/>
-            <text font-style="italic" x="2548.3757" xml:space="preserve"
-                  font-size="55" y="539.106" stroke="none">taxonM</text><path d="M2266.7493 596.2613 L2534.6377 596.2613 L2534.6377 604.504 L2266.7493 604.504 Z"
+            <text font-style="italic" x="2499.6736" xml:space="preserve"
+                  font-size="64" y="630.3165" stroke="none">taxonM</text><path d="M2202.2847 697.702 L2483.5984 697.702 L2483.5984 707.347 L2202.2847 707.347 Z"
                   stroke="none"/>
-            <text font-style="italic" x="2548.3757" xml:space="preserve"
-                  font-size="55" y="616.038" stroke="none">taxonA</text><path d="M831.1414 1096.0194 L1079 1096.0194 L1079 1104.2621 L831.1414 1104.2621 Z"
+            <text font-style="italic" x="2499.6736" xml:space="preserve"
+                  font-size="64" y="720.3369" stroke="none">taxonA</text><path d="M683.1906 1282.4829 L877 1282.4829 L877 1292.1279 L683.1906 1292.1279 Z"
                   stroke="none"/>
-            <text x="844.8793" xml:space="preserve" y="1036.7231" stroke="none"></text>
-            <text x="872.355" xml:space="preserve" y="1036.7231" stroke="none"></text>
-            <text x="899.8308" xml:space="preserve" y="1036.7231" stroke="none"></text>
-            <text x="927.3066" xml:space="preserve" y="1036.7231" stroke="none"></text>
+            <text x="699.2656" xml:space="preserve" y="1213.995" stroke="none"></text>
             <path fill="rgb(141,211,199)"
-                  d="M1064.6853 1027.33 A54.9515 54.9515 0 0 0 1063.7756 1017.3725L 1009.7338 1027.33 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M1064.6853 1027.33 A54.9515 54.9515 0 0 0 1063.7756 1017.3725L 1009.7338 1027.33 Z"/>
+                  d="M860.0163 1202.1075 A64.3003 64.3003 0 0 0 859.0914 1191.2407L 795.7161 1202.1075 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M860.0163 1202.1075 A64.3003 64.3003 0 0 0 859.0914 1191.2407L 795.7161 1202.1075 Z"/>
             <path fill="rgb(255,255,179)"
-                  d="M1063.7756 1017.3725 A54.9515 54.9515 0 0 0 1013.5287 972.5097L 1009.7338 1027.33 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M1063.7756 1017.3725 A54.9515 54.9515 0 0 0 1013.5287 972.5097L 1009.7338 1027.33 Z"/>
+                  d="M859.0914 1191.2407 A64.3003 64.3003 0 0 0 798.0409 1137.8493L 795.7161 1202.1075 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M859.0914 1191.2407 A64.3003 64.3003 0 0 0 798.0409 1137.8493L 795.7161 1202.1075 Z"/>
             <path fill="rgb(190,186,218)"
-                  d="M1013.5287 972.5097 A54.9515 54.9515 0 1 0 1063.8371 1036.9478L 1009.7338 1027.33 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M1013.5287 972.5097 A54.9515 54.9515 0 1 0 1063.8371 1036.9478L 1009.7338 1027.33 Z"/>
+                  d="M798.0409 1137.8493 A64.3003 64.3003 0 1 0 858.8751 1214.1681L 795.7161 1202.1075 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M798.0409 1137.8493 A64.3003 64.3003 0 1 0 858.8751 1214.1681L 795.7161 1202.1075 Z"/>
             <path fill="rgb(251,128,114)"
-                  d="M1063.8371 1036.9478 A54.9515 54.9515 0 0 0 1064.6853 1027.33L 1009.7338 1027.33 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M1063.8371 1036.9478 A54.9515 54.9515 0 0 0 1064.6853 1027.33L 1009.7338 1027.33 Z"/>
-            <circle fill="none" stroke-width="2.7476" r="54.9515" cx="1009.7338"
-                    cy="1027.33"/>
-            <text x="893.0579" xml:space="preserve" y="947.427" stroke="none">A 0.029</text><text x="890.9925"
-                  xml:space="preserve" y="906.2134" stroke="none">C 0.210</text><text x="893.034"
-                  xml:space="preserve" y="864.9998" stroke="none">E 0.733</text><text x="891.3767"
-                  xml:space="preserve" y="823.7861" stroke="none">M 0.028</text><path fill="none"
-                  d="M1100 677.3148 L1099.03 677.3148 L1094.9087 677.3148 C1088.0802 677.3148 1082.5446 682.8504 1082.5446 689.6789 L1082.5446 697.9216 L1082.5446 1502.3601 L1082.5446 1510.6029 C1082.5446 1517.4314 1088.0802 1522.9669 1094.9087 1522.9669 L1099.03 1522.9669 L1100 1522.9669"
-                  stroke-width="8.2427" stroke-linecap="butt"
+                  d="M858.8751 1214.1681 A64.3003 64.3003 0 0 0 860.0163 1202.1075L 795.7161 1202.1075 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M858.8751 1214.1681 A64.3003 64.3003 0 0 0 860.0163 1202.1075L 795.7161 1202.1075 Z"/>
+            <circle fill="none" stroke-width="3.215" r="64.3003" cx="795.7161"
+                    cy="1202.1075"/>
+            <text x="707.4437" xml:space="preserve" y="1109.507" stroke="none">A 0.027</text><text x="704.9424"
+                  xml:space="preserve" y="1061.2817" stroke="none">C 0.217</text><text x="707.275"
+                  xml:space="preserve" y="1013.0566" stroke="none">E 0.725</text><text x="705.5327"
+                  xml:space="preserve" y="964.8314" stroke="none">M 0.030</text><path fill="none"
+                  d="M901 792.545 L900.204 792.545 L895.3815 792.545 C887.3912 792.545 880.9139 799.0223 880.9139 807.0126 L880.9139 816.6576 L880.9139 1757.9535 L880.9139 1767.5985 C880.9139 1775.5887 887.3912 1782.0662 895.3815 1782.0662 L900.204 1782.0662 L901 1782.0662"
+                  stroke-width="9.645" stroke-linecap="butt"
                   stroke-linejoin="bevel"/>
-            <path d="M1099.03 673.1934 L2534.6379 673.1934 L2534.6379 681.4361 L1099.03 681.4361 Z"
+            <path d="M900.204 787.7225 L2483.5986 787.7225 L2483.5986 797.3675 L900.204 797.3675 Z"
                   stroke="none"/>
-            <text font-style="italic" x="2548.3757" xml:space="preserve"
-                  font-size="55" y="692.9701" stroke="none">taxonB</text><path d="M1099.03 1518.8455 L1347 1518.8455 L1347 1527.0881 L1099.03 1527.0881 Z"
+            <text font-style="italic" x="2499.6736" xml:space="preserve"
+                  font-size="64" y="810.3573" stroke="none">taxonB</text><path d="M900.204 1777.2435 L1094 1777.2435 L1094 1786.8885 L900.204 1786.8885 Z"
                   stroke="none"/>
-            <text x="1112.7678" xml:space="preserve" y="1459.5493" stroke="none"></text>
-            <text x="1140.2437" xml:space="preserve" y="1459.5493" stroke="none"></text>
-            <text x="1167.7194" xml:space="preserve" y="1459.5493" stroke="none"></text>
-            <text x="1195.1951" xml:space="preserve" y="1459.5493" stroke="none"></text>
+            <text x="916.2791" xml:space="preserve" y="1708.7556" stroke="none"></text>
             <path fill="rgb(141,211,199)"
-                  d="M1332.5739 1450.1561 A54.9515 54.9515 0 0 0 1332.33 1444.9847L 1277.6224 1450.1561 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M1332.5739 1450.1561 A54.9515 54.9515 0 0 0 1332.33 1444.9847L 1277.6224 1450.1561 Z"/>
+                  d="M1077.0298 1696.8682 A64.3003 64.3003 0 0 0 1076.7812 1691.2193L 1012.7295 1696.8682 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M1077.0298 1696.8682 A64.3003 64.3003 0 0 0 1076.7812 1691.2193L 1012.7295 1696.8682 Z"/>
             <path fill="rgb(255,255,179)"
-                  d="M1332.33 1444.9847 A54.9515 54.9515 0 0 0 1237.5645 1412.5392L 1277.6224 1450.1561 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M1332.33 1444.9847 A54.9515 54.9515 0 0 0 1237.5645 1412.5392L 1277.6224 1450.1561 Z"/>
+                  d="M1076.7812 1691.2193 A64.3003 64.3003 0 0 0 967.2623 1651.401L 1012.7295 1696.8682 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M1076.7812 1691.2193 A64.3003 64.3003 0 0 0 967.2623 1651.401L 1012.7295 1696.8682 Z"/>
             <path fill="rgb(190,186,218)"
-                  d="M1237.5645 1412.5392 A54.9515 54.9515 0 1 0 1332.2964 1455.6711L 1277.6224 1450.1561 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M1237.5645 1412.5392 A54.9515 54.9515 0 1 0 1332.2964 1455.6711L 1277.6224 1450.1561 Z"/>
+                  d="M967.2623 1651.401 A64.3003 64.3003 0 1 0 1076.6633 1703.7233L 1012.7295 1696.8682 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M967.2623 1651.401 A64.3003 64.3003 0 1 0 1076.6633 1703.7233L 1012.7295 1696.8682 Z"/>
             <path fill="rgb(251,128,114)"
-                  d="M1332.2964 1455.6711 A54.9515 54.9515 0 0 0 1332.5739 1450.1561L 1277.6224 1450.1561 Z"
-                  stroke-width="2.7476" stroke="none"/>
-            <path fill="none" stroke-width="2.7476"
-                  d="M1332.2964 1455.6711 A54.9515 54.9515 0 0 0 1332.5739 1450.1561L 1277.6224 1450.1561 Z"/>
-            <circle fill="none" stroke-width="2.7476" r="54.9515" cx="1277.6224"
-                    cy="1450.1561"/>
-            <text x="1160.8744" xml:space="preserve" y="1370.2531" stroke="none">A 0.015</text><text x="1158.7369"
-                  xml:space="preserve" y="1329.0394" stroke="none">C 0.365</text><text x="1160.9706"
-                  xml:space="preserve" y="1287.8258" stroke="none">E 0.604</text><text x="1159.2893"
-                  xml:space="preserve" y="1246.6122" stroke="none">M 0.016</text><path fill="none"
-                  d="M1367 1387.7347 L1366.9186 1387.7347 L1362.7972 1387.7347 C1355.9688 1387.7347 1350.4331 1393.2704 1350.4331 1400.0989 L1350.4331 1408.3416 L1350.4331 1637.5923 L1350.4331 1645.8351 C1350.4331 1652.6636 1355.9688 1658.1991 1362.7972 1658.1991 L1366.9186 1658.1991 L1367 1658.1991"
-                  stroke-width="8.2427" stroke-linecap="butt"
+                  d="M1076.6633 1703.7233 A64.3003 64.3003 0 0 0 1077.0298 1696.8682L 1012.7295 1696.8682 Z"
+                  stroke-width="3.215" stroke="none"/>
+            <path fill="none" stroke-width="3.215"
+                  d="M1076.6633 1703.7233 A64.3003 64.3003 0 0 0 1077.0298 1696.8682L 1012.7295 1696.8682 Z"/>
+            <circle fill="none" stroke-width="3.215" r="64.3003" cx="1012.7295"
+                    cy="1696.8682"/>
+            <text x="924.5133" xml:space="preserve" y="1604.2676" stroke="none">A 0.014</text><text x="924.9349"
+                  xml:space="preserve" y="1556.0424" stroke="none">C 0.361</text><text x="924.3729"
+                  xml:space="preserve" y="1507.8171" stroke="none">E 0.608</text><text x="922.4899"
+                  xml:space="preserve" y="1459.5919" stroke="none">M 0.017</text><path fill="none"
+                  d="M1118 1623.8271 L1117.2174 1623.8271 L1112.3949 1623.8271 C1104.4047 1623.8271 1097.9274 1630.3044 1097.9274 1638.2947 L1097.9274 1647.9397 L1097.9274 1916.1924 L1097.9274 1925.8375 C1097.9274 1933.8278 1104.4047 1940.3052 1112.3949 1940.3052 L1117.2174 1940.3052 L1118 1940.3052"
+                  stroke-width="9.645" stroke-linecap="butt"
                   stroke-linejoin="bevel"/>
-            <path d="M1366.9186 1383.6133 L1532 1383.6133 L1532 1391.856 L1366.9186 1391.856 Z"
+            <path d="M1117.2174 1619.0045 L1311 1619.0045 L1311 1628.6495 L1117.2174 1628.6495 Z"
                   stroke="none"/>
-            <text x="1380.6565" xml:space="preserve" y="1324.3171" stroke="none"></text>
-            <circle fill="rgb(255,255,179)" stroke-width="2.7476" r="54.9515"
-                    cx="1463.0837" cy="1314.9239" stroke="none"/>
-            <circle fill="none" stroke-width="2.7476" r="54.9515" cx="1463.0837"
-                    cy="1314.9239"/>
-            <text x="1385.4839" xml:space="preserve" y="1235.0209" stroke="none">C 0.999</text><path fill="none"
-                  d="M1553 1194.2024 L1552.3799 1194.2024 L1548.2585 1194.2024 C1541.4301 1194.2024 1535.8944 1199.738 1535.8944 1206.5665 L1535.8944 1214.8092 L1535.8944 1560.6603 L1535.8944 1568.903 C1535.8944 1575.7314 1541.4301 1581.267 1548.2585 1581.267 L1552.3799 1581.267 L1553 1581.267"
-                  stroke-width="8.2427" stroke-linecap="butt"
+            <text x="1133.2925" xml:space="preserve" y="1550.5166" stroke="none"></text>
+            <circle fill="rgb(255,255,179)" stroke-width="3.215" r="64.3003"
+                    cx="1229.7429" cy="1538.6291" stroke="none"/>
+            <circle fill="none" stroke-width="3.215" r="64.3003" cx="1229.7429"
+                    cy="1538.6291"/>
+            <text x="1138.9413" xml:space="preserve" y="1446.0286" stroke="none">C 0.999</text><path fill="none"
+                  d="M1335 1397.3695 L1334.2308 1397.3695 L1329.4083 1397.3695 C1321.4181 1397.3695 1314.9408 1403.8468 1314.9408 1411.837 L1314.9408 1421.4821 L1314.9408 1826.172 L1314.9408 1835.8171 C1314.9408 1843.8074 1321.4181 1850.2848 1329.4083 1850.2848 L1334.2308 1850.2848 L1335 1850.2848"
+                  stroke-width="9.645" stroke-linecap="butt"
                   stroke-linejoin="bevel"/>
-            <path d="M1552.3799 1190.0809 L1718 1190.0809 L1718 1198.3236 L1552.3799 1198.3236 Z"
+            <path d="M1334.231 1392.547 L1528 1392.547 L1528 1402.192 L1334.231 1402.192 Z"
                   stroke="none"/>
-            <text x="1566.1178" xml:space="preserve" y="1130.7848" stroke="none"></text>
-            <circle fill="rgb(255,255,179)" stroke-width="2.7476" r="54.9515"
-                    cx="1648.545" cy="1121.3916" stroke="none"/>
-            <circle fill="none" stroke-width="2.7476" r="54.9515" cx="1648.545"
-                    cy="1121.3916"/>
-            <text x="1571.0173" xml:space="preserve" y="1041.4885" stroke="none">C 1.000</text><path fill="none"
-                  d="M1738 956.1937 L1737.8412 956.1937 L1733.7198 956.1937 C1726.8914 956.1937 1721.3557 961.7293 1721.3557 968.5578 L1721.3557 976.8005 L1721.3557 1411.6042 L1721.3557 1419.847 C1721.3557 1426.6755 1726.8914 1432.2111 1733.7198 1432.2111 L1737.8412 1432.2111 L1738 1432.2111"
-                  stroke-width="8.2427" stroke-linecap="butt"
+            <text x="1350.306" xml:space="preserve" y="1324.059" stroke="none"></text>
+            <circle fill="rgb(255,255,179)" stroke-width="3.215" r="64.3003"
+                    cx="1446.7565" cy="1312.1716" stroke="none"/>
+            <circle fill="none" stroke-width="3.215" r="64.3003" cx="1446.7565"
+                    cy="1312.1716"/>
+            <text x="1356.0391" xml:space="preserve" y="1219.571" stroke="none">C 1.000</text><path fill="none"
+                  d="M1552 1118.869 L1551.2444 1118.869 L1546.4219 1118.869 C1538.4316 1118.869 1531.9543 1125.3463 1531.9543 1133.3365 L1531.9543 1142.9816 L1531.9543 1651.7576 L1531.9543 1661.4026 C1531.9543 1669.3928 1538.4316 1675.8702 1546.4219 1675.8702 L1551.2444 1675.8702 L1552 1675.8702"
+                  stroke-width="9.645" stroke-linecap="butt"
                   stroke-linejoin="bevel"/>
-            <path d="M1737.8412 952.0723 L2274 952.0723 L2274 960.315 L1737.8412 960.315 Z"
+            <path d="M1551.2444 1114.0464 L2179 1114.0464 L2179 1123.6914 L1551.2444 1123.6914 Z"
                   stroke="none"/>
-            <text x="1937.0404" xml:space="preserve" y="892.7761" stroke="none"></text>
-            <circle fill="rgb(255,255,179)" stroke-width="2.7476" r="54.9515"
-                    cx="2019.4676" cy="883.3829" stroke="none"/>
-            <circle fill="none" stroke-width="2.7476" r="54.9515" cx="2019.4676"
-                    cy="883.3829"/>
-            <text x="1941.8678" xml:space="preserve" y="803.4799" stroke="none">C 0.999</text><path fill="none"
-                  d="M2295 898.4947 L2294.2251 898.4947 L2290.1038 898.4947 C2283.2754 898.4947 2277.7397 904.0303 2277.7397 910.8588 L2277.7397 919.1015 L2277.7397 993.286 L2277.7397 1001.5287 C2277.7397 1008.3572 2283.2754 1013.8928 2290.1038 1013.8928 L2294.2251 1013.8928 L2295 1013.8928"
-                  stroke-width="8.2427" stroke-linecap="butt"
+            <text x="1784.3329" xml:space="preserve" y="1045.5583" stroke="none"></text>
+            <circle fill="rgb(255,255,179)" stroke-width="3.215" r="64.3003"
+                    cx="1880.7833" cy="1033.671" stroke="none"/>
+            <circle fill="none" stroke-width="3.215" r="64.3003" cx="1880.7833"
+                    cy="1033.671"/>
+            <text x="1790.066" xml:space="preserve" y="941.0705" stroke="none">C 1.000</text><path fill="none"
+                  d="M2203 1051.3538 L2202.2847 1051.3538 L2197.4622 1051.3538 C2189.4719 1051.3538 2182.9946 1057.8311 2182.9946 1065.8213 L2182.9946 1075.4663 L2182.9946 1162.2717 L2182.9946 1171.9167 C2182.9946 1179.907 2189.4719 1186.3844 2197.4622 1186.3844 L2202.2847 1186.3844 L2203 1186.3844"
+                  stroke-width="9.645" stroke-linecap="butt"
                   stroke-linejoin="bevel"/>
-            <path d="M2294.2251 894.3733 L2460 894.3733 L2460 902.616 L2294.2251 902.616 Z"
+            <path d="M2202.2847 1046.5311 L2396 1046.5311 L2396 1056.1761 L2202.2847 1056.1761 Z"
                   stroke="none"/>
-            <text x="2307.9629" xml:space="preserve" y="835.0771" stroke="none"></text>
-            <circle fill="rgb(255,255,179)" stroke-width="2.7476" r="54.9515"
-                    cx="2390.3902" cy="825.6839" stroke="none"/>
-            <circle fill="none" stroke-width="2.7476" r="54.9515" cx="2390.3902"
-                    cy="825.6839"/>
-            <text x="2312.7905" xml:space="preserve" y="745.7809" stroke="none">C 0.998</text><path fill="none"
-                  d="M2480 860.0286 L2479.6863 860.0286 L2475.5649 860.0286 C2468.7366 860.0286 2463.2009 865.5642 2463.2009 872.3927 L2463.2009 880.6354 L2463.2009 916.3539 L2463.2009 924.5966 C2463.2009 931.4251 2468.7366 936.9607 2475.5649 936.9607 L2479.6863 936.9607 L2480 936.9607"
-                  stroke-width="8.2427" stroke-linecap="butt"
+            <text x="2218.3599" xml:space="preserve" y="978.0432" stroke="none"></text>
+            <circle fill="rgb(255,255,179)" stroke-width="3.215" r="64.3003"
+                    cx="2314.8103" cy="966.1558" stroke="none"/>
+            <circle fill="none" stroke-width="3.215" r="64.3003" cx="2314.8103"
+                    cy="966.1558"/>
+            <text x="2224.0085" xml:space="preserve" y="873.5552" stroke="none">C 0.998</text><path fill="none"
+                  d="M2420 1006.3435 L2419.2981 1006.3435 L2414.4756 1006.3435 C2406.4854 1006.3435 2400.0081 1012.8209 2400.0081 1020.8111 L2400.0081 1030.4561 L2400.0081 1072.2512 L2400.0081 1081.8964 C2400.0081 1089.8866 2406.4854 1096.364 2414.4756 1096.364 L2419.2981 1096.364 L2420 1096.364"
+                  stroke-width="9.645" stroke-linecap="butt"
                   stroke-linejoin="bevel"/>
-            <path d="M2479.6865 855.9073 L2534.6379 855.9073 L2534.6379 864.15 L2479.6865 864.15 Z"
+            <path d="M2419.2983 1001.521 L2483.5986 1001.521 L2483.5986 1011.166 L2419.2983 1011.166 Z"
                   stroke="none"/>
-            <text font-style="italic" x="2548.3757" xml:space="preserve"
-                  font-size="55" y="875.684" stroke="none">taxonG</text><path d="M2479.6865 932.8394 L2534.6379 932.8394 L2534.6379 941.082 L2479.6865 941.082 Z"
+            <text font-style="italic" x="2499.6736" xml:space="preserve"
+                  font-size="64" y="1024.1559" stroke="none">taxonG</text><path d="M2419.2983 1091.5414 L2483.5986 1091.5414 L2483.5986 1101.1864 L2419.2983 1101.1864 Z"
                   stroke="none"/>
-            <text font-style="italic" x="2548.3757" xml:space="preserve"
-                  font-size="55" y="952.616" stroke="none">taxonE</text><path d="M2294.2251 1009.7714 L2534.6379 1009.7714 L2534.6379 1018.0141 L2294.2251 1018.0141 Z"
+            <text font-style="italic" x="2499.6736" xml:space="preserve"
+                  font-size="64" y="1114.1763" stroke="none">taxonE</text><path d="M2202.2847 1181.5618 L2483.5984 1181.5618 L2483.5984 1191.2068 L2202.2847 1191.2068 Z"
                   stroke="none"/>
-            <text font-style="italic" x="2548.3757" xml:space="preserve"
-                  font-size="55" y="1029.5481" stroke="none">taxonD</text><path d="M1737.8412 1428.0897 L1903 1428.0897 L1903 1436.3324 L1737.8412 1436.3324 Z"
+            <text font-style="italic" x="2499.6736" xml:space="preserve"
+                  font-size="64" y="1204.1967" stroke="none">taxonD</text><path d="M1551.2444 1671.0476 L1745 1671.0476 L1745 1680.6926 L1551.2444 1680.6926 Z"
                   stroke="none"/>
-            <text x="1751.5791" xml:space="preserve" y="1368.7935" stroke="none"></text>
-            <circle fill="rgb(255,255,179)" stroke-width="2.7476" r="54.9515"
-                    cx="1834.0063" cy="1359.4004" stroke="none"/>
-            <circle fill="none" stroke-width="2.7476" r="54.9515" cx="1834.0063"
-                    cy="1359.4004"/>
-            <text x="1756.4786" xml:space="preserve" y="1279.4973" stroke="none">C 1.000</text><path fill="none"
-                  d="M1924 1360.0873 L1923.3025 1360.0873 L1919.1812 1360.0873 C1912.3527 1360.0873 1906.817 1365.6229 1906.817 1372.4514 L1906.817 1380.6941 L1906.817 1483.7281 L1906.817 1491.9709 C1906.817 1498.7994 1912.3527 1504.335 1919.1812 1504.335 L1923.3025 1504.335 L1924 1504.335"
-                  stroke-width="8.2427" stroke-linecap="butt"
+            <text x="1567.3195" xml:space="preserve" y="1602.5597" stroke="none"></text>
+            <circle fill="rgb(255,255,179)" stroke-width="3.215" r="64.3003"
+                    cx="1663.7699" cy="1590.6722" stroke="none"/>
+            <circle fill="none" stroke-width="3.215" r="64.3003" cx="1663.7699"
+                    cy="1590.6722"/>
+            <text x="1573.0525" xml:space="preserve" y="1498.0718" stroke="none">C 1.000</text><path fill="none"
+                  d="M1769 1591.4761 L1768.2578 1591.4761 L1763.4353 1591.4761 C1755.4451 1591.4761 1748.9678 1597.9534 1748.9678 1605.9436 L1748.9678 1615.5886 L1748.9678 1736.1517 L1748.9678 1745.7968 C1748.9678 1753.787 1755.4451 1760.2644 1763.4353 1760.2644 L1768.2578 1760.2644 L1769 1760.2644"
+                  stroke-width="9.645" stroke-linecap="butt"
                   stroke-linejoin="bevel"/>
-            <path d="M1923.3025 1355.9658 L2089 1355.9658 L2089 1364.2085 L1923.3025 1364.2085 Z"
+            <path d="M1768.2578 1586.6536 L1962 1586.6536 L1962 1596.2986 L1768.2578 1596.2986 Z"
                   stroke="none"/>
-            <text x="1937.0404" xml:space="preserve" y="1296.6697" stroke="none"></text>
-            <circle fill="rgb(255,255,179)" stroke-width="2.7476" r="54.9515"
-                    cx="2019.4676" cy="1287.2765" stroke="none"/>
-            <circle fill="none" stroke-width="2.7476" r="54.9515" cx="2019.4676"
-                    cy="1287.2765"/>
-            <text x="1941.9399" xml:space="preserve" y="1207.3734" stroke="none">C 1.000</text><path fill="none"
-                  d="M2109 1292.7716 L2108.7637 1292.7716 L2104.6423 1292.7716 C2097.814 1292.7716 2092.2783 1298.3073 2092.2783 1305.1357 L2092.2783 1313.3784 L2092.2783 1406.796 L2092.2783 1415.0388 C2092.2783 1421.8673 2097.814 1427.4028 2104.6423 1427.4028 L2108.7637 1427.4028 L2109 1427.4028"
-                  stroke-width="8.2427" stroke-linecap="butt"
+            <text x="1784.3329" xml:space="preserve" y="1518.1655" stroke="none"></text>
+            <circle fill="rgb(255,255,179)" stroke-width="3.215" r="64.3003"
+                    cx="1880.7833" cy="1506.2782" stroke="none"/>
+            <circle fill="none" stroke-width="3.215" r="64.3003" cx="1880.7833"
+                    cy="1506.2782"/>
+            <text x="1790.066" xml:space="preserve" y="1413.6776" stroke="none">C 1.000</text><path fill="none"
+                  d="M1986 1512.7083 L1985.2712 1512.7083 L1980.4487 1512.7083 C1972.4585 1512.7083 1965.9812 1519.1855 1965.9812 1527.1758 L1965.9812 1536.8208 L1965.9812 1646.1313 L1965.9812 1655.7764 C1965.9812 1663.7666 1972.4585 1670.244 1980.4487 1670.244 L1985.2712 1670.244 L1986 1670.244"
+                  stroke-width="9.645" stroke-linecap="butt"
                   stroke-linejoin="bevel"/>
-            <path d="M2108.7639 1288.6503 L2274 1288.6503 L2274 1296.8929 L2108.7639 1296.8929 Z"
+            <path d="M1985.2714 1507.8856 L2179 1507.8856 L2179 1517.5306 L1985.2714 1517.5306 Z"
                   stroke="none"/>
-            <text x="2122.5017" xml:space="preserve" y="1229.354" stroke="none"></text>
-            <circle fill="rgb(255,255,179)" stroke-width="2.7476" r="54.9515"
-                    cx="2204.929" cy="1219.9609" stroke="none"/>
-            <circle fill="none" stroke-width="2.7476" r="54.9515" cx="2204.929"
-                    cy="1219.9609"/>
-            <text x="2127.4011" xml:space="preserve" y="1140.0579" stroke="none">C 1.000</text><path fill="none"
-                  d="M2295 1235.0726 L2294.2251 1235.0726 L2290.1038 1235.0726 C2283.2754 1235.0726 2277.7397 1240.6083 2277.7397 1247.4368 L2277.7397 1255.6794 L2277.7397 1329.864 L2277.7397 1338.1068 C2277.7397 1344.9353 2283.2754 1350.4708 2290.1038 1350.4708 L2294.2251 1350.4708 L2295 1350.4708"
-                  stroke-width="8.2427" stroke-linecap="butt"
+            <text x="2001.3464" xml:space="preserve" y="1439.3977" stroke="none"></text>
+            <circle fill="rgb(255,255,179)" stroke-width="3.215" r="64.3003"
+                    cx="2097.7969" cy="1427.5102" stroke="none"/>
+            <circle fill="none" stroke-width="3.215" r="64.3003" cx="2097.7969"
+                    cy="1427.5102"/>
+            <text x="2007.0795" xml:space="preserve" y="1334.9097" stroke="none">C 1.000</text><path fill="none"
+                  d="M2203 1445.193 L2202.2847 1445.193 L2197.4622 1445.193 C2189.4719 1445.193 2182.9946 1451.6703 2182.9946 1459.6605 L2182.9946 1469.3055 L2182.9946 1556.111 L2182.9946 1565.756 C2182.9946 1573.7462 2189.4719 1580.2236 2197.4622 1580.2236 L2202.2847 1580.2236 L2203 1580.2236"
+                  stroke-width="9.645" stroke-linecap="butt"
                   stroke-linejoin="bevel"/>
-            <path d="M2294.2251 1230.9512 L2460 1230.9512 L2460 1239.1938 L2294.2251 1239.1938 Z"
+            <path d="M2202.2847 1440.3704 L2396 1440.3704 L2396 1450.0154 L2202.2847 1450.0154 Z"
                   stroke="none"/>
-            <text x="2307.9629" xml:space="preserve" y="1171.655" stroke="none"></text>
-            <circle fill="rgb(255,255,179)" stroke-width="2.7476" r="54.9515"
-                    cx="2390.3902" cy="1162.2618" stroke="none"/>
-            <circle fill="none" stroke-width="2.7476" r="54.9515" cx="2390.3902"
-                    cy="1162.2618"/>
-            <text x="2312.8625" xml:space="preserve" y="1082.3589" stroke="none">C 1.000</text><path fill="none"
-                  d="M2480 1196.6066 L2479.6863 1196.6066 L2475.5649 1196.6066 C2468.7366 1196.6066 2463.2009 1202.1422 2463.2009 1208.9707 L2463.2009 1217.2134 L2463.2009 1252.9319 L2463.2009 1261.1747 C2463.2009 1268.0032 2468.7366 1273.5387 2475.5649 1273.5387 L2479.6863 1273.5387 L2480 1273.5387"
-                  stroke-width="8.2427" stroke-linecap="butt"
+            <text x="2218.3599" xml:space="preserve" y="1371.8824" stroke="none"></text>
+            <circle fill="rgb(255,255,179)" stroke-width="3.215" r="64.3003"
+                    cx="2314.8103" cy="1359.995" stroke="none"/>
+            <circle fill="none" stroke-width="3.215" r="64.3003" cx="2314.8103"
+                    cy="1359.995"/>
+            <text x="2224.093" xml:space="preserve" y="1267.3944" stroke="none">C 1.000</text><path fill="none"
+                  d="M2420 1400.1827 L2419.2981 1400.1827 L2414.4756 1400.1827 C2406.4854 1400.1827 2400.0081 1406.66 2400.0081 1414.6503 L2400.0081 1424.2953 L2400.0081 1466.0905 L2400.0081 1475.7356 C2400.0081 1483.7258 2406.4854 1490.2032 2414.4756 1490.2032 L2419.2981 1490.2032 L2420 1490.2032"
+                  stroke-width="9.645" stroke-linecap="butt"
                   stroke-linejoin="bevel"/>
-            <path d="M2479.6865 1192.4851 L2534.6379 1192.4851 L2534.6379 1200.7278 L2479.6865 1200.7278 Z"
+            <path d="M2419.2983 1395.3601 L2483.5986 1395.3601 L2483.5986 1405.0051 L2419.2983 1405.0051 Z"
                   stroke="none"/>
-            <text font-style="italic" x="2548.3757" xml:space="preserve"
-                  font-size="55" y="1212.2617" stroke="none">taxonJ</text><path d="M2479.6865 1269.4172 L2534.6379 1269.4172 L2534.6379 1277.6599 L2479.6865 1277.6599 Z"
+            <text font-style="italic" x="2499.6736" xml:space="preserve"
+                  font-size="64" y="1417.995" stroke="none">taxonJ</text><path d="M2419.2983 1485.3806 L2483.5986 1485.3806 L2483.5986 1495.0256 L2419.2983 1495.0256 Z"
                   stroke="none"/>
-            <text font-style="italic" x="2548.3757" xml:space="preserve"
-                  font-size="55" y="1289.194" stroke="none">taxonH</text><path d="M2294.2251 1346.3494 L2534.6379 1346.3494 L2534.6379 1354.592 L2294.2251 1354.592 Z"
+            <text font-style="italic" x="2499.6736" xml:space="preserve"
+                  font-size="64" y="1508.0155" stroke="none">taxonH</text><path d="M2202.2847 1575.401 L2483.5984 1575.401 L2483.5984 1585.046 L2202.2847 1585.046 Z"
                   stroke="none"/>
-            <text font-style="italic" x="2548.3757" xml:space="preserve"
-                  font-size="55" y="1366.126" stroke="none">taxonO</text><path d="M2108.7639 1423.2815 L2534.6379 1423.2815 L2534.6379 1431.5242 L2108.7639 1431.5242 Z"
+            <text font-style="italic" x="2499.6736" xml:space="preserve"
+                  font-size="64" y="1598.0359" stroke="none">taxonO</text><path d="M1985.2714 1665.4214 L2483.5986 1665.4214 L2483.5986 1675.0664 L1985.2714 1675.0664 Z"
                   stroke="none"/>
-            <text font-style="italic" x="2548.3757" xml:space="preserve"
-                  font-size="55" y="1443.0581" stroke="none">taxonC</text><path d="M1923.3025 1500.2136 L2534.6379 1500.2136 L2534.6379 1508.4563 L1923.3025 1508.4563 Z"
+            <text font-style="italic" x="2499.6736" xml:space="preserve"
+                  font-size="64" y="1688.0563" stroke="none">taxonC</text><path d="M1768.2578 1755.4419 L2483.5986 1755.4419 L2483.5986 1765.0869 L1768.2578 1765.0869 Z"
                   stroke="none"/>
-            <text font-style="italic" x="2548.3757" xml:space="preserve"
-                  font-size="55" y="1519.9902" stroke="none">taxonF</text><path d="M1552.3799 1577.1456 L2534.6379 1577.1456 L2534.6379 1585.3883 L1552.3799 1585.3883 Z"
+            <text font-style="italic" x="2499.6736" xml:space="preserve"
+                  font-size="64" y="1778.0768" stroke="none">taxonF</text><path d="M1334.231 1845.4622 L2483.5986 1845.4622 L2483.5986 1855.1072 L1334.231 1855.1072 Z"
                   stroke="none"/>
-            <text font-style="italic" x="2548.3757" xml:space="preserve"
-                  font-size="55" y="1596.9222" stroke="none">taxonK</text><path d="M1366.9186 1654.0778 L2534.6379 1654.0778 L2534.6379 1662.3204 L1366.9186 1662.3204 Z"
+            <text font-style="italic" x="2499.6736" xml:space="preserve"
+                  font-size="64" y="1868.0969" stroke="none">taxonK</text><path d="M1117.2174 1935.4827 L2483.5986 1935.4827 L2483.5986 1945.1277 L1117.2174 1945.1277 Z"
                   stroke="none"/>
-            <text font-style="italic" x="2548.3757" xml:space="preserve"
-                  font-size="55" y="1673.8545" stroke="none">taxonN</text>
+            <text font-style="italic" x="2499.6736" xml:space="preserve"
+                  font-size="64" y="1958.1174" stroke="none">taxonN</text>
         </g>
     </g>
 </svg>

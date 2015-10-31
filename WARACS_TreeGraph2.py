@@ -3,7 +3,7 @@
 __author__ = "Michael Gruenstaeudl, PhD <mi.gruenstaeudl@gmail.com>"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __info__ = "Visualizing Character State Reconstruction Results using TreeGraph2 (http://treegraph.bioinfweb.info/)"
-__version__ = "2015.10.29.2100"
+__version__ = "2015.10.31.2300"
 
 #####################
 # IMPORT OPERATIONS #
@@ -31,11 +31,11 @@ import pdb
 # GLOBAL VARIABLES #
 ####################
 
-labelMargin_xml_1 = '<LabelMargin Left="1.0" Top="0.0" Right="1.0" Bottom="0.0"></LabelMargin>'
-labelMargin_xml_2 = '<LabelMargin Left="1.0" Top="1.0" Right="1.0" Bottom="1.0"></LabelMargin>'
+labelMargin_xml_1 = '<LabelMargin Left="1.0" Top="0.0" Right="1.0" Bottom="0.0"> </LabelMargin>'
+labelMargin_xml_2 = '<LabelMargin Left="1.0" Top="1.0" Right="1.0" Bottom="1.0"> </LabelMargin>'
 #labelMargin_xml_3 = '<LabelMargin Left="1.0" Top="0.0" Right="1.0" Bottom="1.0"></LabelMargin>' # optimal for phylograms
-pieChartLabel_xml = '<PieChartLabel LineColor="#000000" LineWidth="0.2" Width="8.0" Height="8.0" InternalLines="true" NullLines="false" Id="internals" Above="true" LineNo="0" LinePos="0"></PieChartLabel>'
-textLabel_xml = '<TextLabel Text="" IsDecimal="false" TextColor="#000000" TextHeight="3.0" TextStyle="" FontFamily="Arial" DecimalFormat="#0.0#####" LocaleLang="en" LocaleCountry="" LocaleVariant="" Id="internals" Above="true" LineNo="" LinePos="0"></TextLabel>'
+pieChartLabel_xml = '<PieChartLabel LineColor="#000000" LineWidth="0.2" Width="8.0" Height="8.0" InternalLines="true" NullLines="false" Id="internals" Above="true" LineNo="0" LinePos="0"> </PieChartLabel>'
+textLabel_xml = '<TextLabel Text="" IsDecimal="false" TextColor="#000000" TextHeight="3.0" TextStyle="" FontFamily="Arial" DecimalFormat="#0.0#####" LocaleLang="en" LocaleCountry="" LocaleVariant="" Id="1" Above="true" LineNo="" LinePos="0"> </TextLabel>'
 
 default_palette = ["#8dd3c7","#ffffb3","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5","#ffed6f","#a6cee3","#1f78b4","#b2df8a","#33a02c","#fb9a99","#e31a1c","#fdbf6f","#ff7f00","#cab2d6","#6a3d9a","#ffff99","#b15928"]
 
@@ -141,6 +141,8 @@ class AddPieCharts:
                         textLabel = _ET.fromstring(textLabel_xml)
                         textLabel.attrib["Text"] = k + " " + v
                         textLabel.attrib["LineNo"] = str(c)
+                        textLabel.attrib["Id"] = k + " " + v            # Very important that this is a label not used by any other on this particular branch
+                        
                         labelMargin_1 = _ET.fromstring(labelMargin_xml_1)
                         textLabel.insert(0, labelMargin_1)
 
@@ -285,7 +287,7 @@ class PrettyPrintXTG:
         outStr = re.sub(r'<([A-Z])', r'\n<\1', outStr, flags=re.M)      # Newline before every xml starttag
         outStr = re.sub('^<Branch ', '\t<Branch ', outStr, flags=re.M)  # don't alter spaces in keywords; they are important
         outStr = re.sub('^<LeafMargin ', '\t<LeafMargin ', outStr, flags=re.M)
-        outStr = re.sub('^<LabelMargin ', '\t\t<LabelMargin ', outStr, flags=re.M)
+        outStr = outStr.replace('\n<LabelMargin ', ' <LabelMargin ')    # Do NOT do via re.sub, which acts line by line
         outStr = re.sub('^<TextLabel ', '\t\t<TextLabel ', outStr, flags=re.M)
         outStr = re.sub('^<PieChartLabel ', '\t\t<PieChartLabel ', outStr, flags=re.M)
         outStr = re.sub('^<DataId ', '\t\t\t<DataId ', outStr, flags=re.M)
