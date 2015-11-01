@@ -16,11 +16,11 @@ WARACS: Wrappers to Automate the Reconstruction of Ancestral Character States
 ### - Usage under Linux and Mac OS
 ###### 1. Test the wrapper
 ```
-python2.7 /path_to_git/WARACS/WARACS_Mesquite.py -h
+python2.7 /path_to_WARACS/WARACS_Mesquite.py -h
 ```
 ###### 2. Perform an ancestral character state reconstruction via [Mesquite](http://mesquiteproject.org)
 ```
-python2.7 /path_to_git/WARACS/WARACS_Mesquite.py
+python2.7 /path_to_WARACS/WARACS_Mesquite.py
   -c /path_to_input/character_state_distribution.csv
   -t /path_to_input/tree_distribution.tre
   -p /path_to_input/plotting_tree.tre
@@ -31,7 +31,7 @@ python2.7 /path_to_git/WARACS/WARACS_Mesquite.py
 ```
 ###### 3. Perform an ancestral character state reconstruction via [BayesTraits](http://www.evolution.reading.ac.uk/BayesTraits.html)
 ```
-python2.7 /path_to_git/WARACS/WARACS_BayesTraits.py
+python2.7 /path_to_WARACS/WARACS_BayesTraits.py
   -c /path_to_input/character_state_distribution.csv
   -t /path_to_input/tree_distribution.tre
   -p /path_to_input/plotting_tree.tre
@@ -42,7 +42,7 @@ python2.7 /path_to_git/WARACS/WARACS_BayesTraits.py
 ```
 ###### 4. Visualize the character state reconstruction results via [TreeGraph2](http://treegraph.bioinfweb.info/)
 ```
-python2.7 /path_to_git/WARACS/WARACS_TreeGraph2.py
+python2.7 /path_to_WARACS/WARACS_TreeGraph2.py
   -r /path_to_input/tree_distribution__Mesquite_likelihood_char2.csv
   -p /path_to_input/tree_distribution__Mesquite_likelihood_char2.tre
   -c /path_to_input/color_dictionary.csv
@@ -53,5 +53,5 @@ python2.7 /path_to_git/WARACS/WARACS_TreeGraph2.py
 
 ###### Testing the wrapper; the other commands work correspondingly
 ```
-C:\Python27\python.exe \path_to_git\WARACS\WARACS_Mesquite.py -h
+C:\Python27\python.exe \path_to_WARACS\WARACS_Mesquite.py -h
 ```
