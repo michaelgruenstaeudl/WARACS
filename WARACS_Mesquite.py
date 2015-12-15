@@ -1,40 +1,37 @@
 #!/usr/bin/env python
 """Reconstructing Ancestral Character States using Mesquite
 """
-__author__ = "Michael Gruenstaeudl, PhD <mi.gruenstaeudl@gmail.com>"
-__copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
-__info__ = "Reconstructing Ancestral Character States using Mesquite (http://mesquiteproject.org)"
-__version__ = "2015.12.15.1100"
 
 #####################
 # IMPORT OPERATIONS #
 #####################
 
-from csv import reader as _csvreader
+from __future__ import absolute_import
+from __future__ import print_function
 
 import argparse
+import csv
 import sys
 import CustomFileOps as CFO
 import CustomPhyloOps as CPO
 import CustomStringOps as CSO
 
-opt_deps = ["numpy"]
-if opt_deps:
-    try:
-        map(__import__, opt_deps)
-#    except ImportError:                                                # Not all systems raise the exception "ImportError"; others raise different exception.
-    except:
-        print sys.exc_info()[0]
-        sys.exit("  ERROR: Please install the following Python packages: " + ", ".join(opt_deps))
-        # FUTURE CODE:
-        # CFO.installPkgs(opt_deps)
-import numpy
+numpy = CFO.loadModule("numpy")
+
+###############
+# AUTHOR INFO #
+###############
+
+__author__ = "Michael Gruenstaeudl, PhD <mi.gruenstaeudl@gmail.com>"
+__copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
+__info__ = "Reconstructing Ancestral Character States using Mesquite (http://mesquiteproject.org)"
+__version__ = "2015.12.15.1100"
 
 #############
 # DEBUGGING #
 #############
 
-#import pdb
+import pdb
 #pdb.set_trace()
 
 
@@ -101,7 +98,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
         pos = treedistr.find("BEGIN TREES;") + len("BEGIN TREES;")
         treedistrH = treedistr[:pos] + "\nTitle 'block1'" + treedistr[pos:]
     except: 
-        print "  Warning: Problem with tree distribution."
+        print("  Warning: Problem with tree distribution.")
         
     # 1.5. Parse plottree
     plottreeH = plottree.replace("#NEXUS","")
@@ -109,7 +106,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
         try:
             pos = plottreeH.find("END;", plottreeH.find("BEGIN TAXA;")) + len("END;")
         except: 
-            print "  Warning: Problem with plotting tree."
+            print("  Warning: Problem with plotting tree.")
             pos = 0
     else:
         pos = 0
@@ -125,8 +122,9 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     block1 = "\nBEGIN CHARACTERS;\nTITLE  'MYCHARS';\nDIMENSIONS  NCHAR=1;\nFORMAT DATATYPE = STANDARD GAP = - MISSING = ? SYMBOLS = '"
     block2 = "';\nMATRIX\n"
     block3 = "\n;\nEND;\n"
+
     try:
-        reader = _csvreader(open(charsFn, "r"), delimiter=",")
+        reader = csv.reader(open(charsFn, "r"), delimiter=",")
         matrx = numpy.array(list(reader))
         n = int(charnum)
         charstates = set(matrx[:, n])
@@ -143,7 +141,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
         arrStr = CSO.makeprettytable(arr)
         chars = block1 + " ".join(charstates) + block2 + arrStr + block3
     except:
-        print sys.exc_info()[0]
+        print(sys.exc_info()[0])
         sys.exit("  ERROR: Error when parsing the character states.")
 
     # FUTURE CODE
@@ -201,8 +199,8 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
 
 #   2.2. Run Mesquite on data
     if verbose.upper() in ["T", "TRUE"]:
-        print "  Character Reconstruction in Mesquite"
-        print "  Selected Reconstruction Method:", optcrit
+        print("  Character Reconstruction in Mesquite")
+        print("  Selected Reconstruction Method:", optcrit)
     waittime = len(treedistrL)*0.05
     cmdL = [pathToSoftware, compiledInFn]
     data_handle = CFO.extprog(cmdL, waittime)
@@ -239,14 +237,14 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     if "File reading complete" in mainD:
         mainD = mainD[mainD.find(k):]
     mainD = mainD[mainD.find("\nnode"):].splitlines()                   # This steps split the string into a list!
-    mainD = filter(None, mainD)                                         # removing all empty elements of mainD
+    mainD = [_f for _f in mainD if _f]                                         # removing all empty elements of mainD
     if not mainD:
         sys.exit("  ERROR: Parsing of reconstr. data unsuccessful. Possible issue: Malformed NEXUS file.")
 
 
 # 3. Parsing the reconstruction output
     if verbose.upper() in ["T", "TRUE"]:
-        print "  Parsing of Reconstruction Data"
+        print("  Parsing of Reconstruction Data")
     alist = [elem.split("  ") for elem in mainD if elem]                # generating parsed_data; field delimiter: two whitespaces
     outD = []
     for i in alist:
@@ -255,7 +253,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
             nodeN = int(nodeN)-1                                        # IMPORTANT to substract 1, because Mesquite assumes a rootes set of trees (hence, has an extraneous node)
             nodeN = str(nodeN)
         except: 
-            print "  Warning: No node number information recovered."
+            print("  Warning: No node number information recovered.")
             pass
 
         #try:                                                           # REACTIVATE, WHEN N OF TREES WITHOUT NODE RELEVANT
@@ -279,17 +277,17 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
                 tmpL.append(outStr)
             recon = ";".join(tmpL)
         except: 
-            print "  Warning: No reconstruction information for node", nodeN
+            print("  Warning: No reconstruction information for node", nodeN)
             pass
         try:
             #outD.append(",".join([nodeN] + [Ntrees] + [recon]))        # REACTIVATE, WHEN N OF TREES WITHOUT NODE RELEVANT
             outD.append(",".join([nodeN] + [recon]))                    # Must be inside a try-command to avoid breakage when no reconstr. info for node
         except: 
-            print "  Warning: Element missing for node", nodeN
+            print("  Warning: Element missing for node", nodeN)
             pass
     outD = "\n".join(outD)                                              # must be outside of loop
     if not outD:
-        print sys.exc_info()[0]
+        print(sys.exc_info()[0])
         sys.exit("  ERROR: Parsing of reconstruction data unsuccessful.")
 
 

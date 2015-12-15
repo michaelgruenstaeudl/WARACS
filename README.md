@@ -4,9 +4,10 @@ WARACS: Wrappers to Automate the Reconstruction of Ancestral Character States
 ![](https://github.com/michaelgruenstaeudl/WARACS/blob/master/examples/example_TreeGraph2/02_output/tree_distribution__BayesTraits_likelihood_char1.xtg.png)
 
 ### - Prerequisites
-* Python v.2.7 (https://www.python.org/download/releases/2.7/)
+* Python v.2.7 (https://www.python.org/download/releases/2.7/) or Python v.3.5 (https://www.python.org/downloads/release/python-350/)
 * Python package *DendroPy* (https://pypi.python.org/pypi/DendroPy)
 * Python package *numpy* (https://pypi.python.org/pypi/numpy)
+* Python package *six* (https://pypi.python.org/pypi/six)
 
 ### - Wrapped Applications
 * Mesquite (http://mesquiteproject.org)
@@ -45,7 +46,8 @@ python2.7 /path_to_WARACS/WARACS_BayesTraits.py
 python2.7 /path_to_WARACS/WARACS_TreeGraph2.py
   -r /path_to_input/tree_distribution__Mesquite_likelihood_char2.csv
   -p /path_to_input/tree_distribution__Mesquite_likelihood_char2.tre
-  -c /path_to_input/color_dictionary.csv
+  -c /path_to_input/character_state_distribution.csv
+  -d /path_to_input/color_dictionary.csv
   -s /path_to_TreeGraph2/TreeGraph.jar
   -v True
 ```

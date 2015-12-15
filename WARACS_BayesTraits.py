@@ -1,35 +1,33 @@
 #!/usr/bin/env python
 """Reconstructing Ancestral Character States using BayesTraits
 """
-__author__ = "Michael Gruenstaeudl, PhD <mi.gruenstaeudl@gmail.com>"
-__copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
-__info__ = "Reconstructing Ancestral Character States using BayesTraits (http://www.evolution.reading.ac.uk/BayesTraits.html)"
-__version__ = "2015.12.15.1100"
 
 #####################
 # IMPORT OPERATIONS #
 #####################
 
-from cStringIO import StringIO
-from csv import reader as _csvreader
+from __future__ import absolute_import
+from __future__ import print_function
+from six.moves import zip
 
+from cStringIO import StringIO
 import argparse
+import csv
 import sys
 import CustomFileOps as CFO
 import CustomPhyloOps as CPO
 import CustomStringOps as CSO
 
-opt_deps = ["numpy"]
-if opt_deps:
-    try:
-        map(__import__, opt_deps)
-#    except ImportError:                                                # Not all systems raise the exception "ImportError"; others raise different exception.
-    except:
-        print sys.exc_info()[0]
-        sys.exit("  ERROR: Please install the following Python packages: " + ", ".join(opt_deps))
-        # FUTURE CODE:
-        # CFO.installPkgs(opt_deps)
-import numpy
+numpy = CFO.loadModule("numpy")
+
+###############
+# AUTHOR INFO #
+###############
+
+__author__ = "Michael Gruenstaeudl, PhD <mi.gruenstaeudl@gmail.com>"
+__copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
+__info__ = "Reconstructing Ancestral Character States using BayesTraits (http://www.evolution.reading.ac.uk/BayesTraits.html)"
+__version__ = "2015.12.15.1100"
 
 #############
 # DEBUGGING #
@@ -81,7 +79,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keep
     node_specs, nodeL = out_handle[0], out_handle[1]
 
     # 1.4. Modify chars-file
-    reader = _csvreader(open(charsFn, "rb"), delimiter=",")
+    reader = csv.reader(open(charsFn, "rb"), delimiter=",")
     arr = numpy.array(list(reader))
     arr = arr[:,[0,charnum]]                                            # Extracting a particular column
     out_handle = CSO.makeprettytable(arr)
@@ -94,8 +92,8 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keep
 
 # 2. Reconstruction in BayesTraits
     if verbose.upper() in ["T", "TRUE"]:
-        print "  Character Reconstruction in BayesTraits"
-        print "  Selected Reconstruction Method:", rcnmdl
+        print("  Character Reconstruction in BayesTraits")
+        print("  Selected Reconstruction Method:", rcnmdl)
     cmdL = [pathToSoftware, treedistrFn, charsFnTmp, "<", compiledInFn]
     data_handle = CFO.extprog(cmdL)
     if not data_handle or parseKw not in data_handle:
@@ -105,7 +103,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keep
 # 3. Parse reconstruction data
 # 3.1. Get section
     tmp = CSO.exstrkeepkw(data_handle, parseKw, "Sec:")
-    reader = _csvreader(StringIO(tmp), delimiter="\t")                  # csv.reader can only read file object
+    reader = csv.reader(StringIO(tmp), delimiter="\t")                  # csv.reader can only read file object
     arr = numpy.array(list(reader))                                     # reader holds the data only for one execution; hence immediately transfer it to variable "arr"
 
 # 3.2. Extract all those cols that contain keyw

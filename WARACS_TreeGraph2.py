@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 """Visualizing Character State Reconstruction Results using TreeGraph2
 """
-__author__ = "Michael Gruenstaeudl, PhD <mi.gruenstaeudl@gmail.com>"
-__copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
-__info__ = "Visualizing Character State Reconstruction Results using TreeGraph2 (http://treegraph.bioinfweb.info/)"
-__version__ = "2015.12.15.1100"
 
 #####################
 # IMPORT OPERATIONS #
 #####################
+
+from __future__ import absolute_import
+from __future__ import print_function
+import six
 
 from collections import OrderedDict as _ordDict
 from os.path import isfile as _isfile
@@ -20,6 +20,15 @@ import sys
 import CustomFileOps as CFO
 import CustomPhyloOps as CPO
 import CustomStringOps as CSO
+
+###############
+# AUTHOR INFO #
+###############
+
+__author__ = "Michael Gruenstaeudl, PhD <mi.gruenstaeudl@gmail.com>"
+__copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
+__info__ = "Visualizing Character State Reconstruction Results using TreeGraph2 (http://treegraph.bioinfweb.info/)"
+__version__ = "2015.12.15.1100"
 
 #############
 # DEBUGGING #
@@ -133,17 +142,17 @@ class AddPieCharts:
                     if is_ast:
                         prop = prop + " *"                              # Adding back asterisk for significant reconstructions
                     aDict[area] = prop
-            if len(aDict.keys()) < 1:
-                print "    Warning: Pie data for node " + node + " not parsed."
-            if type(aDict.values()) == list:
-                aSum = sum([float(i) for i in aDict.values()])
+            if len(list(aDict.keys())) < 1:
+                print("    Warning: Pie data for node " + node + " not parsed.")
+            if type(list(aDict.values())) == list:
+                aSum = sum([float(i) for i in list(aDict.values())])
                 if aSum > 1:                                            # If the reconstruction values do not constitute percentages
-                    aDict.update((x, str("{0:.3f}".format(float(y)/aSum))) for x, y in aDict.items())
+                    aDict.update((x, str("{0:.3f}".format(float(y)/aSum))) for x, y in list(aDict.items()))
             for n in tree.iter("Node"):                                 # Must be inside loop "for line in piedata"
                 if n.attrib["UniqueName"] == nodeN:                     # Stop at the correct node
 
 # 2.2. Addition of pie labels
-                    for c, (k, v) in enumerate(aDict.items(), start=1):
+                    for c, (k, v) in enumerate(list(aDict.items()), start=1):
                         textLabel = _ET.fromstring(textLabel_xml)
                         textLabel.attrib["Text"] = k + " " + v
                         textLabel.attrib["LineNo"] = str(c)
@@ -172,7 +181,7 @@ class AddPieCharts:
                     tmp = _ET.Element("Temp")
                     tmp.text = " "
 
-                    for k, v in aDict.items():                          # Loop through aDict and append PieColor definitions
+                    for k, v in list(aDict.items()):                          # Loop through aDict and append PieColor definitions
                         di = _ET.Element("DataId")
                         di.attrib["PieColor"] = self.colorDict[k]       # Color dictionary in action here
                         di.text = k
@@ -334,7 +343,7 @@ def main(reconstrFn, treeFn, pathToTG2, charsFn, charnum, colordictFn, flags, ke
         if colordictFn:
 # 1.2.2.1. Loading color dictionary
             color_specs = CFO.loadRL(colordictFn)
-            color_specs = filter(None, color_specs)                     # removing all empty elements of tmp
+            color_specs = [_f for _f in color_specs if _f]                     # removing all empty elements of tmp
             colorDict = {}
 # 1.2.2.2. Checking individual colors
             for line in color_specs:
@@ -347,7 +356,7 @@ def main(reconstrFn, treeFn, pathToTG2, charsFn, charnum, colordictFn, flags, ke
                     sys.exit("  ERROR: The colors in your color dictionary do not constitutes hex codes.")
                 colorDict[char] = color
 # 1.2.2.3. Checking if as many colors as reconstructions
-            if not CSO.sublistinlist(colorDict.keys(), charL):
+            if not CSO.sublistinlist(list(colorDict.keys()), charL):
                 sys.exit("  ERROR: Number of chars in reconstruction results unequal to number of chars in color dictionary.")
 # 1.2.3. If color dictionary not supplied by user
         if not colordictFn:
@@ -361,7 +370,7 @@ def main(reconstrFn, treeFn, pathToTG2, charsFn, charnum, colordictFn, flags, ke
 #######################################################
 # 2.1. Conversion from .nex to .xtg format
         if verbose.upper() in ["T", "TRUE"]:
-            print "  Step 1: Conversion .nex -> .xtg"
+            print("  Step 1: Conversion .nex -> .xtg")
         ConversionNEX2XTG(treeFn, tmpFn, pathToTG2).go()
         out_step1 = CFO.loadR(tmpFn)
 # 2.2. Extraction of relevant XML part
@@ -388,20 +397,20 @@ def main(reconstrFn, treeFn, pathToTG2, charsFn, charnum, colordictFn, flags, ke
 #############################
 # 3.1. Pretty-print the .xtg file
         if verbose.upper() in ["T", "TRUE"]:
-            print "  Step 2: Pretty-print of xtg code"
+            print("  Step 2: Pretty-print of xtg code")
         out_step2 = PrettyPrintXTG(out_step1).go()
         CFO.saveFile(tmpFn, out_step2)
 
 # 3.2. Label internal nodes
         if verbose.upper() in ["T", "TRUE"]:
-            print "  Step 3: Labeling nodes of tree"
+            print("  Step 3: Labeling nodes of tree")
         LabelingNodesXTG(tmpFn).go()
 
 ###########################################
 # 4. Customize graphical param. in XTG file
 ###########################################
         if verbose.upper() in ["T", "TRUE"]:
-            print "  Step 4: Customize XTG file"
+            print("  Step 4: Customize XTG file")
         CustomizeXTG_Nodes(tmpFn).go()
         #start_cap_2 = CustomizeXTG_Global(start_cap_2, flags).go()
 
@@ -411,22 +420,22 @@ def main(reconstrFn, treeFn, pathToTG2, charsFn, charnum, colordictFn, flags, ke
         out_step5 = CFO.loadR(tmpFn)
         if reconstrD:
             if verbose.upper() in ["T", "TRUE"]:
-                print "  Step 5: Adding pie labels and charts"
+                print("  Step 5: Adding pie labels and charts")
             out_step5 = AddPieCharts(out_step5, reconstrD, colorDict).go()  # Indentation important, because pie data if statement above
         else:
-            print "  Warning: No pie data available."
+            print("  Warning: No pie data available.")
         CFO.saveFile(tmpFn, out_step5)
 
 ############################
 # 6. Improving visualization
 ############################
         if verbose.upper() in ["T", "TRUE"]:
-            print "  Step 6: Improving visualization"
+            print("  Step 6: Improving visualization")
 # 6.1. Option to visualize char states of terminal taxa
         if charsFn and charnum and colorDict:
             try:
                 char_specs = CFO.loadRL(charsFn)
-                char_specs = filter(None, char_specs)                   # removing all empty elements of char_specs
+                char_specs = [_f for _f in char_specs if _f]                   # removing all empty elements of char_specs
                 terminalDict = {}
                 for line in char_specs:
                     tmp = line.split(",")
@@ -436,7 +445,7 @@ def main(reconstrFn, treeFn, pathToTG2, charsFn, charnum, colordictFn, flags, ke
             except:
                 sys.exit("  ERROR: Generating dictionary of character states of terminal taxa not successful.")
             try:
-                for k in terminalDict.keys():
+                for k in list(terminalDict.keys()):
                     terminalDict[k] = colorDict[terminalDict[k]]
             except:
                 sys.exit("  ERROR: Character states in color dictionary not identical to those of terminal taxa.")
@@ -444,10 +453,10 @@ def main(reconstrFn, treeFn, pathToTG2, charsFn, charnum, colordictFn, flags, ke
             tree = _ET.parse(tmpFn)
             root = tree.getroot()
         except:
-            print sys.exc_info()[0]
+            print(sys.exc_info()[0])
             sys.exit("  ERROR: Parsing of XML code unsuccessful.")
         for n in root.iter("Tree"):
-            for k,v in terminalDict.iteritems():
+            for k,v in six.iteritems(terminalDict):
                 for i in n.findall(".//Node"):
                     if "Text" in i.attrib and i.attrib["Text"] in [k, k.replace("_"," ")]:
                         uniqueName = i.attrib["UniqueName"]
@@ -463,7 +472,7 @@ def main(reconstrFn, treeFn, pathToTG2, charsFn, charnum, colordictFn, flags, ke
             tree = _ET.parse(tmpFn)
             root = tree.getroot()
         except:
-            print sys.exc_info()[0]
+            print(sys.exc_info()[0])
             sys.exit("  ERROR: Parsing of XML code unsuccessful.")
         for n in root.iter('Text'):
             n.attrib["TextColor"] = "#808080"                           # Make pielabels grey
@@ -478,7 +487,7 @@ def main(reconstrFn, treeFn, pathToTG2, charsFn, charnum, colordictFn, flags, ke
 # 7. Pretty-print the .xtg file
 ###############################
         if verbose.upper() in ["T", "TRUE"]:
-            print "  Step 7: Pretty-print of xtg code"
+            print("  Step 7: Pretty-print of xtg code")
         out_handle = PrettyPrintXTG(out_step6).go()
         CFO.saveFile(tmpFn, out_handle)
 
@@ -486,7 +495,7 @@ def main(reconstrFn, treeFn, pathToTG2, charsFn, charnum, colordictFn, flags, ke
 # 8. Combining all parts
 ########################
         if verbose.upper() in ["T", "TRUE"]:
-            print "  Step 8: Combining all xml sections"
+            print("  Step 8: Combining all xml sections")
         finalL = [start_cap_1, start_cap_2, out_handle, end_cap]
         CFO.saveFile(compiledInFn, "\n".join(finalL))
 
@@ -494,7 +503,7 @@ def main(reconstrFn, treeFn, pathToTG2, charsFn, charnum, colordictFn, flags, ke
 # 9. Conversion from .xtg to .png format
 ########################################
         if verbose.upper() in ["T", "TRUE"]:
-            print "  Step 9: Conversion .xtg  -> .png"
+            print("  Step 9: Conversion .xtg  -> .png")
         ConversionXTG2IMG(compiledInFn, pathToTG2, flags).go()
 
 ####################

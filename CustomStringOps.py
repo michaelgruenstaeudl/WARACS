@@ -1,21 +1,30 @@
 #!/usr/bin/env python
 """General String Operations
 """
-__author__ = "Michael Gruenstaeudl, PhD"
-__copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
-__email__ = "mi.gruenstaeudl@gmail.com"
-__version__ = "2015.12.15.1100"
 
 #####################
 # IMPORT OPERATIONS #
 #####################
 
-from sys import platform as _platform
-from random import choice as _choice
-from string import lowercase as _lowercase
-from sys import exit as _exit
+from __future__ import absolute_import
+from __future__ import print_function
+from six.moves import range
+from six.moves import zip
+from functools import reduce
 
+import random
 import re
+import string
+import sys
+
+###############
+# AUTHOR INFO #
+###############
+
+__author__ = "Michael Gruenstaeudl, PhD"
+__copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
+__email__ = "mi.gruenstaeudl@gmail.com"
+__version__ = "2015.12.15.1100"
 
 ###########
 # CLASSES #
@@ -49,8 +58,8 @@ class clearSplit:
     def go(self):
         splitL = self.inStr.split(self.delim)
         if len(splitL) < 2:
-            print "  ERROR: ", self.__class__.__name__
-            print "  Less than two elements after split."
+            print("  ERROR: ", self.__class__.__name__)
+            print("  Less than two elements after split.")
         outlist = []
         if len(splitL) == 2:
             if not self.rflag:
@@ -150,7 +159,7 @@ class randomWord:
     def __init__(self, a):
         self.inInt = a
     def go(self):
-        return ''.join(_choice(_lowercase) for i in range(self.inInt))
+        return ''.join(random.choice(string.lowercase) for i in range(self.inInt))
 
 class removeExt:
     ''' Returns inStr without extension (i.e. ".txt" or ".trees").
@@ -175,11 +184,11 @@ class removePath:
     def __init__(self, a):
         self.inStr = a
     def go(self):
-        if _platform == "linux" or _platform == "linux2":
+        if sys.platform == "linux" or sys.platform == "linux2":
             sep = "/"
-        elif _platform == "darwin":
+        elif sys.platform == "darwin":
             sep = "/"
-        elif _platform == "win32":
+        elif sys.platform == "win32":
             sep = "\\"
         return self.inStr[self.inStr.rfind(sep)+len(sep):]
 
@@ -215,7 +224,7 @@ class rmBlankLns:
         self.inFile = a
     def go(self):
         aList = self.inFile.splitlines()
-        aList = filter(None, aList)
+        aList = [_f for _f in aList if _f]
         return "\n".join(aList)
     def go2(self):                                                      # Faster alternative that go()
         import os
@@ -264,7 +273,7 @@ class sublistInList:
         self.sublist = a
     def go(self):
         n = len(self.sublist)
-        return any((self.sublist == self.alist[i:i+n]) for i in xrange(len(self.alist)-n+1))
+        return any((self.sublist == self.alist[i:i+n]) for i in range(len(self.alist)-n+1))
 
 
 ###############

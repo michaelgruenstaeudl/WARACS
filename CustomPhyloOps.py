@@ -1,29 +1,26 @@
 #!/usr/bin/env python
 """Custom Phylo Operations
 """
-__author__ = "Michael Gruenstaeudl, PhD"
-__copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
-__email__ = "mi.gruenstaeudl@gmail.com"
-__version__ = "2015.12.15.1100"
 
 #####################
 # IMPORT OPERATIONS #
 #####################
 
-import CustomFileOps as GFO
+from __future__ import absolute_import
+
+import CustomFileOps as CFO
 import sys
 
-opt_deps = ["dendropy"]
-if opt_deps:
-    try:
-        map(__import__, opt_deps)
-#    except ImportError:                                                # Not all systems raise the exception "ImportError"; others raise different exception.
-    except:
-        print sys.exc_info()[0]
-        sys.exit("  ERROR: Please install the following Python packages: " + ", ".join(opt_deps))
-        # FUTURE CODE:
-        # CFO.installPkgs(opt_deps)
-import dendropy
+dendropy = CFO.loadModule("dendropy")
+
+###############
+# AUTHOR INFO #
+###############
+
+__author__ = "Michael Gruenstaeudl, PhD"
+__copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
+__email__ = "mi.gruenstaeudl@gmail.com"
+__version__ = "2015.12.15.1100"
 
 ###########
 # CLASSES #
