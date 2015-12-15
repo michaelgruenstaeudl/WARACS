@@ -30,6 +30,13 @@ __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __info__ = "Visualizing Character State Reconstruction Results using TreeGraph2 (http://treegraph.bioinfweb.info/)"
 __version__ = "2015.12.15.1100"
 
+#################
+# COMPATIBILITY #
+#################
+
+PY2 = sys.version_info[0] == 2
+PY3 = sys.version_info[0] == 3
+
 #############
 # DEBUGGING #
 #############
@@ -89,7 +96,10 @@ class CustomizeXTG_Nodes:
 #        tree = _ET.fromstring(str(self.inStr))
 #        if "NOROOT" in self.flags.upper():
 #            tree.attrib["ShowRooted"] = "false"
-#        return _ET.tostring(tree)
+#        if PY2:
+#            return _ET.tostring(tree)
+#        if PY3:
+#            return _ET.tostring(tree).decode()
 
 
 class AddPieCharts:
@@ -220,7 +230,10 @@ class AddPieCharts:
                     #                else:
                     #                    new_out_list.append(line)
 
-        outStr = _ET.tostring(tree)
+        if PY2:
+            outStr = _ET.tostring(tree)
+        if PY3:
+            outStr = _ET.tostring(tree).decode()                              # in Python 3, files are read as byte-like by default; need to decode to string
         outStr = outStr.replace("<Temp>","")
         outStr = outStr.replace("</Temp>","")
         return outStr
@@ -326,7 +339,7 @@ def main(reconstrFn, treeFn, pathToTG2, charsFn, charnum, colordictFn, flags, ke
     compiledInFn = fileprfx + ".xtg"
     try:
 ############################################
-#1. loading infiles, customizing color dict.
+#1. Loading infiles, customizing color dict.
 ############################################
 # 1.1. Loading infiles
         reconstrD = CFO.loadR(reconstrFn)
@@ -464,7 +477,10 @@ def main(reconstrFn, treeFn, pathToTG2, charsFn, charnum, colordictFn, flags, ke
                         legendText.attrib["Anchor0"] = uniqueName
                         legendText.attrib["LineColor"] = v
                         n.append(legendText)
-        out_handle = _ET.tostring(root)
+        if PY2:
+            out_handle = _ET.tostring(root)
+        if PY3:
+            out_handle = _ET.tostring(root).decode()
         CFO.saveFile(tmpFn, out_handle)
 
 # 6.2. Minor improvements to visual aspects
@@ -480,7 +496,10 @@ def main(reconstrFn, treeFn, pathToTG2, charsFn, charnum, colordictFn, flags, ke
                 bsvalue = int(n.attrib["Text"])                         # strip commas and digits from bootstrap values
                 n.attrib["Text"] = bsvalue
                 n.attrib["IsDecimal"] = "false"
-        out_step6 = _ET.tostring(root)
+        if PY2:
+            out_step6 = _ET.tostring(root)
+        if PY3:
+            out_step6 = _ET.tostring(root).decode()
         CFO.saveFile(tmpFn, out_step6)
 
 ###############################

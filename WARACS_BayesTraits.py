@@ -10,13 +10,17 @@ from __future__ import absolute_import
 from __future__ import print_function
 from six.moves import zip
 
-from cStringIO import StringIO
 import argparse
 import csv
 import sys
 import CustomFileOps as CFO
 import CustomPhyloOps as CPO
 import CustomStringOps as CSO
+
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO                                             # In Python 3, the 'io' module replaces the 'StringIO' module
 
 numpy = CFO.loadModule("numpy")
 
@@ -79,7 +83,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keep
     node_specs, nodeL = out_handle[0], out_handle[1]
 
     # 1.4. Modify chars-file
-    reader = csv.reader(open(charsFn, "rb"), delimiter=",")
+    reader = csv.reader(open(charsFn, "r"), delimiter=",")
     arr = numpy.array(list(reader))
     arr = arr[:,[0,charnum]]                                            # Extracting a particular column
     out_handle = CSO.makeprettytable(arr)

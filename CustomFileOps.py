@@ -13,6 +13,7 @@ from six.moves import input
 
 from subprocess import Popen, PIPE
 from pkg_resources import WorkingSet, DistributionNotFound
+import codecs
 import os
 import signal
 import sys
@@ -26,6 +27,20 @@ __author__ = "Michael Gruenstaeudl, PhD"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __email__ = "mi.gruenstaeudl@gmail.com"
 __version__ = "2015.12.15.1100"
+
+#################
+# COMPATIBILITY #
+#################
+
+PY2 = sys.version_info[0] == 2
+PY3 = sys.version_info[0] == 3
+
+#############
+# DEBUGGING #
+#############
+
+#import pdb
+#pdb.set_trace()
 
 ###########
 # CLASSES #
@@ -172,6 +187,10 @@ class PopenExtProg:
         outStream, errorStream = p.communicate()
         #if errorStream:                                                # too sensistive with many programs
         #    sys.exit("  ERROR: ", self.err)
+        if PY2:
+            outStream = outStream
+        if PY3:
+            outStream = outStream.decode()                              # in Python 3, files are read as byte-like by default; need to decode to string
         return outStream
 
 

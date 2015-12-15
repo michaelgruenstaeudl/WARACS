@@ -25,15 +25,14 @@ numpy = CFO.loadModule("numpy")
 __author__ = "Michael Gruenstaeudl, PhD <mi.gruenstaeudl@gmail.com>"
 __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __info__ = "Reconstructing Ancestral Character States using Mesquite (http://mesquiteproject.org)"
-__version__ = "2015.12.15.1100"
+__version__ = "2015.12.15.1500"
 
 #############
 # DEBUGGING #
 #############
 
-import pdb
+#import pdb
 #pdb.set_trace()
-
 
 ####################
 # GLOBAL VARIABLES #
@@ -76,6 +75,7 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, optcrit, pathToSoftware, kee
     treedistr = CFO.loadR(treedistrFn)
     treedistrL = treedistr.splitlines()
     treedistr_tmpL = []
+
     for l in treedistrL:
         if ";" in l:
             treedistr_tmpL.append(l.upper())

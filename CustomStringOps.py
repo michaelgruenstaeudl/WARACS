@@ -26,6 +26,13 @@ __copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
 __email__ = "mi.gruenstaeudl@gmail.com"
 __version__ = "2015.12.15.1100"
 
+#############
+# DEBUGGING #
+#############
+
+#import pdb
+#pdb.set_trace()
+
 ###########
 # CLASSES #
 ###########
