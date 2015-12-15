@@ -58,5 +58,5 @@ python /path_to_WARACS/WARACS_TreeGraph2.py
 
 ###### Testing the wrapper; the other commands work correspondingly
 ```
-C:\Python27\python.exe \path_to_WARACS\WARACS_Mesquite.py -h
+C:\Python\python.exe \path_to_WARACS\WARACS_Mesquite.py -h
 ```
