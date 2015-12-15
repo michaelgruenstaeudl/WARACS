@@ -3,8 +3,11 @@ WARACS: Wrappers to Automate the Reconstruction of Ancestral Character States
 
 ![](https://github.com/michaelgruenstaeudl/WARACS/blob/master/examples/example_TreeGraph2/02_output/tree_distribution__BayesTraits_likelihood_char1.xtg.png)
 
+### - Compatibility
+* Python v.2.7 (https://www.python.org/download/releases/2.7/)
+* Python v.3.5 (https://www.python.org/downloads/release/python-350/)
+
 ### - Prerequisites
-* Python v.2.7 (https://www.python.org/download/releases/2.7/) or Python v.3.5 (https://www.python.org/downloads/release/python-350/)
 * Python package *DendroPy* (https://pypi.python.org/pypi/DendroPy)
 * Python package *numpy* (https://pypi.python.org/pypi/numpy)
 * Python package *six* (https://pypi.python.org/pypi/six)
@@ -17,11 +20,11 @@ WARACS: Wrappers to Automate the Reconstruction of Ancestral Character States
 ### - Usage under Linux and Mac OS
 ###### 1. Test the wrapper
 ```
-python2.7 /path_to_WARACS/WARACS_Mesquite.py -h
+python /path_to_WARACS/WARACS_Mesquite.py -h
 ```
 ###### 2. Perform an ancestral character state reconstruction via [Mesquite](http://mesquiteproject.org)
 ```
-python2.7 /path_to_WARACS/WARACS_Mesquite.py
+python /path_to_WARACS/WARACS_Mesquite.py
   -c /path_to_input/character_state_distribution.csv
   -t /path_to_input/tree_distribution.tre
   -p /path_to_input/plotting_tree.tre
@@ -32,7 +35,7 @@ python2.7 /path_to_WARACS/WARACS_Mesquite.py
 ```
 ###### 3. Perform an ancestral character state reconstruction via [BayesTraits](http://www.evolution.reading.ac.uk/BayesTraits.html)
 ```
-python2.7 /path_to_WARACS/WARACS_BayesTraits.py
+python /path_to_WARACS/WARACS_BayesTraits.py
   -c /path_to_input/character_state_distribution.csv
   -t /path_to_input/tree_distribution.tre
   -p /path_to_input/plotting_tree.tre
@@ -43,7 +46,7 @@ python2.7 /path_to_WARACS/WARACS_BayesTraits.py
 ```
 ###### 4. Visualize the character state reconstruction results via [TreeGraph2](http://treegraph.bioinfweb.info/)
 ```
-python2.7 /path_to_WARACS/WARACS_TreeGraph2.py
+python /path_to_WARACS/WARACS_TreeGraph2.py
   -r /path_to_input/tree_distribution__Mesquite_likelihood_char2.csv
   -p /path_to_input/tree_distribution__Mesquite_likelihood_char2.tre
   -c /path_to_input/character_state_distribution.csv
