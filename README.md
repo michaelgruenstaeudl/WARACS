@@ -49,8 +49,9 @@ python /path_to_WARACS/WARACS_BayesTraits.py
 python /path_to_WARACS/WARACS_TreeGraph2.py
   -r /path_to_input/tree_distribution__Mesquite_likelihood_char2.csv
   -p /path_to_input/tree_distribution__Mesquite_likelihood_char2.tre
-  -c /path_to_input/character_state_distribution.csv
   -d /path_to_input/color_dictionary.csv
+  -c /path_to_input/character_state_distribution.csv
+  -n 2
   -s /path_to_TreeGraph2/TreeGraph.jar
   -v True
 ```
