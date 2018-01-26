@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Reconstructing Ancestral Character States using BayesTraits
+"""Parsing the Results of BayesTraits
 """
 
 #####################
@@ -29,25 +29,21 @@ numpy = CFO.loadModule("numpy")
 ###############
 
 __author__ = "Michael Gruenstaeudl, PhD <mi.gruenstaeudl@gmail.com>"
-__copyright__ = "Copyright (C) 2015 Michael Gruenstaeudl"
-__info__ = "Reconstructing Ancestral Character States using BayesTraits (http://www.evolution.reading.ac.uk/BayesTraits.html)"
-__version__ = "2018.01.26.1200"
+__copyright__ = "Copyright (C) 2015-2016 Michael Gruenstaeudl"
+__info__ = "Parsing the Results of BayesTraits"
+__version__ = "2016.01.08.1600"
 
 #############
 # DEBUGGING #
 #############
 
-import pdb
+#import pdb
 #pdb.set_trace()
 
 ####################
 # GLOBAL VARIABLES #
 ####################
 
-bayesModel = "1\n2\n"
-bayesKw = "Iteration\tLh"
-likeModel = "1\n1\n"
-likeKw = "Tree No\tLh"
 
 ###########
 # CLASSES #
@@ -58,59 +54,30 @@ likeKw = "Tree No\tLh"
 # MODULES #
 ###########
 
-def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keepTmpFile, verbose):
+def main(bayestraitsFn, plottreeFn, rcnmdl):
 
-    # 1.1. Decision on model
+# 1. Read input
+# 1.1. Decision on model
     kw = rcnmdl.lower()
     if kw == "likelihood" or kw == "like" or kw == "l":
-        mdl = likeModel
-        parseKw = likeKw
+        parseKw = "Tree No\tLh"
     if kw == "bayesian" or kw == "bayes" or kw == "b":
-        mdl = bayesModel
-        parseKw = bayesKw
-
-    # 1.2. Setting outfilenames
-    fileprfx = CSO.rmpath(CSO.rmext(treedistrFn))
-    fileinfo = "__BayesTraits_" + kw + "_char" + str(charnum)
-    outFn_raw = fileprfx + fileinfo + ".txt"
-    outFn_tree = fileprfx + fileinfo + ".tre"
-    outFn_table = fileprfx + fileinfo + ".csv"
-    charsFnTmp = charsFn + ".tmp"
-    compiledInFn = "compiledInfileForBayesTraits.tmp"
-
-    # 1.3. Generate tip list
+        parseKw = "Iteration\tLh"
+# 1.2. Setting outfilenames
+    fileprfx = CSO.rmpath(CSO.rmext(bayestraitsFn))
+    outFn_tree = fileprfx + "_out" + ".tre"
+    outFn_table = fileprfx + "_out" + ".csv"
+    
+# 2. Generate list of nodes of plotting tree
     out_handle = CPO.GetNodeListFromTree(plottreeFn)
     node_specs, nodeL = out_handle[0], out_handle[1]
 
-    # 1.4. Modify chars-file
-    reader = csv.reader(open(charsFn, "r"), delimiter=",")
-    arr = numpy.array(list(reader))
-    #pdb.set_trace()
-    arr = arr[:,[0,int(charnum)]]                                       # Extracting a particular column
-    out_handle = CSO.makeprettytable(arr)
-    CFO.saveFile(charsFnTmp, out_handle)
-
-    # 1.5. Generate command string as save to file
-    cmdStr = mdl + node_specs + "\nrun\n"
-    CFO.saveFile(compiledInFn, cmdStr)
-
-
-# 2. Reconstruction in BayesTraits
-    if verbose.upper() in ["T", "TRUE"]:
-        print("  Character Reconstruction in BayesTraits")
-        print("  Selected Reconstruction Method:", rcnmdl)
-    cmdL = [pathToSoftware, treedistrFn, charsFnTmp, "<", compiledInFn]
-    data_handle = CFO.extprog(cmdL)
-    if not data_handle or parseKw not in data_handle:
-        sys.exit("  ERROR: No reconstruction data from BayesTraits received.")
-    CFO.saveFile(outFn_raw, data_handle)
-
-# 3. Parse reconstruction data
+# 3. Extract reconstruction data
 # 3.1. Get section
+    data_handle = CFO.loadR(bayestraitsFn)
     tmp = CSO.exstrkeepkw(data_handle, parseKw, "Sec:")
     reader = csv.reader(StringIO(tmp), delimiter="\t")                  # csv.reader can only read file object
     arr = numpy.array(list(reader))                                     # reader holds the data only for one execution; hence immediately transfer it to variable "arr"
-
 # 3.2. Extract all those cols that contain keyw
     colHeaders = list(arr[0])
     outL = []
@@ -120,7 +87,6 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keep
         matchCols = [colHeaders.index(h) for h in matchHeaders]
         valueArr = [e[matchCols] for e in arr[1:]]                      # values for a particular node still as columns
         valueArr_t = numpy.transpose(valueArr)                          # after transposition, values for a particular node now as rows
-
 # 3.2.1. Calculate column sum divided by column length
         matchVals = []
         for line in valueArr_t:
@@ -136,7 +102,6 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keep
             matchVals.append(r)
         if len(matchHeaders) != len(matchVals):
             sys.exit("  ERROR: Error when parsing the reconstruction results.")
-
 # 3.2.2. Important step
         if sum(matchVals) > 0:                                          # IMPORTANT STEP: only write line if reconstruction present
             tmpL = []
@@ -148,22 +113,14 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keep
             outL.append(tmpStr)
     outD = "\n".join(outL)
 
-
-# 4. Saving files to disk  
-#   4.1. Converting tree from nexus to newick
+# 4. Saving results to files
+# 4.1. Converting tree from nexus to newick
     plottree = CFO.loadR(plottreeFn)
     plottree_newick = CPO.ConvertNexusToNewick(plottree)                # Converting tree from nexus into newick format, because nexus format may contain translation table, which TreeGraph2 cannot parse
     CFO.saveFile(outFn_tree, plottree_newick)
-
-#   4.2. Save main results
+# 4.2. Save main results
     CFO.saveFile(outFn_table, outD)
-    
-# 5. Decision on deleting temporary files
-    CFO.deleteFile(charsFnTmp + ".log.txt")
-    if keepTmpFile.upper() in ["F", "FALSE"]:
-        CFO.deleteFile(charsFnTmp)
-        CFO.deleteFile(compiledInFn)
-        CFO.deleteFile(outFn_raw)
+
 
 ############
 # ARGPARSE #
@@ -171,34 +128,16 @@ def main(treedistrFn, plottreeFn, charsFn, charnum, rcnmdl, pathToSoftware, keep
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="  --  ".join([__author__, __copyright__, __info__, __version__]))
-    parser.add_argument('-t', '--treedistr',
-                        help='/path_to_input/tree_distribution.tre',
+    parser.add_argument('-t', '--bayestraits',
+                        help='/path_to_input/bayestraits_results.tre',
                         required=True)
     parser.add_argument('-p', '--plottree',
                         help='/path_to_input/plotting_tree.tre',
-                        required=True)
-    parser.add_argument('-c', '--chars',
-                        help='/path_to_input/character_state_distribution.csv',
-                        required=True)
-    parser.add_argument('-n', '--charnumber',
-                        help='which character to use (e.g. 1)',
-                        default='1',
                         required=True)
     parser.add_argument('-o', '--optcrit',
                         help='models of character evolution; available: likelihood, bayesian',
                         default='likelihood',
                         required=True)
-    parser.add_argument('-s', '--software',
-                        help='/path_to_software/mesquite.sh',
-                        required=True)
-    parser.add_argument('-k', '--keep',
-                        help='Keeping the temporary input file; a boolean operator',
-                        required=False,
-                        default='False')
-    parser.add_argument('-v', '--verbose',
-                        help='Displaying full; a boolean operator',
-                        required=False,
-                        default='False')
     parser.add_argument('-V', '--version', 
                         help='Print version information and exit',
                         action='version',
@@ -210,4 +149,4 @@ if __name__ == '__main__':
 # MAIN #
 ########
 
-main(args.treedistr, args.plottree, args.chars, args.charnumber, args.optcrit, args.software, args.keep, args.verbose)
+main(args.bayestraits, args.plottree, args.optcrit)
